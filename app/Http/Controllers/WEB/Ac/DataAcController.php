@@ -60,7 +60,7 @@ class DataAcController extends Controller
                 'kelengkapan' => ['required', 'min:3', 'string'],
                 'ruangan' => ['required', 'min:3', 'string'],
                 'kondisi' => ['required', 'min:3', 'string'],
-                'tahun_pembelian' => ['required', 'numeric'],
+                'tahun_pembelian' => ['required'],
                 'desc_kondisi' => ['required', 'min:3', 'string'],
             ], [], [
                 'merek_id' => 'Merek AC',

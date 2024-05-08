@@ -23,13 +23,11 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between  py-3">
+                            <div class="d-flex justify-content-between align-items-center py-3">
                                 <h5 class="card-title">Data Kode Akses Teknisi</h5>
-                                <div class="py-3 me-2">
-                                    {{-- <button type="button" class="btn btn-primary addToken">
-                                        <i class="bi bi-plus-square"></i> Tambah Data
-                                    </button> --}}
-                                </div>
+                                {{-- <button type="button" class="btn btn-primary addToken">
+                                    <i class="bi bi-plus-square"></i> Tambah Data
+                                </button> --}}
                             </div>
                             <table class="table datatable table-striped">
                                 <thead>

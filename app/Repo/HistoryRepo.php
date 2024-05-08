@@ -13,7 +13,7 @@ class HistoryRepo implements HistoryInterface
     }
 
     public function getDetail($id){
-        return History::with('acDesc', 'teknisiPerbaikan', 'acDesc.merekAC')->firstOrFail();
+        return History::with('acDesc', 'teknisiPerbaikan', 'acDesc.merekAC')->where('ac_desc_id', $id)->get();
     }
 
     public function getById($id)

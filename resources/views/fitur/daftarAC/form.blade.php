@@ -28,11 +28,13 @@
 
                     <div class="card">
                         <div class="card-body p-3">
-                            @if (isset($data))
-                                <h5 class="card-title">Form Ubah Data AC</h5>
-                            @else
-                                <h5 class="card-title">Form Tambah Data AC</h5>
-                            @endif
+                            <div class="mb-5">
+                                @if (isset($data))
+                                    <h5 class="card-title">Form Ubah Data AC</h5>
+                                @else
+                                    <h5 class="card-title">Form Tambah Data AC</h5>
+                                @endif
+                            </div>
 
                             <!-- Custom Styled Validation with Tooltips -->
                             <form class="row g-3 needs-validation" method="POST" action="{{ $ref['url'] }}"
@@ -41,17 +43,6 @@
                                 @if (isset($data))
                                     @method('PUT')
                                 @endif
-                                {{-- <div class="col-md-4 position-relative">
-                                    <label for="kode_AC" class="form-label">Kode AC</label>
-                                    <input type="text" class="form-control" id="kode_AC" name="kode_AC"
-                                        value="{{ old('kode_AC', isset($data) ? $data['kode_AC'] : '') }}" required>
-                                    <div class="valid-tooltip">
-                                        Mantappp!!!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        Masukkan kode ac.
-                                    </div>
-                                </div> --}}
 
                                 <div class="col-md-4 position-relative">
                                     <label for="merek_id" class="form-label">Merek AC</label>

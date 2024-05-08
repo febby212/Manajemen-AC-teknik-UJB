@@ -7,9 +7,10 @@ use App\Http\Controllers\WEB\Login\AuthTeknisiController;
 use App\Http\Controllers\WEB\Login\LoginController;
 use App\Http\Controllers\WEB\Dashboard\HomeController;
 use App\Http\Controllers\WEB\Data\MerekAcController;
-use App\Http\Controllers\WEB\Public\DetailRiwayatController;
+use App\Http\Controllers\WEB\PublicHistory\DetailRiwayatController;
 use App\Http\Controllers\WEB\Teknisi\TeknisiController;
 use App\Http\Controllers\WEB\Teknisi\TokenizeController;
+use App\Models\History;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,14 +55,21 @@ Route::middleware('auth')->group(function () {
 });
 
 //detail riwayat ac (untuk guest atau teknisi)
-Route::get('detail-riwayat/{id}', [DetailRiwayatController::class, 'index']);
+Route::get('detail-riwayat/{id}', [DetailRiwayatController::class, 'show'])->name('detail.riwayat');
+Route::get('detail-riwayat-all', [DetailRiwayatController::class, 'index'])->name('detail.riwayat.all');
 
 Route::middleware(['auth', 'technician'])->prefix('admin')->group(function () {
     // Rute untuk tindakan yang hanya dapat diakses oleh teknisi
-    Route::get('/create', [DetailRiwayatController::class, 'create']);
+    Route::get('/create', [DetailRiwayatController::class, 'create'])->name('buat.riwayat');
     Route::post('/store', [DetailRiwayatController::class, 'store']);
     Route::get('/{id}/edit', [DetailRiwayatController::class, 'edit']);
     Route::put('/{id}', [DetailRiwayatController::class, 'update']);
     Route::delete('/{id}', [DetailRiwayatController::class, 'destroy']);
+});
+
+Route::get('/user', function () {
+    $data = History::with('pembuatLaporan', 'teknisiPerbaikan', 'acDesc.merekAC')->get();
+    // dd($data->toArray());
+    return view('guest.detail.index', compact('data'));
 });
 

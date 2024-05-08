@@ -10,9 +10,9 @@
                     <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('teknisi.index') }}">{{ $ref['title'] }}</a></li>
                     @if (isset($data))
-                    <li class="breadcrumb-item active">Ubah Data</li>
+                        <li class="breadcrumb-item active">Ubah Data</li>
                     @else
-                    <li class="breadcrumb-item active">Tambah Data</li>
+                        <li class="breadcrumb-item active">Tambah Data</li>
                     @endif
                 </ol>
             </nav>
@@ -24,11 +24,13 @@
 
                     <div class="card">
                         <div class="card-body p-3">
-                            @if (isset($data))
-                            <h5 class="card-title">Form Ubah Data Teknisi</h5>
-                            @else
-                            <h5 class="card-title">Form Tambah Data Teknisi</h5>
-                            @endif
+                            <div class="mb-5">
+                                @if (isset($data))
+                                    <h5 class="card-title">Form Ubah Data Teknisi</h5>
+                                @else
+                                    <h5 class="card-title">Form Tambah Data Teknisi</h5>
+                                @endif
+                            </div>
 
                             <!-- Custom Styled Validation with Tooltips -->
                             <form class="row g-3 needs-validation" method="POST" action="{{ $ref['url'] }}"
@@ -51,7 +53,8 @@
                                 <div class="col-md-4 position-relative">
                                     <label for="perusahaan" class="form-label">Nama Perusahaan</label>
                                     <input type="text" class="form-control" id="perusahaan" name="nama_perusahaan"
-                                        value="{{ old('nama_perusahaan', isset($data) ? $data['nama_perusahaan'] : '') }}" required>
+                                        value="{{ old('nama_perusahaan', isset($data) ? $data['nama_perusahaan'] : '') }}"
+                                        required>
                                     <div class="valid-tooltip">
                                         Mantappp!!!
                                     </div>
@@ -62,7 +65,9 @@
                                 <div class="col-md-4 position-relative">
                                     <label for="alamatPerusahaan" class="form-label">Alamat Perusahaan</label>
                                     <input type="text" class="form-control" id="alamatPerusahaan"
-                                        name="alamat_perusahaan" value="{{ old('alamat_perusahaan', isset($data) ? $data['alamat_perusahaan'] : '') }}" required>
+                                        name="alamat_perusahaan"
+                                        value="{{ old('alamat_perusahaan', isset($data) ? $data['alamat_perusahaan'] : '') }}"
+                                        required>
                                     <div class="valid-tooltip">
                                         Mantappp!!!
                                     </div>

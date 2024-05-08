@@ -1,18 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\WEB\Public;
+namespace App\Http\Controllers\WEB\PublicHistory;
 
 use App\Http\Controllers\Controller;
+use App\Repo\DataAcRepo;
+use App\Repo\HistoryRepo;
+use App\Repo\MerekAcRepo;
 use Illuminate\Http\Request;
 
 class DetailRiwayatController extends Controller
 {
+    private MerekAcRepo $merekAC;
+    private DataAcRepo $dataAc;
+    private HistoryRepo $history;
+    private $data = array();
+
+    public function __construct(DataAcRepo $dataAc, MerekAcRepo $merekAC, HistoryRepo $history)
+    {
+        $this->data['title'] = "Detail Riwayat Ac";
+        $this->data['dir_view'] = "guest.detail.";
+        $this->dataAc = $dataAc;
+        $this->merekAC = $merekAC;
+        $this->history = $history;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $ref = $this->data;
+        $data = $this->dataAc->getAll();
+        // dd($data->);
+        // dd($data->toArray());
+        return view($this->data['dir_view'] . 'index', compact('data', 'ref'));
     }
 
     /**
@@ -28,7 +48,6 @@ class DetailRiwayatController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -36,7 +55,10 @@ class DetailRiwayatController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $ref = $this->data;
+        $data = $this->history->getDetail($id);
+        // dd($data->toArray());
+        return view($this->data['dir_view'] . 'detail', compact('data', 'ref'));
     }
 
     /**

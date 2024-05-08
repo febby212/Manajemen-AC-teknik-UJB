@@ -5,13 +5,13 @@
 
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                 <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                <span class="d-none d-md-block dropdown-toggle ps-2">{{ Str::ucfirst(Auth::user()->name) }}</span>
             </a><!-- End Profile Iamge Icon -->
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li class="dropdown-header">
-                    <h6>Kevin Anderson</h6>
-                    <span>Web Designer</span>
+                    <h6>{{ Str::ucfirst(Auth::user()->name) }}</h6>
+                    <span>{{ Str::ucfirst(Auth::user()->is_admin) ? 'Admin' : '' }}</span>
                 </li>
                 <li>
                     <hr class="dropdown-divider">

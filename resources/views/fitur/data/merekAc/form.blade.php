@@ -24,11 +24,13 @@
 
                     <div class="card">
                         <div class="card-body p-3">
-                            @if (isset($data))
-                            <h5 class="card-title">Form Ubah Data Merek AC</h5>
-                            @else
-                            <h5 class="card-title">Form Tambah Data Merek AC</h5>
-                            @endif
+                            <div class="mb-5">
+                                @if (isset($data))
+                                <h5 class="card-title">Form Ubah Data Merek AC</h5>
+                                @else
+                                <h5 class="card-title">Form Tambah Data Merek AC</h5>
+                                @endif
+                            </div>
 
                             <!-- Custom Styled Validation with Tooltips -->
                             <form class="row g-3 needs-validation" method="POST" action="{{ $ref['url'] }}"

@@ -29,11 +29,13 @@
 
                     <div class="card">
                         <div class="card-body p-3">
-                            @if (isset($data))
-                                <h5 class="card-title">Form Ubah Data Riwayat Perbaikan AC</h5>
-                            @else
-                                <h5 class="card-title">Form Tambah Data Riwayat Perbaikan AC</h5>
-                            @endif
+                            <div class="mb-5">
+                                @if (isset($data))
+                                    <h5 class="card-title">Form Ubah Data Riwayat Perbaikan AC</h5>
+                                @else
+                                    <h5 class="card-title">Form Tambah Data Riwayat Perbaikan AC</h5>
+                                @endif
+                            </div>
 
                             <form class="row g-3 needs-validation" method="POST" action="{{ $ref['url'] }}"
                                 novalidate="">
@@ -63,7 +65,8 @@
 
                                 <div class="col-md-6 position-relative">
                                     <label for="PPA" class="form-label">Pejabat Pengguna Anggaran</label>
-                                    <input type="text" class="form-control" id="PPA" name="PPA" placeholder="Masukkan pejabat pengguna anggaran"
+                                    <input type="text" class="form-control" id="PPA" name="PPA"
+                                        placeholder="Masukkan pejabat pengguna anggaran"
                                         value="{{ old('PPA', isset($data) ? $data['PPA'] : '') }}" required>
                                     <div class="valid-tooltip">
                                         Mantappp!!!
@@ -75,7 +78,8 @@
 
                                 <div class="col-md-3 position-relative">
                                     <label for="pos_anggaran" class="form-label">POS Anggaran</label>
-                                    <input type="number" class="form-control" id="pos_anggaran" name="pos_anggaran" placeholder="POS anggaran"
+                                    <input type="number" class="form-control" id="pos_anggaran" name="pos_anggaran"
+                                        placeholder="POS anggaran"
                                         value="{{ old('pos_anggaran', isset($data) ? $data['pos_anggaran'] : '') }}"
                                         required>
                                     <div class="valid-tooltip">
@@ -88,7 +92,8 @@
 
                                 <div class="col-md-3 position-relative">
                                     <label for="biaya" class="form-label">Biaya Perbaikan</label>
-                                    <input type="number" class="form-control" id="biaya" name="biaya" placeholder="Masukkan biaya perbaikan"
+                                    <input type="number" class="form-control" id="biaya" name="biaya"
+                                        placeholder="Masukkan biaya perbaikan"
                                         value="{{ old('biaya', isset($data) ? $data['biaya'] : '') }}" required>
                                     <div class="valid-tooltip">
                                         Mantappp!!!
@@ -133,8 +138,8 @@
                                 <div class="row mt-3">
                                     <div class="col-md-6 position-relative">
                                         <label for="kerusakan" class="form-label">Kerusakan</label>
-                                        <textarea type="text" class="form-control" id="kerusakan" name="kerusakan" placeholder="Contoh: Ac tidak dingin, Unit outdoor mati"
-                                            required>{{ old('kerusakan', isset($data) ? $data['kerusakan'] : '') }}</textarea>
+                                        <textarea type="text" class="form-control" id="kerusakan" name="kerusakan"
+                                            placeholder="Contoh: Ac tidak dingin, Unit outdoor mati" required>{{ old('kerusakan', isset($data) ? $data['kerusakan'] : '') }}</textarea>
                                         <div class="valid-tooltip">
                                             Mantappp!!!
                                         </div>
@@ -142,11 +147,11 @@
                                             Masukkan kerusakan ac.
                                         </div>
                                     </div>
-    
+
                                     <div class="col-md-6 position-relative">
-                                        <label for="perbaikan" class="form-label">Perbaikan</label> 
-                                        <textarea type="text" class="form-control" id="perbaikan" name="perbaikan" placeholder="Contoh: Cuci AC, Ganti compresor"
-                                            required>{{ old('perbaikan', isset($data) ? $data['perbaikan'] : '') }}</textarea>
+                                        <label for="perbaikan" class="form-label">Perbaikan</label>
+                                        <textarea type="text" class="form-control" id="perbaikan" name="perbaikan"
+                                            placeholder="Contoh: Cuci AC, Ganti compresor" required>{{ old('perbaikan', isset($data) ? $data['perbaikan'] : '') }}</textarea>
                                         <div class="valid-tooltip">
                                             Mantappp!!!
                                         </div>
@@ -182,11 +187,11 @@
         $(document).ready(function() {
             flatpickr('#tgl_perbaikan', {
                 dateFormat: 'Y-m-d',
-                defaultDate: 'today', 
-                altFormat: 'd F Y', 
-                altInput: true, 
+                altFormat: 'd F Y',
+                altInput: true,
                 enableTime: false,
                 locale: 'id',
+                allowInput: true,
             });
         })
     </script>
