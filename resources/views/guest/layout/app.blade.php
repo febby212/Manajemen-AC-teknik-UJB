@@ -39,6 +39,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('assetsUsers/css/main.css') }}" rel="stylesheet">
 
+    @stack('cssUser')
     <!-- =======================================================
   * Template Name: HeroBiz
   * Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
@@ -91,7 +92,7 @@
 
     <!-- Template Main JS File -->
     <script src="assetsUsers/js/main.js"></script>
-
+    @stack('jsUser')
 </body>
 
 </html>

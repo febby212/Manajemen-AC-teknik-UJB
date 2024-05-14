@@ -17,6 +17,7 @@ class Teknisi extends Model
         'name',
         'nama_perusahaan',
         'alamat_perusahaan',
+        'no_telp',
         'created_by',
         'updated_by',
     ];
@@ -27,5 +28,9 @@ class Teknisi extends Model
 
     public function historyPerbaikan() {
         return $this->hasMany(History::class, 'teknisi_id', 'id');
+    }
+
+    public function teknisiUser() {
+        return $this->belongsTo(User::class, 'teknisi_id', 'id');
     }
 }

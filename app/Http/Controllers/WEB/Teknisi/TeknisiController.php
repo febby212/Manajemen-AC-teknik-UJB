@@ -6,23 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Repo\TeknisiRepo;
 use App\Repo\TokenizeRepo;
+use App\Repo\UserRepo;
 use CsHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Throwable;
-use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class TeknisiController extends Controller
 {
     private TeknisiRepo $teknisi;
     private TokenizeRepo $token;
+    private UserRepo $user;
     private $data = array();
 
-    public function __construct(TeknisiRepo $teknisi, TokenizeRepo $token)
+    public function __construct(UserRepo $user, TeknisiRepo $teknisi, TokenizeRepo $token)
     {
         $this->data['title'] = "Teknisi";
         $this->data['dir_view'] = "fitur.teknisi.";
         $this->teknisi = $teknisi;
         $this->token = $token;
+        $this->user = $user;
     }
     /**
      * Display a listing of the resource.
@@ -55,14 +59,28 @@ class TeknisiController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'min:4'],
             'nama_perusahaan' => ['required', 'string', 'min:4'],
-            'alamat_perusahaan' => ['required', 'string', 'min:4']
+            'alamat_perusahaan' => ['required', 'string', 'min:4'],
+            'no_telp' => ['required', 'min:9']
         ]);
 
         $data['id'] = 'TKI-' . CsHelper::data_id();
         $data['created_by'] = auth()->user()->id;
 
+        $dataUser = [
+            'name' => $data['name'],
+            'username' => Str::of($data['name'])->before(' '),
+            'email' => Str::of($data['name'])->before(' ') . CsHelper::numbering(2, 2) . '@gmail.com',
+            'password' => Hash::make('password'),
+            'is_teknisi' => 1,
+            'teknisi_id' => $data['id'],
+        ];
+
+        $dataUser['id'] = 'USR-' . CsHelper::data_id();
+        $dataUser['created_by'] = auth()->user()->id;
+
         try {
             $this->teknisi->store($data);
+            $this->user->store($dataUser);
             return redirect()->route('teknisi.index')->with('success', 'Berhasi menambah data teknisi');
         } catch (\Throwable $e) {
             if (env('APP_DEBUG')) {

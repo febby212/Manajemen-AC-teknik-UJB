@@ -29,13 +29,13 @@ class AuthTeknisiController extends Controller
         ]);
 
         $teknisi = $this->tokenize->getToken($token);
-
-        if ($teknisi) {
+        if ($teknisi && $teknisi->used == 0) {
+            // dd($token, $teknisi->toArray());
             $teknisi->used = true;
             $teknisi->save();
 
             auth()->loginUsingId($teknisi->teknisi_id);
-            return view();
+            return back()->with('success', "Selamat datang " . $teknisi->teknisi->name);
         }
         return back()->with('error', config('error','Kode akses tidak sesuai'));
     }

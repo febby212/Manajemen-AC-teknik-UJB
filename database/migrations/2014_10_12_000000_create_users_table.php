@@ -20,6 +20,8 @@ return new class extends Migration
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_wadek')->default(false);
             $table->boolean('is_dekan')->default(false);
+            $table->boolean('is_teknisi')->default(false);
+            $table->string('teknisi_id')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->rememberToken();

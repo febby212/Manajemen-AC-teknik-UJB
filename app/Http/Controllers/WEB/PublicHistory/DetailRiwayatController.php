@@ -29,7 +29,7 @@ class DetailRiwayatController extends Controller
     public function index()
     {
         $ref = $this->data;
-        $data = $this->dataAc->getAll();
+        $data = $this->dataAc->getByGrouping();
         // dd($data->);
         // dd($data->toArray());
         return view($this->data['dir_view'] . 'index', compact('data', 'ref'));

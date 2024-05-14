@@ -44,7 +44,7 @@
                                     <input type="text" class="form-control" id="nama" name="name"
                                         value="{{ old('name', isset($data) ? $data['name'] : '') }}" required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan nama teknisi.
@@ -56,7 +56,7 @@
                                         value="{{ old('nama_perusahaan', isset($data) ? $data['nama_perusahaan'] : '') }}"
                                         required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan nama perusahaan.
@@ -69,10 +69,23 @@
                                         value="{{ old('alamat_perusahaan', isset($data) ? $data['alamat_perusahaan'] : '') }}"
                                         required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan alamat perusahaan.
+                                    </div>
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <label for="no_telp" class="form-label">Nomor Telpon</label>
+                                    <input type="text" class="form-control" id="no_telp"
+                                        name="no_telp"
+                                        value="{{ old('no_telp', isset($data) ? $data['no_telp'] : '') }}"
+                                        required>
+                                    <div class="valid-tooltip">
+                                        
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        Masukkan nomor telp.
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-3 position-relative">

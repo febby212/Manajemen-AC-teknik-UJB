@@ -10,6 +10,7 @@ use App\Http\Controllers\WEB\Data\MerekAcController;
 use App\Http\Controllers\WEB\PublicHistory\DetailRiwayatController;
 use App\Http\Controllers\WEB\Teknisi\TeknisiController;
 use App\Http\Controllers\WEB\Teknisi\TokenizeController;
+use App\Models\AcDesc;
 use App\Models\History;
 use Illuminate\Support\Facades\Route;
 
@@ -68,8 +69,15 @@ Route::middleware(['auth', 'technician'])->prefix('admin')->group(function () {
 });
 
 Route::get('/user', function () {
-    $data = History::with('pembuatLaporan', 'teknisiPerbaikan', 'acDesc.merekAC')->get();
+    // $data = History::with('pembuatLaporan', 'teknisiPerbaikan', 'acDesc.merekAC')->get();
+    $data = AcDesc::with('merekAC', 'history')->get();
     // dd($data->toArray());
     return view('guest.detail.index', compact('data'));
+});
+
+Route::post('tech-auth', [AuthTeknisiController::class, 'loginTeknisi'])->name('auth.tech');
+
+Route::get('/test', function() {
+    return view('guest.auth.login');
 });
 

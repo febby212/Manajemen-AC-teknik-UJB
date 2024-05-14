@@ -9,6 +9,10 @@ class DataAcRepo implements DataAcInterface
 {
     public function getAll()
     {
+        return AcDesc::with('history', 'merekAC')->get();
+    }
+
+    public function getByGrouping() {
         return AcDesc::with('history', 'merekAC')->get()->groupBy('ruangan');
     }
 

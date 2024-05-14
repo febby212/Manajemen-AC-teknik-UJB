@@ -41,7 +41,7 @@ class TokenizeRepo implements TokenizeInterface
 
     public function getToken($token)
     {
-        return TokenizeModel::where('token', $token)->where('used', false)->first();
+        return TokenizeModel::with('teknisi')->where('token', $token)->where('used', false)->first();
     }
 
     public function generateToken($data)

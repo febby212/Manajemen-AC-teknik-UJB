@@ -19,13 +19,14 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'id',
-        'role_id',
         'name',
         'username',
         'email',
         'password',
         'is_wadek',
         'is_dekan',
+        'is_teknisi',
+        'teknisi_id',
         'created_by',
         'updated_by'
     ];
@@ -48,4 +49,8 @@ class User extends Authenticatable
     protected $casts = [
         'id' => 'string',
     ];
+
+    public function userTeknisi() {
+        return $this->hasOne(Teknisi::class, 'teknisi_id', 'id');
+    }
 }
