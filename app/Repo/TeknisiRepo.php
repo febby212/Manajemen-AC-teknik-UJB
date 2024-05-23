@@ -9,7 +9,7 @@ class TeknisiRepo implements TeknisiInterface
 {
     public function getAll()
     {
-        return Teknisi::with('token')->get();
+        return Teknisi::with('token', 'teknisiUser','historyPerbaikan')->get();
     }
 
     public function getById($id)

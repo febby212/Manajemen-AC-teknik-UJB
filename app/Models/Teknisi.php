@@ -31,6 +31,6 @@ class Teknisi extends Model
     }
 
     public function teknisiUser() {
-        return $this->belongsTo(User::class, 'teknisi_id', 'id');
+        return $this->belongsTo(User::class, 'id', 'teknisi_id');
     }
 }

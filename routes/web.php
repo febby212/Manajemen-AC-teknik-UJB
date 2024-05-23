@@ -3,7 +3,6 @@
 use App\Http\Controllers\API\AllReqController;
 use App\Http\Controllers\WEB\Ac\DataAcController;
 use App\Http\Controllers\WEB\Ac\HistoryServiceController;
-use App\Http\Controllers\WEB\Login\AuthTeknisiController;
 use App\Http\Controllers\WEB\Login\LoginController;
 use App\Http\Controllers\WEB\Dashboard\HomeController;
 use App\Http\Controllers\WEB\Data\MerekAcController;
@@ -11,7 +10,6 @@ use App\Http\Controllers\WEB\PublicHistory\DetailRiwayatController;
 use App\Http\Controllers\WEB\Teknisi\TeknisiController;
 use App\Http\Controllers\WEB\Teknisi\TokenizeController;
 use App\Models\AcDesc;
-use App\Models\History;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,17 +26,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class,'index'])->name('login');
 Route::post('auth', [LoginController::class,'login'])->name('check_login');
+Route::post('auth/teknisi', [LoginController::class, 'loginTeknisi'])->name('login.teknisi');
 
 //detail riwayat ac (untuk guest atau teknisi)
 Route::get('detail/history/{id}', [HistoryServiceController::class, 'detail']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','checkUserRole'])->group(function () {
     Route::resource('dashboard', HomeController::class);
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
     Route::resource('teknisi', TeknisiController::class);
     
     //generate token
-    Route::get('tokenize', [AuthTeknisiController::class, 'generateToken'])->name('generateToken');
+    Route::get('tokenize', [TokenizeController::class, 'generateToken'])->name('generateToken');
     Route::resource('token', TokenizeController::class);
     Route::get('teknisi/data', [TokenizeController::class, 'dataTeknisi'])->name('teknisiData');
 
@@ -59,7 +58,7 @@ Route::middleware('auth')->group(function () {
 Route::get('detail-riwayat/{id}', [DetailRiwayatController::class, 'show'])->name('detail.riwayat');
 Route::get('detail-riwayat-all', [DetailRiwayatController::class, 'index'])->name('detail.riwayat.all');
 
-Route::middleware(['auth', 'technician'])->prefix('admin')->group(function () {
+Route::middleware('auth')->prefix('teknisi')->group(function () {
     // Rute untuk tindakan yang hanya dapat diakses oleh teknisi
     Route::get('/create', [DetailRiwayatController::class, 'create'])->name('buat.riwayat');
     Route::post('/store', [DetailRiwayatController::class, 'store']);
@@ -71,13 +70,11 @@ Route::middleware(['auth', 'technician'])->prefix('admin')->group(function () {
 Route::get('/user', function () {
     // $data = History::with('pembuatLaporan', 'teknisiPerbaikan', 'acDesc.merekAC')->get();
     $data = AcDesc::with('merekAC', 'history')->get();
-    // dd($data->toArray());
+    // dd(auth()->user());
     return view('guest.detail.index', compact('data'));
-});
-
-Route::post('tech-auth', [AuthTeknisiController::class, 'loginTeknisi'])->name('auth.tech');
+})->name('dashboard.teknisi');
 
 Route::get('/test', function() {
     return view('guest.auth.login');
-});
+})->name('auth.teknisi');
 

@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inisialisasi_kerusakan_models', function (Blueprint $table) {
-            $table->id();
+        Schema::create('inisialisasi_kerusakans', function (Blueprint $table) {
+            $table->string('id')->primary()->unique();
+            $table->string('kode_kerusakan');
+            $table->string('kerusakan');
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inisialisasi_kerusakan_models');
+        Schema::dropIfExists('inisialisasi_kerusakans');
     }
 };

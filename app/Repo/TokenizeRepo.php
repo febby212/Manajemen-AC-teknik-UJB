@@ -37,8 +37,6 @@ class TokenizeRepo implements TokenizeInterface
         return TokenizeModel::where('teknisi_id', $id)->delete();
     }
 
-    
-
     public function getToken($token)
     {
         return TokenizeModel::with('teknisi')->where('token', $token)->where('used', false)->first();

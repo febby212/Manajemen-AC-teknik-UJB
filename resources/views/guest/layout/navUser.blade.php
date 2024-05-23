@@ -19,7 +19,7 @@
                         <li><a class="nav-link scrollto" href="{{ route('buat.riwayat') }}">Scan</a></li>
                     @endif
                 @else
-                    <a class="btn-getstarted scrollto ms-2" href="index.html#about">Login</a>
+                    <a class="btn-getstarted scrollto ms-2" href="{{ route('auth.teknisi') }}">Login</a>
                 @endauth
             </ul>
             <i class="bi bi-list mobile-nav-toggle d-none"></i>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\WEB\Login;
 
 use App\Http\Controllers\Controller;
+use App\Repo\TeknisiRepo;
+use App\Repo\TokenizeRepo;
+use App\Repo\UserRepo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -10,11 +13,17 @@ class LoginController extends Controller
 {
 
     private $data = array();
+    private TokenizeRepo $token;
+    private TeknisiRepo $teknisi;
+    private UserRepo $user;
 
-    public function __construct()
+    public function __construct(TokenizeRepo $token, TeknisiRepo $teknisi, UserRepo $user)
     {
         $this->data['title'] = "Login";
         $this->data['dir_view'] = "auth.";
+        $this->token = $token;
+        $this->teknisi = $teknisi;
+        $this->user = $user;
     }
 
     /**
@@ -49,6 +58,25 @@ class LoginController extends Controller
         }
 
         return back()->with('error', config('error', 'Nama pengguna atau password tidak sesuai'));
+    }
+
+    public function loginTeknisi(Request $request) {
+        $data = $request->validate([
+            'token' => ['required', 'min:6', 'max:6']
+        ], [], [
+            'token' => 'Kode Akses'
+        ]);
+
+        $token = $this->token->getToken($data['token']);
+
+        if ($token) {
+            $user = $this->user->getByIdTeknisi($token->teknisi_id);
+            // dd($user->toArray());
+            Auth::login($user);
+            // return back()->with('success', 'Selamat datang' . $user->name);
+            return redirect()->route('dashboard.teknisi')->with('success', 'Selamat datang' . $user->name);
+        }
+        return back()->with('error', 'Kode akses yang anda masukkan salah');
     }
 
     /**

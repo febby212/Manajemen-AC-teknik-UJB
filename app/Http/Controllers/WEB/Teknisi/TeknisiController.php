@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\WEB\Teknisi;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Repo\TeknisiRepo;
 use App\Repo\TokenizeRepo;
 use App\Repo\UserRepo;
@@ -69,7 +68,7 @@ class TeknisiController extends Controller
         $dataUser = [
             'name' => $data['name'],
             'username' => Str::of($data['name'])->before(' '),
-            'email' => Str::of($data['name'])->before(' ') . CsHelper::numbering(2, 2) . '@gmail.com',
+            'email' => Str::of($data['name'])->before(' ') . CsHelper::randomNumber() . '@gmail.com',
             'password' => Hash::make('password'),
             'is_teknisi' => 1,
             'teknisi_id' => $data['id'],
@@ -118,12 +117,21 @@ class TeknisiController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'min:4'],
             'nama_perusahaan' => ['required', 'string', 'min:4'],
-            'alamat_perusahaan' => ['required', 'string', 'min:4']
+            'alamat_perusahaan' => ['required', 'string', 'min:4'],
+            'no_telp' => ['required', 'min:9']
         ]);
 
         $data['updated_by'] = auth()->user()->id;
 
+        $dataUser = [
+            'name' => $data['name'],
+            'username' => Str::of($data['name'])->before(' '),
+            'email' => Str::of($data['name'])->before(' ') . CsHelper::randomNumber() . '@gmail.com',
+        ];
+        $dataUser['updated_by'] = auth()->user()->id;
+// dd($data, $dataUser);
         try {
+            $this->user->editByIdTeknisi($id, $dataUser);
             $this->teknisi->edit($id, $data);
             return redirect()->route('teknisi.index')->with('success', 'Berhasi mengubah data teknisi');
         } catch (\Throwable $th) {

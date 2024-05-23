@@ -51,6 +51,6 @@ class User extends Authenticatable
     ];
 
     public function userTeknisi() {
-        return $this->hasOne(Teknisi::class, 'teknisi_id', 'id');
+        return $this->hasOne(Teknisi::class, 'id', 'teknisi_id');
     }
 }

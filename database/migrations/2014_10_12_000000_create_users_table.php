@@ -26,6 +26,11 @@ return new class extends Migration
             $table->string('updated_by')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('teknisi_id')
+                ->references('id')
+                ->on('teknisis')
+                ->onDelete('cascade');
         });
     }
 

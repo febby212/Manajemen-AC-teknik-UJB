@@ -31,6 +31,15 @@ class CsHelper
     {
         $number = sprintf("%0{$lenght}d", $the_number);
         return $number; 
+    }
 
+    static function randomNumber() {
+        $randomNumbers = [
+            mt_rand(0, 9),
+            mt_rand(0, 9),
+            mt_rand(0, 9),
+        ];
+        $random = implode('', $randomNumbers);
+        return $random;
     }
 }

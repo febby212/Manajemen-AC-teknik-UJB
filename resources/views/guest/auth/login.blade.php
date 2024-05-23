@@ -70,7 +70,7 @@
                                     <div class="row">
 
                                         <div class="col-lg-12">
-                                            <form action="{{ route('auth.tech') }}" method="POST" role="form"
+                                            <form action="{{ route('login.teknisi') }}" method="POST" role="form"
                                                 class="php-email-form">
                                                 @csrf
                                                 <div class="form-group mt-3">

@@ -43,6 +43,26 @@ class TokenizeController extends Controller
         }
     }
 
+    public function generateToken(Request $request)
+    {
+        $id = $request->input('id');
+        $data = [
+            'id' => 'TKN-' . CsHelper::data_id(),
+            'teknisi_id' => $id,
+            'token' => CsHelper::token(),
+            'created_by' => auth()->user()->id,
+        ];
+        try {
+            $this->token->generateToken($data);
+            return CsHelper::api_respons(200, 'Kode akses berhasil dibuat', $data);
+        } catch (\Throwable $th) {
+            if (env('APP_DEBUG') == true) {
+                return $th->getMessage();
+            }
+            return back()->with('error', "Oops..!! Terjadi keesalahan saat membuat kode akses");
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */
