@@ -1,28 +1,29 @@
-<!-- ======= Header ======= -->
-<header id="header" class="header fixed-top" data-scrollto-offset="0">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
-        <a href="#" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assetsUsers/img/logo.png" alt=""> -->
-            <h1>HeroBiz<span>.</span></h1>
+<!-- Navbar Start -->
+<div class="container-fluid bg-primary sticky-top">
+    <nav class="navbar navbar-dark navbar-expand-lg py-0">
+        <a href="index.html" class="navbar-brand">
+            <h1 class="text-white fw-bold d-block">High<span class="text-secondary">Tech</span> </h1>
         </a>
-
-        <nav id="navbar" class="navbar ms-3">
-            <ul>
-                {{-- <li><a class="nav-link scrollto" href="#">Home</a></li>
-                <li><a class="nav-link scrollto" href="index.html#faq">FAQ</a></li> --}}
-                @auth
-                    @if (auth()->user()->is_admin == 1 || auth()->user()->is_wadek == 1 || auth()->user()->is_dekan == 1)
-                        <li><a class="nav-link scrollto" href="{{ route('dashboard.index') }}">Dashboard</a></li>
-                    @else
-                        <li><a class="nav-link scrollto" href="{{ route('buat.riwayat') }}">Form Riwayat</a></li>
-                        <li><a class="nav-link scrollto" href="{{ route('buat.riwayat') }}">Scan</a></li>
-                    @endif
-                @else
-                    <a class="btn-getstarted scrollto ms-2" href="{{ route('auth.teknisi') }}">Login</a>
-                @endauth
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle d-none"></i>
-        </nav><!-- .navbar -->
-    </div>
-</header><!-- End Header -->
+        <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
+            <div class="navbar-nav ms-auto mx-xl-auto p-0">
+                <a href="index.html" class="nav-item nav-link active text-secondary">Home</a>
+                <a href="#about" class="nav-item nav-link">Tentang</a>
+                <a href="#AC" class="nav-item nav-link">AC</a>
+                <a href="{{ route('scan') }}" class="nav-item nav-link">Scan AC</a>
+            </div>
+            @auth
+                <a href="#" class="btn btn-primary">
+                    Form Riwayat
+                </a>
+            @else
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal">
+                    Sign In
+                </button>
+            @endauth
+        </div>
+    </nav>
+</div>
+<!-- Navbar End -->

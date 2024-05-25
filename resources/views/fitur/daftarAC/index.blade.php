@@ -57,6 +57,11 @@
                                             <td>{{ $item['kondisi'] }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center gap-1">
+                                                    <button type="button" data-bs-target="#printQR{{ $item['id'] }}"
+                                                        class="btn btn-success btn-tooltip" data-bs-toggle="modal"
+                                                        title="Print QR Code">
+                                                        <i class="bi bi-printer"></i>
+                                                    </button>
                                                     <button type="button" data-bs-target="#showModal{{ $item['id'] }}"
                                                         class="btn btn-primary btn-tooltip" data-bs-toggle="modal"
                                                         title="Show">
@@ -86,7 +91,7 @@
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Data AC :
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Kode AC :
                                                             <b>{{ Str::ucfirst($item['kode_AC']) }}</b>
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -117,6 +122,32 @@
                                                             <label for="jumlah" class="form-label">Deskripsi Kondisi</label>
                                                             <textarea disabled class="form-control">{{ Str::ucfirst($item['desc_kondisi']) }}</textarea>
                                                         </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        {{-- <button type="button" class="btn btn-primary modalToken"
+                                                            data-id="{{ $teknisi['id'] }}">Buat Kode Akses
+                                                        </button> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal Print QR-->
+                                        <div class="modal fade" id="printQR{{ $item['id'] }}" data-bs-backdrop="static"
+                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Kode AC :
+                                                            <b>{{ Str::ucfirst($item['kode_AC']) }}</b>
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body row">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-danger"

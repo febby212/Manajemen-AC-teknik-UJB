@@ -7,6 +7,7 @@ use App\Repo\DataAcRepo;
 use App\Repo\HistoryRepo;
 use App\Repo\MerekAcRepo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class DetailRiwayatController extends Controller
 {
@@ -55,10 +56,15 @@ class DetailRiwayatController extends Controller
      */
     public function show(string $id)
     {
+        $id = decrypt($id);
         $ref = $this->data;
-        $data = $this->history->getDetail($id);
-        // dd($data->toArray());
-        return view($this->data['dir_view'] . 'detail', compact('data', 'ref'));
+        $data = $this->dataAc->getDetail($id);
+        $kodeAC = $data->kode_AC;
+        $parts = explode('/', $kodeAC);
+        $year = end($parts);
+        $year = $parts[count($parts) - 2];
+        // dd(Crypt::encrypt($id));
+        return view($this->data['dir_view'] . 'detail', compact('data', 'ref', 'year'));
     }
 
     /**

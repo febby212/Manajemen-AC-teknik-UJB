@@ -23,7 +23,7 @@ class DataAcRepo implements DataAcInterface
 
     public function getById($id)
     {
-        return AcDesc::where('id', $id)->firstOrFail();
+        return AcDesc::with('history', 'merekAC')->where('id', $id)->firstOrFail();
     }
 
     public function store($data)

@@ -1,77 +1,110 @@
 @extends('guest.layout.app')
 
+@push('css')
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer {
+            flex-shrink: 0;
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        .card {
+            margin: 20px;
+        }
+
+        .item-label {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+    </style>
+@endpush
+
 @section('kontenUser')
-    <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq">
-        <div class="container-fluid" data-aos="fade-up">
-
-            <div class="row gy-4">
-
-                <div class="col-lg-12 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
-
-                    <div class="content px-xl-5">
-                        <h3>Frequently Asked <strong>Questions</strong></h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                        </p>
-                    </div>
-
-                    <div class="accordion accordion-flush px-xl-5" id="faqlist">
-
-                        @forelse ($data as $item)
-                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
-                                <h3 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-content-{{ $item->id }}">
-                                        <i class="bi bi-question-circle question-icon"></i>
-                                        Riawayat perbaikan tanggal {{ $item->tgl_perbaikan }}
-                                    </button>
-                                </h3>
-                                <div id="faq-content-{{ $item->id }}" class="accordion-collapse collapse"
-                                    data-bs-parent="#faqlist">
-                                    <div class="accordion-body">
-                                        <div class="mb-2">
-                                            <p><b>Kerusakan :</b></p>
-                                            <p class="ms-3">{{ Str::ucfirst($item->kerusakan) }}</p>
-                                        </div>
-                                        <div class="mb-2">
-                                            <p><b>Perbaikan :</b></p>
-                                            <p class="ms-3">{{ Str::ucfirst($item->perbaikan) }}</p>
-                                        </div>
-                                        <div>
-                                            <p>Teknisi:</p>
-                                            <p>{{ Str::ucfirst($item->teknisiPerbaikan->name) }} -
-                                                {{ Str::ucfirst($item->teknisiPerbaikan->nama_perusahaan) }}</p>
-                                        </div>
-                                        <div>
-                                            <p>Pembuat laporan:</p>
-                                            <p>{{ Str::ucfirst($item->pembuatLaporan->name) }}</p>
-                                        </div>
-                                        <div>
-                                            <p>AC:</p>
-                                            <p>Merek: {{ Str::ucfirst($item->acDesc->merekAC->merek) }}</p>
-                                            <p>Seri: {{ Str::ucfirst($item->acDesc->merekAC->seri) }}</p>
-                                            <p>Ruangan: {{ Str::ucfirst($item->acDesc->ruangan) }}</p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div><!-- # Faq item-->
-                        @empty
-                            <div class="d-flex justify-content-center">
-                                <h3>-- Untuk sementara data kosong --</h3>
-                            </div>
-                        @endforelse
-
-                    </div>
-
-                </div>
-
-                {{-- <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img"
-                    style='background-image: url("assetsUsers/img/faq.jpg");'>&nbsp;</div> --}}
+    <div class="content my-5">
+        <!-- card -->
+        <div class="card" style="width: 25em;">
+            <img src="https://cdn.pixabay.com/photo/2018/09/15/16/36/air-conditioning-3679756_1280.png" class="card-img-top"
+                alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ $data->kode_AC }}</h5>
+                <p class="card-text">{{ $data->desc_kondisi }}</p>
             </div>
-
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <span class="item-label">Kode</span>
+                    <span class="item-value">:{{ $data->merekAC->merek }} - {{ $data->merekAC->seri }}</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="item-label">Ruangan</span>
+                    <span class="item-value">:{{ $data->ruangan }}</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="item-label">Tahun Beli</span>
+                    <span class="item-value">:{{ $year }}</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="item-label">Kelengkapan</span>
+                    <span class="item-value">:{{ $data->kelengkapan }}</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="item-label">Kondisi</span>
+                    <span
+                        class="item-value btn {{ $data->kondisi === 'Baik' ? 'btn-success' : ($data->kondisi === 'Sedang' ? 'btn-warning' : 'btn-danger') }} btn-sm">{{ $data->kondisi }}</span>
+                </li>
+                @auth
+                    <li class="list-group-item">
+                        <a href="" class="btn btn-primary btn-sm" style="width: 100%">Tambah Riwayat</a>
+                    </li>
+                @endauth
+            </ul>
+            <div class="card-body">
+                @foreach ($data->history as $item)
+                    <!-- Accordion -->
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    Perbaikan tanggal {{ $item->tgl_perbaikan }}
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the first item's accordion body.</strong> It is shown by default, until
+                                    the collapse plugin adds the appropriate classes that we use to style each element.
+                                    These classes control the overall appearance, as well as the showing and hiding via CSS
+                                    transitions. You can modify any of this with custom CSS or overriding our default
+                                    variables. It's also worth noting that just about any HTML can go within the
+                                    <code>.accordion-body</code>, though the transition does limit overflow.
+                                    <ul>
+                                        <li>Satu</li>
+                                        <li>Dua</li>
+                                        <li>Tiga</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /end Accordion -->
+                @endforeach
+            </div>
         </div>
-    </section><!-- End F.A.Q Section -->
+        <!-- card end -->
+    </div>
 @endsection

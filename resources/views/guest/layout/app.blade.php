@@ -3,96 +3,111 @@
 
 <head>
     <meta charset="utf-8">
+    <title>HighTech - IT Solutions Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <title>HeroBiz Bootstrap Template</title>
-    <meta content="" name="description">
     <meta content="" name="keywords">
+    <meta content="" name="description">
 
-    <!-- Favicons -->
-    <link href="{{ asset('assetsUsers/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('assetsUsers/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
+    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('assetsUsers/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assetsUsers/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assetsUsers/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('assetsUsers/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assetsUsers/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Variables CSS Files. Uncomment your preferred color scheme -->
-    <link href="{{ asset('assetsUsers/css/variables.css') }}" rel="stylesheet">
-    <!-- <link href="assetsUsers/css/variables-blue.css" rel="stylesheet"> -->
-    <!-- <link href="assetsUsers/css/variables-green.css" rel="stylesheet"> -->
-    <!-- <link href="assetsUsers/css/variables-orange.css" rel="stylesheet"> -->
-    <!-- <link href="assetsUsers/css/variables-purple.css" rel="stylesheet"> -->
-    <!-- <link href="assetsUsers/css/variables-red.css" rel="stylesheet"> -->
-    <!-- <link href="assetsUsers/css/variables-pink.css" rel="stylesheet"> -->
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('assetsUsers/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assetsUsers/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="{{ asset('assetsUsers/css/main.css') }}" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('assetsUsers/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    @stack('cssUser')
-    <!-- =======================================================
-  * Template Name: HeroBiz
-  * Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    <!-- Template Stylesheet -->
+    <link href="{{ asset('assetsUsers/css/style.css') }}" rel="stylesheet">
+    @stack('css')
 </head>
 
 <body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
 
     @include('guest.layout.navUser')
 
+    @yield('kontenUser')
 
-    <section id="hero-animated" class="hero-animated d-flex align-items-center">
-        <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative"
-            data-aos="zoom-out">
-            <img src="assetsUsers/img/hero-carousel/hero-carousel-3.svg" class="img-fluid animated">
-            <h2>Welcome to <span>HeroBiz</span></h2>
-            <p>Et voluptate esse accusantium accusamus natus reiciendis quidem voluptates similique aut.</p>
-            <div class="d-flex">
-                <a href="#about" class="btn-get-started scrollto">Get Started</a>
-                <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                    class="glightbox btn-watch-video d-flex align-items-center"><i
-                        class="bi bi-play-circle"></i><span>Watch Video</span></a>
+    {{-- modal auth --}}
+    <div class="modal fade" id="authModal" aria-hidden="true" aria-labelledby="authModalLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="authModalLabel">Authenticate</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah anda <b>teknisi</b> atau <b>admin</b> dari aplikasi ini?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#authModal2" data-bs-toggle="modal">Teknisi</button>
+                    <a href="{{ route('login') }}" class="btn btn-primary">Admin</a>
+                </div>
             </div>
         </div>
-    </section>
-
-    <main id="main">
-
-        @yield('kontenUser')
-
-    </main><!-- End #main -->
+    </div>
+    <div class="modal fade" id="authModal2" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true"
+        aria-labelledby="authModalLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="authModalLabel2">Kode Akses</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('login.teknisi') }}" method="post">
+                        @csrf
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" name="token" id="subject"
+                                placeholder="Masukkan Kode Akses" required>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#authModal" data-bs-toggle="modal">Submit</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @include('guest.layout.footerUser')
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
 
-    <div id="preloader"></div>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-secondary btn-square rounded-circle back-to-top"><i
+            class="fa fa-arrow-up text-white"></i></a>
 
-    <!-- Vendor JS Files -->
-    <script src="{{asset('assetsUsers/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="assetsUsers/vendor/aos/aos.js"></script>
-    <script src="assetsUsers/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assetsUsers/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assetsUsers/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assetsUsers/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="assetsUsers/js/main.js"></script>
-    @stack('jsUser')
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="{{ asset('assetsUsers/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('assetsUsers/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('assetsUsers/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assetsUsers/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('assetsUsers/js/main.js') }}"></script>
+    @stack('js')
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WEB\Login;
 
 use App\Http\Controllers\Controller;
+use App\Models\TokenizeModel;
 use App\Repo\TeknisiRepo;
 use App\Repo\TokenizeRepo;
 use App\Repo\UserRepo;
@@ -73,8 +74,8 @@ class LoginController extends Controller
             $user = $this->user->getByIdTeknisi($token->teknisi_id);
             // dd($user->toArray());
             Auth::login($user);
-            // return back()->with('success', 'Selamat datang' . $user->name);
-            return redirect()->route('dashboard.teknisi')->with('success', 'Selamat datang' . $user->name);
+            TokenizeModel::where('token', $data['token'])->delete();
+            return redirect()->back()->with('success', 'Selamat datang' . $user->name);
         }
         return back()->with('error', 'Kode akses yang anda masukkan salah');
     }
@@ -135,6 +136,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 }

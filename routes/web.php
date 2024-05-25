@@ -23,13 +23,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+    return view('guest.index');
+})->name('home');
 
-Route::get('/', [LoginController::class,'index'])->name('login');
+Route::get('/login', [LoginController::class,'index'])->name('login');
 Route::post('auth', [LoginController::class,'login'])->name('check_login');
 Route::post('auth/teknisi', [LoginController::class, 'loginTeknisi'])->name('login.teknisi');
 
-//detail riwayat ac (untuk guest atau teknisi)
-Route::get('detail/history/{id}', [HistoryServiceController::class, 'detail']);
+Route::prefix('ac')->group(function() {
+    //detail riwayat ac (untuk guest atau teknisi)
+    Route::get('detail/history/{id}', [HistoryServiceController::class, 'detail']);
+
+    //scan ac
+    Route::get('scan', function () {
+        return view('guest.scan.index');
+    })->name('scan');
+});
 
 Route::middleware(['auth','checkUserRole'])->group(function () {
     Route::resource('dashboard', HomeController::class);
@@ -54,11 +64,8 @@ Route::middleware(['auth','checkUserRole'])->group(function () {
     // Route::get('data-teknisi', [TeknisiController::class, 'dataTeknisi'])->name('data.teknisi');
 });
 
-//detail riwayat ac (untuk guest atau teknisi)
-Route::get('detail-riwayat/{id}', [DetailRiwayatController::class, 'show'])->name('detail.riwayat');
-Route::get('detail-riwayat-all', [DetailRiwayatController::class, 'index'])->name('detail.riwayat.all');
 
-Route::middleware('auth')->prefix('teknisi')->group(function () {
+Route::middleware('auth')->prefix('detail')->group(function () {
     // Rute untuk tindakan yang hanya dapat diakses oleh teknisi
     Route::get('/create', [DetailRiwayatController::class, 'create'])->name('buat.riwayat');
     Route::post('/store', [DetailRiwayatController::class, 'store']);
@@ -74,7 +81,11 @@ Route::get('/user', function () {
     return view('guest.detail.index', compact('data'));
 })->name('dashboard.teknisi');
 
-Route::get('/test', function() {
-    return view('guest.auth.login');
-})->name('auth.teknisi');
+//detail riwayat ac (untuk guest atau teknisi)
+Route::get('detail-riwayat/{id}', [DetailRiwayatController::class, 'show'])->name('detail.riwayat');
+Route::get('detail-riwayat-all', [DetailRiwayatController::class, 'index'])->name('detail.riwayat.all');
 
+//scan
+Route::get('scan', function() {
+    return view('guest.scan.index'); 
+})->name('scan');
