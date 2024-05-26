@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6 text-center text-md-start">
                 <span class="text-light"><a href="#" class="text-secondary"><i
-                            class="fas fa-copyright text-secondary me-2"></i>Your Site Name</a>, All right
+                            class="fas fa-copyright text-secondary me-2"></i>SIMAC</a>, All right
                     reserved.</span>
             </div>
             <div class="col-md-6 text-center text-md-end">

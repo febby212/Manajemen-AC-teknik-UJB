@@ -63,7 +63,6 @@ class DetailRiwayatController extends Controller
         $parts = explode('/', $kodeAC);
         $year = end($parts);
         $year = $parts[count($parts) - 2];
-        // dd(Crypt::encrypt($id));
         return view($this->data['dir_view'] . 'detail', compact('data', 'ref', 'year'));
     }
 
