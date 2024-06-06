@@ -14,6 +14,7 @@ class AcDesc extends Model
     protected $fillable = [
         'id',
         'kode_AC',
+        'id_jumlah',
         'merek_id',
         'kelengkapan',
         'ruangan',

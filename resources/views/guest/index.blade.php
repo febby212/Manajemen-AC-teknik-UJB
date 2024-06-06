@@ -159,50 +159,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".5s">
-                    <div class="blog-item position-relative bg-light rounded">
-                        <img src="assetsUsers/img/blog-2.jpg" class="img-fluid w-100 rounded-top" alt="">
-                        <span class="position-absolute px-4 py-3 bg-primary text-white rounded"
-                            style="top: -28px; right: 20px;">Development</span>
-                        <div class="blog-btn d-flex justify-content-center px-3" style="margin-top: -75px;">
-                            <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
-                                <a href="" class="btn text-white ">Lihat Detail</a>
-                            </div>
-                        </div>
-                        <div
-                            class="blog-coment d-flex justify-content-between px-4 py-2 border bg-primary rounded-bottom mt-3">
-                            <a href="" class="text-white"><small><i
-                                        class="fas fa-share me-2 text-secondary"></i>5324
-                                    Share</small></a>
-                            <a href="" class="text-white"><small><i
-                                        class="fa fa-comments me-2 text-secondary"></i>5
-                                    Comments</small></a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".7s">
-                    <div class="blog-item position-relative bg-light rounded">
-                        <img src="assetsUsers/img/blog-3.jpg" class="img-fluid w-100 rounded-top" alt="">
-                        <span class="position-absolute px-4 py-3 bg-primary text-white rounded"
-                            style="top: -28px; right: 20px;">Mobile App</span>
-                        <div class="blog-btn d-flex justify-content-center px-3" style="margin-top: -75px;">
-                            <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
-                                <a href="" class="btn text-white ">Lihat Detail</a>
-                            </div>
-                        </div>
-                        <div
-                            class="blog-coments d-flex justify-content-between px-4 py-2 border bg-primary rounded-bottom mt-3">
-                            <a href="" class="text-white"><small><i
-                                        class="fas fa-share me-2 text-secondary"></i>5324
-                                    Share</small></a>
-                            <a href="" class="text-white"><small><i
-                                        class="fa fa-comments me-2 text-secondary"></i>5
-                                    Comments</small></a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

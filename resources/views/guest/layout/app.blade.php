@@ -48,7 +48,7 @@
     <div class="modal fade" id="authModal" aria-hidden="true" aria-labelledby="authModalLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-info">
                     <h1 class="modal-title fs-5" id="authModalLabel">Authenticate</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

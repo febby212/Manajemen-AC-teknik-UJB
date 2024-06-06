@@ -27,96 +27,111 @@
                                 <a href="{{ route('teknisi.create') }}" type="button" class="btn btn-primary"><i
                                         class="bi bi-plus-square"></i> Tambah Data</a>
                             </div>
-                            <table class="table datatable table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">Nama Perusahaan</th>
-                                        <th scope="col">Alamat Perusahaan</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $index = 1;
-                                    @endphp
-                                    @foreach ($data as $teknisi)
+                            <div class="table-responsive">
+                                <table class="table datatable table-striped">
+                                    <thead>
                                         <tr>
-                                            <th scope="row">{{ $index++ }}</th>
-                                            <td>{{ $teknisi['name'] }}</td>
-                                            <td>{{ $teknisi['nama_perusahaan'] }}</td>
-                                            <td>{{ $teknisi['alamat_perusahaan'] }}</td>
-                                            <td>
-                                                <div class="d-flex justify-content-center gap-1  py-3">
-                                                    <button type="button" data-bs-target="#showModal{{ $teknisi['id'] }}"
-                                                        class="btn btn-primary btn-tooltip show-teknisi"
-                                                        data-bs-toggle="modal" title="Show">
-                                                        <i class="bi bi-eye"></i>
-                                                    </button>
-                                                    <a href="{{ route('teknisi.edit', $teknisi->id) }}"
-                                                        class="btn bg-info btn-tooltip" title="Edit"><i
-                                                            class="bi bi-pencil-square"></i>
-                                                    </a>
-                                                    <form action="{{ route('teknisi.destroy', $teknisi['id']) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" id="deleteRow"
-                                                            data-message="{{ $teknisi->name }}"
-                                                            class="btn bg-danger btn-tooltip show-alert-delete-box"
-                                                            data-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">No WA</th>
+                                            <th scope="col">Nama Perusahaan</th>
+                                            <th scope="col">Alamat Perusahaan</th>
+                                            <th scope="col">Action</th>
                                         </tr>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="showModal{{ $teknisi['id'] }}"
-                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Teknisi
-                                                            <b>{{ Str::ucfirst($teknisi['name']) }}</b>
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body row text-center">
-                                                        <div class="col-lg-6">
-                                                            <div class="info-box card p-3">
-                                                                <h5><b>Nama</b></h5>
-                                                                <p>{{ Str::ucfirst($teknisi['name']) }}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="info-box card p-2">
-                                                                <h5><b>Nama Perusahaan</b></h5>
-                                                                <p>{{ Str::ucfirst($teknisi['nama_perusahaan']) }}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <div class="info-box card p-2">
-                                                                <h5><b>Alamat Perusahaan</b></h5>
-                                                                <p>{{ Str::ucfirst($teknisi['alamat_perusahaan']) }}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary modalToken"
-                                                            data-id="{{ $teknisi['id'] }}">Buat Kode Akses
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $index = 1;
+                                        @endphp
+                                        @foreach ($data as $teknisi)
+                                            <tr>
+                                                <th scope="row">{{ $index++ }}</th>
+                                                <td>{{ $teknisi['name'] }}</td>
+                                                <td>{{ $teknisi['no_telp'] }}</td>
+                                                <td>{{ $teknisi['nama_perusahaan'] }}</td>
+                                                <td>{{ $teknisi['alamat_perusahaan'] }}</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center gap-1  py-3">
+                                                        <button type="button"
+                                                            data-bs-target="#showModal{{ $teknisi['id'] }}"
+                                                            class="btn btn-primary btn-tooltip show-teknisi"
+                                                            data-bs-toggle="modal" title="Show">
+                                                            <i class="bi bi-eye"></i>
                                                         </button>
+                                                        <a href="{{ route('teknisi.edit', $teknisi->id) }}"
+                                                            class="btn bg-info btn-tooltip" title="Edit"><i
+                                                                class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        <form action="{{ route('teknisi.destroy', $teknisi['id']) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" id="deleteRow"
+                                                                data-message="{{ $teknisi->name }}"
+                                                                class="btn bg-danger btn-tooltip show-alert-delete-box"
+                                                                data-toggle="tooltip" title="Delete"><i
+                                                                    class="bi bi-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="showModal{{ $teknisi['id'] }}"
+                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Teknisi
+                                                                <b>{{ Str::ucfirst($teknisi['name']) }}</b>
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body row text-center">
+                                                            <div class="col-lg-6">
+                                                                <div class="info-box card p-3">
+                                                                    <h5><b>Nama</b></h5>
+                                                                    <p>{{ Str::ucfirst($teknisi['name']) }}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="info-box card p-2">
+                                                                    <h5><b>Nama Perusahaan</b></h5>
+                                                                    <p>{{ Str::ucfirst($teknisi['nama_perusahaan']) }}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="info-box card p-2">
+                                                                    <h5><b>No Telp</b></h5>
+                                                                    <p>{{ $teknisi['no_telp'] }}
+                                                                    </p>
+                                                                    <a href="https://wa.me/{{ $teknisi['no_telp'] }}" target="_blank" class="btn btn-success mt-2"><i class="bi bi-whatsapp"></i> Hubungi Teknisi</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="info-box card p-2">
+                                                                    <h5><b>Alamat Perusahaan</b></h5>
+                                                                    <p>{{ Str::ucfirst($teknisi['alamat_perusahaan']) }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary modalToken"
+                                                                data-id="{{ $teknisi['id'] }}">Buat Kode Akses
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <div class="modal fade" id="resToken" data-bs-backdrop="static" data-bs-keyboard="false"
                                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

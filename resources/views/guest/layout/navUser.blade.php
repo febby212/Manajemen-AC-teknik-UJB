@@ -11,13 +11,16 @@
             <div class="navbar-nav ms-auto mx-xl-auto p-0">
                 <a href="index.html" class="nav-item nav-link active text-secondary">Home</a>
                 <a href="#about" class="nav-item nav-link">Tentang</a>
-                <a href="#AC" class="nav-item nav-link">AC</a>
+                <a href="#AC" class="nav-item nav-link">Data Ac</a>
                 <a href="{{ route('scan') }}" class="nav-item nav-link">Scan AC</a>
             </div>
             @auth
-                <a href="#" class="btn btn-primary">
-                    Form Riwayat
-                </a>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">
+                        Logout
+                    </button>
+                </form>
             @else
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#authModal">
                     Sign In

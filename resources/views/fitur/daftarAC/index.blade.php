@@ -31,137 +31,152 @@
                                 {{-- <div class="py-3 me-2">
                                 </div> --}}
                             </div>
-                            <table class="table datatable table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Kode AC</th>
-                                        <th scope="col">Merek AC</th>
-                                        <th scope="col">Kelengkapan AC</th>
-                                        <th scope="col">Ruangan</th>
-                                        <th scope="col">Kondisi AC</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $index = 1;
-                                    @endphp
-                                    @foreach ($data as $item)
+                            <div class="table-responsive">
+                                <table class="table datatable table-striped">
+                                    <thead>
                                         <tr>
-                                            <th scope="row">{{ $index++ }}</th>
-                                            <td>{{ $item['kode_AC'] }}</td>
-                                            <td>{{ $item->merekAC->merek }} - {{ $item->merekAC->seri }}</td>
-                                            <td>{{ $item['kelengkapan'] }}</td>
-                                            <td>{{ $item['ruangan'] }}</td>
-                                            <td>{{ $item['kondisi'] }}</td>
-                                            <td>
-                                                <div class="d-flex justify-content-center gap-1">
-                                                    <button type="button" data-bs-target="#printQR{{ $item['id'] }}"
-                                                        class="btn btn-success btn-tooltip" data-bs-toggle="modal"
-                                                        title="Print QR Code">
-                                                        <i class="bi bi-printer"></i>
-                                                    </button>
-                                                    <button type="button" data-bs-target="#showModal{{ $item['id'] }}"
-                                                        class="btn btn-primary btn-tooltip" data-bs-toggle="modal"
-                                                        title="Show">
-                                                        <i class="bi bi-eye"></i>
-                                                    </button>
-                                                    <a href="{{ route('daftarAC.edit', $item->id) }}"
-                                                        class="btn bg-info btn-tooltip" title="Edit"><i
-                                                            class="bi bi-pencil-square"></i>
-                                                    </a>
-                                                    <form action="{{ route('daftarAC.destroy', $item['id']) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" id="deleteRow"
-                                                            data-message="{{ $item->kode_AC }}"
-                                                            class="btn bg-danger btn-tooltip show-alert-delete-box"
-                                                            data-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Kode AC</th>
+                                            <th scope="col">Merek AC</th>
+                                            <th scope="col">Kelengkapan AC</th>
+                                            <th scope="col">Ruangan</th>
+                                            <th scope="col">Kondisi AC</th>
+                                            <th scope="col">Action</th>
                                         </tr>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="showModal{{ $item['id'] }}" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Kode AC :
-                                                            <b>{{ Str::ucfirst($item['kode_AC']) }}</b>
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $index = 1;
+                                        @endphp
+                                        @foreach ($data as $item)
+                                            <tr>
+                                                <th scope="row">{{ $index++ }}</th>
+                                                <td>{{ $item['kode_AC'] }}</td>
+                                                <td>{{ $item->merekAC->merek }} - {{ $item->merekAC->seri }}</td>
+                                                <td>{{ $item['kelengkapan'] }}</td>
+                                                <td>{{ $item['ruangan'] }}</td>
+                                                <td>{{ $item['kondisi'] }}</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center gap-1">
+                                                        <a href="" class="btn btn-success btn-tooltip" title="Print QR Code">
+                                                            <i class="bi bi-qr-code"></i>
+                                                        </a>
+                                                        <button type="button"
+                                                            data-bs-target="#showModal{{ $item['id'] }}"
+                                                            class="btn btn-primary btn-tooltip" data-bs-toggle="modal"
+                                                            title="Show">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+                                                        <a href="{{ route('daftarAC.edit', $item->id) }}"
+                                                            class="btn bg-info btn-tooltip" title="Edit"><i
+                                                                class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        <form action="{{ route('daftarAC.destroy', $item['id']) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" id="deleteRow"
+                                                                data-message="{{ $item->kode_AC }}"
+                                                                class="btn bg-danger btn-tooltip show-alert-delete-box"
+                                                                data-toggle="tooltip" title="Delete"><i
+                                                                    class="bi bi-trash"></i>
+                                                            </button>
+                                                        </form>
                                                     </div>
-                                                    <div class="modal-body row">
-                                                        <div class="col-md-8 position-relative mt-3">
-                                                            <label for="jumlah" class="form-label">Kode AC</label>
-                                                            <span class="form-control">{{ $item['kode_AC'] }}</span>
+                                                </td>
+                                            </tr>
+                                            <!-- Modal detail ac -->
+                                            <div class="modal fade" id="showModal{{ $item['id'] }}"
+                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Kode AC :
+                                                                <b>{{ Str::ucfirst($item['kode_AC']) }}</b>
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
                                                         </div>
-                                                        <div class="col-md-4 position-relative mt-3">
-                                                            <label for="jumlah" class="form-label">Merek AC</label>
-                                                            <span class="form-control">{{ $item->merekAC->merek }} - {{ $item->merekAC->seri }}</span>
+                                                        <div class="modal-body row">
+                                                            <div class="col-md-8 position-relative mt-3">
+                                                                <label for="jumlah" class="form-label">Kode AC</label>
+                                                                <span class="form-control">{{ $item['kode_AC'] }}</span>
+                                                            </div>
+                                                            <div class="col-md-4 position-relative mt-3">
+                                                                <label for="jumlah" class="form-label">Merek AC</label>
+                                                                <span class="form-control">{{ $item->merekAC->merek }} -
+                                                                    {{ $item->merekAC->seri }}</span>
+                                                            </div>
+                                                            <div class="col-md-4 position-relative mt-3">
+                                                                <label for="jumlah" class="form-label">Kelengkapan
+                                                                    AC</label>
+                                                                <span
+                                                                    class="form-control">{{ $item['kelengkapan'] }}</span>
+                                                            </div>
+                                                            <div class="col-md-4 position-relative mt-3">
+                                                                <label for="jumlah" class="form-label">Ruangan</label>
+                                                                <span class="form-control">{{ $item['ruangan'] }}</span>
+                                                            </div>
+                                                            <div class="col-md-4 position-relative mt-3">
+                                                                <label for="jumlah" class="form-label">Kondisi AC</label>
+                                                                <span class="form-control">{{ $item['kondisi'] }}</span>
+                                                            </div>
+                                                            <div class="col-md-12 position-relative mt-3">
+                                                                <label for="jumlah" class="form-label">Deskripsi
+                                                                    Kondisi</label>
+                                                                <textarea disabled class="form-control">{{ Str::ucfirst($item['desc_kondisi']) }}</textarea>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-4 position-relative mt-3">
-                                                            <label for="jumlah" class="form-label">Kelengkapan AC</label>
-                                                            <span class="form-control">{{ $item['kelengkapan'] }}</span>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                            {{-- <button type="button" class="btn btn-primary modalToken"
+                                                                data-id="{{ $teknisi['id'] }}">Buat Kode Akses
+                                                            </button> --}}
                                                         </div>
-                                                        <div class="col-md-4 position-relative mt-3">
-                                                            <label for="jumlah" class="form-label">Ruangan</label>
-                                                            <span class="form-control">{{ $item['ruangan'] }}</span>
-                                                        </div>
-                                                        <div class="col-md-4 position-relative mt-3">
-                                                            <label for="jumlah" class="form-label">Kondisi AC</label>
-                                                            <span class="form-control">{{ $item['kondisi'] }}</span>
-                                                        </div>
-                                                        <div class="col-md-12 position-relative mt-3">
-                                                            <label for="jumlah" class="form-label">Deskripsi Kondisi</label>
-                                                            <textarea disabled class="form-control">{{ Str::ucfirst($item['desc_kondisi']) }}</textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        {{-- <button type="button" class="btn btn-primary modalToken"
-                                                            data-id="{{ $teknisi['id'] }}">Buat Kode Akses
-                                                        </button> --}}
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <!-- Modal Print QR-->
-                                        <div class="modal fade" id="printQR{{ $item['id'] }}" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Kode AC :
-                                                            <b>{{ Str::ucfirst($item['kode_AC']) }}</b>
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body row">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        {{-- <button type="button" class="btn btn-primary modalToken"
-                                                            data-id="{{ $teknisi['id'] }}">Buat Kode Akses
-                                                        </button> --}}
+                                            <!-- Modal Print QR-->
+                                            {{-- <div class="modal fade" id="printQR{{ $item['id'] }}"
+                                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">QR Code
+                                                                Ac Ruangan {{ Str::ucfirst($item['ruangan']) }}
+                                                            </h1>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body row">
+                                                            @php
+                                                                $id = Crypt::encrypt($item['id']);
+                                                                $url = env('APP_URL');
+                                                                
+                                                            @endphp
+                                                            {!! QrCode::size(300)
+                                                                ->merge(public_path('assetsUsers/img/logo-ujb.png'), .3, true)
+                                                                ->generate($url . '/detail-riwayat' . '/' . $id) !!}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="d-flex justify-end">
+                                                                <button type="button" class="btn btn-info me-2">Save
+                                                                    QR</button>
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                            </div> --}}
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,11 @@ class CsHelper
         return $new_id;
     }
 
+    static function stringRandom($jumlahString) {
+        $randomString = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, $jumlahString);
+        return $randomString;
+    }
+
     static function api_respons($status_code, $status_string, $data)
     {
         $message = array(

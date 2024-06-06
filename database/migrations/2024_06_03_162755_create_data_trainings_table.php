@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gejalas', function (Blueprint $table) {
-            $table->string('id')->primary()->unique();
-            $table->string('kode_gejala');
-            $table->string('gejala');
-            $table->string('created_by');
-            $table->string('updated_by');
+        Schema::create('data_trainings', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gejalas');
+        Schema::dropIfExists('data_trainings');
     }
 };

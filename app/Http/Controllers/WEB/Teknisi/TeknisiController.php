@@ -62,9 +62,10 @@ class TeknisiController extends Controller
             'no_telp' => ['required', 'min:9']
         ]);
 
+        $data['no_telp'] = $this->processPhoneNumber($data['no_telp']);
         $data['id'] = 'TKI-' . CsHelper::data_id();
         $data['created_by'] = auth()->user()->id;
-
+        
         $dataUser = [
             'name' => $data['name'],
             'username' => Str::of($data['name'])->before(' '),
@@ -109,6 +110,19 @@ class TeknisiController extends Controller
         return view($this->data['dir_view'] . 'form', compact('ref', 'data'));
     }
 
+    protected function processPhoneNumber($phoneNumber)
+    {
+        // Menghilangkan spasi dan simbol +
+        $phoneNumber = str_replace([' ', '+'], '', $phoneNumber);
+
+        // Jika nomor telepon dimulai dengan 0, ubah menjadi 62
+        if (strpos($phoneNumber, '0') === 0) {
+            $phoneNumber = '62' . substr($phoneNumber, 1);
+        }
+
+        return $phoneNumber;
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -121,7 +135,10 @@ class TeknisiController extends Controller
             'no_telp' => ['required', 'min:9']
         ]);
 
+        $data['no_telp'] = $this->processPhoneNumber($data['no_telp']);
+
         $data['updated_by'] = auth()->user()->id;
+        dd($data);
 
         $dataUser = [
             'name' => $data['name'],
@@ -129,7 +146,6 @@ class TeknisiController extends Controller
             'email' => Str::of($data['name'])->before(' ') . CsHelper::randomNumber() . '@gmail.com',
         ];
         $dataUser['updated_by'] = auth()->user()->id;
-// dd($data, $dataUser);
         try {
             $this->user->editByIdTeknisi($id, $dataUser);
             $this->teknisi->edit($id, $data);

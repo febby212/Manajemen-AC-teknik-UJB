@@ -35,7 +35,7 @@
                 data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{ route('teknisi.index') }}" class="{{ $ref['title'] == 'Teknisi' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Dafatar Teknisi</span>
+                        <i class="bi bi-circle"></i><span>Daftar Teknisi</span>
                     </a>
                 </li>
                 <li>
@@ -46,27 +46,39 @@
             </ul>
         </li>
 
-        {{-- <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link {{ $ref['title'] == 'Data AC' || $ref['title'] == 'Riwayat Perbaikan AC' ? '' : 'collapsed' }}"
                 data-bs-target="#AC-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-fan"></i><span>AC</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-binoculars"></i><span>KNN</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="AC-nav"
                 class="nav-content collapse {{ $ref['title'] == 'Data AC' || $ref['title'] == 'Riwayat Perbaikan AC' ? 'show' : 'collapse' }}"
                 data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{ route('daftarAC.index') }}" class="{{ $ref['title'] == 'Data AC' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Daftar AC</span>
+                        <i class="bi bi-circle"></i><span>Identifikasi</span>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('history.index') }}"
                         class="{{ $ref['title'] == 'Riwayat Perbaikan AC' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Riwayat Servis</span>
+                        <i class="bi bi-circle"></i><span>Data Gejala</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('history.index') }}"
+                        class="{{ $ref['title'] == 'Riwayat Perbaikan AC' ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Data Kerusakan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('history.index') }}"
+                        class="{{ $ref['title'] == 'Riwayat Perbaikan AC' ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Data Training</span>
                     </a>
                 </li>
             </ul>
-        </li> --}}
+        </li>
 
         <li class="nav-item">
             {{-- <a class="nav-link {{ $ref['title'] == 'Data AC' || $ref['title'] == 'Riwayat Servis' ? '' : 'collapsed' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> --}}

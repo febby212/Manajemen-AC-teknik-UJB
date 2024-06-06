@@ -39,7 +39,7 @@
                                 @if (isset($data))
                                     @method('PUT')
                                 @endif
-                                <div class="col-md-4 position-relative">
+                                <div class="col-md-6 position-relative">
                                     <label for="nama" class="form-label">Nama Teknisi</label>
                                     <input type="text" class="form-control" id="nama" name="name"
                                         value="{{ old('name', isset($data) ? $data['name'] : '') }}" required>
@@ -50,7 +50,22 @@
                                         Masukkan nama teknisi.
                                     </div>
                                 </div>
-                                <div class="col-md-4 position-relative">
+
+                                <div class="col-md-6 position-relative">
+                                    <label for="no_telp" class="form-label">Nomor Telpon</label>
+                                    <input type="text" class="form-control" id="no_telp"
+                                        name="no_telp"
+                                        value="{{ old('no_telp', isset($data) ? $data['no_telp'] : '') }}"
+                                        required>
+                                    <div class="valid-tooltip">
+                                        
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        Masukkan nomor telp.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 position-relative">
                                     <label for="perusahaan" class="form-label">Nama Perusahaan</label>
                                     <input type="text" class="form-control" id="perusahaan" name="nama_perusahaan"
                                         value="{{ old('nama_perusahaan', isset($data) ? $data['nama_perusahaan'] : '') }}"
@@ -62,7 +77,7 @@
                                         Masukkan nama perusahaan.
                                     </div>
                                 </div>
-                                <div class="col-md-4 position-relative">
+                                <div class="col-md-6 position-relative">
                                     <label for="alamatPerusahaan" class="form-label">Alamat Perusahaan</label>
                                     <input type="text" class="form-control" id="alamatPerusahaan"
                                         name="alamat_perusahaan"
@@ -73,19 +88,6 @@
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan alamat perusahaan.
-                                    </div>
-                                </div>
-                                <div class="col-md-4 position-relative">
-                                    <label for="no_telp" class="form-label">Nomor Telpon</label>
-                                    <input type="text" class="form-control" id="no_telp"
-                                        name="no_telp"
-                                        value="{{ old('no_telp', isset($data) ? $data['no_telp'] : '') }}"
-                                        required>
-                                    <div class="valid-tooltip">
-                                        
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        Masukkan nomor telp.
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-3 position-relative">

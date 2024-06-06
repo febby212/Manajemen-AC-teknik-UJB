@@ -53,6 +53,7 @@ class DataAcController extends Controller
     {
         $jumlah = $request->input('jumlah');
 
+        $jumlah_id = CsHelper::stringRandom(6);
         // $allData = [];
         for ($i = 0; $i < $jumlah; $i++) {
             $data = $request->validate([
@@ -72,9 +73,10 @@ class DataAcController extends Controller
             ]);
 
             $merek = $this->merekAC->getById($data['merek_id']);
-            $data['kode_AC'] = '01' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $data['tahun_pembelian'] . '/' . CsHelper::numbering($i + 1, 3);
+            $data['kode_AC'] = '01' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $data['tahun_pembelian'] . '/' . CsHelper::numbering($i + 1, 3). '/' . CsHelper::token();
             $data['id'] = 'DTAC-' . CsHelper::data_id();
             $data['created_by'] = auth()->user()->id;
+            $data['id_jumlah'] = $jumlah_id;
 
             // $allData[] = $data;
             try {
@@ -87,7 +89,6 @@ class DataAcController extends Controller
             }
         }
         return redirect()->route('daftarAC.index')->with('success', 'Berhasil menambah data AC');
-
     }
 
     /**
@@ -107,8 +108,8 @@ class DataAcController extends Controller
         $ref['url'] = route('daftarAC.update', $id);
         $merek = $this->merekAC->getAll();
         $data = $this->dataAc->getById($id);
-
-        return view($this->data['dir_view'] . 'form', compact('ref', 'merek', 'data'));
+        $tahun_pembelian = $data;
+        return view($this->data['dir_view'] . 'form', compact('ref', 'merek', 'data', 'tahun_pembelian'));
     }
 
     /**
@@ -117,22 +118,20 @@ class DataAcController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
-            'kode_AC' => ['required', 'min:3', 'string'],
             'merek_id' => ['required', 'min:3', 'string'],
             'kelengkapan' => ['required', 'min:3', 'string'],
             'ruangan' => ['required', 'min:3', 'string'],
             'kondisi' => ['required', 'min:3', 'string'],
             'desc_kondisi' => ['required', 'min:3', 'string'],
         ], [], [
-            'kode_AC' => 'Kode AC',
             'merek_id' => 'Merek AC',
             'kelengkapan' => 'Kelengkapan AC',
             'ruangan' => 'Ruangan',
             'kondisi' => 'Kondisi AC',
             'desc_kondisi' => 'Deskripsi',
         ]);
-        $data['updated_by'] = auth()->user()->id;
 
+        $data['updated_by'] = auth()->user()->id;
         try {
             $this->dataAc->edit($id, $data);
             return redirect()->route('daftarAC.index')->with('success', 'Berhasi merubah data AC');
