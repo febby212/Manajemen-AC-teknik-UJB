@@ -36,11 +36,11 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Kode AC</th>
-                                            <th scope="col">Merek AC</th>
-                                            <th scope="col">Kelengkapan AC</th>
+                                            <th scope="col">Kode</th>
+                                            <th scope="col">Merek</th>
+                                            <th scope="col">Kelengkapan</th>
                                             <th scope="col">Ruangan</th>
-                                            <th scope="col">Kondisi AC</th>
+                                            <th scope="col">Kondisi</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>

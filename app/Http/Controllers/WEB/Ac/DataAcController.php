@@ -73,7 +73,7 @@ class DataAcController extends Controller
             ]);
 
             $merek = $this->merekAC->getById($data['merek_id']);
-            $data['kode_AC'] = '01' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $data['tahun_pembelian'] . '/' . CsHelper::numbering($i + 1, 3). '/' . CsHelper::token();
+            $data['kode_AC'] = '01' . '/AC' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $data['tahun_pembelian'] . '/' . CsHelper::numbering($i + 1, 3) . '/' . CsHelper::token();
             $data['id'] = 'DTAC-' . CsHelper::data_id();
             $data['created_by'] = auth()->user()->id;
             $data['id_jumlah'] = $jumlah_id;
@@ -108,8 +108,15 @@ class DataAcController extends Controller
         $ref['url'] = route('daftarAC.update', $id);
         $merek = $this->merekAC->getAll();
         $data = $this->dataAc->getById($id);
-        $tahun_pembelian = $data;
-        return view($this->data['dir_view'] . 'form', compact('ref', 'merek', 'data', 'tahun_pembelian'));
+        $jumlahAc = $this->dataAc->countBIdJumlah($data->id_jumlah);
+
+        $kode = $data->kode_AC;
+        $parts = explode('/', $kode);
+        // Mengambil tahun (elemen ke-4 dari array)
+        $tahun = $parts[4];
+        $tahun_pembelian = $tahun;
+
+        return view($this->data['dir_view'] . 'form', compact('ref', 'merek', 'data', 'tahun_pembelian', 'jumlahAc', 'tahun_pembelian'));
     }
 
     /**
@@ -130,6 +137,41 @@ class DataAcController extends Controller
             'kondisi' => 'Kondisi AC',
             'desc_kondisi' => 'Deskripsi',
         ]);
+
+        $jumlahBaru = $request->input('jumlah');
+
+        $AC = $this->dataAc->getById($id);
+        $jumlahLama = $this->dataAc->countBIdJumlah($AC->id_jumlah);
+        $tahun_pembelian = $request->input('tahun_pembelian');
+
+        if ($jumlahBaru > $jumlahLama) {
+            for ($i=$jumlahLama; $i < $jumlahBaru ; $i++) { 
+                $dataBaru = [
+                    'id' => 'DTAC-' . CsHelper::data_id(),
+                    'id_jumlah' => $AC->id_jumlah,
+                    'merek_id' => $data['merek_id'],
+                    'kelengkapan' => $data['kelengkapan'],
+                    'ruangan' => $data['ruangan'],
+                    'kondisi' => $data['kondisi'],
+                    'desc_kondisi' => $data['desc_kondisi'],
+                ];
+                $merek = $this->merekAC->getById($data['merek_id']);
+                $dataBaru['kode_AC'] = '01' . '/AC' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $tahun_pembelian . '/' . CsHelper::numbering($i + 1, 3) . '/' . CsHelper::token();
+                $dataBaru['created_by'] = auth()->user()->id;
+                try {
+                    $this->dataAc->store($dataBaru);
+                } catch (\Throwable $th) {
+                    if (env('APP_DEBUG')) {
+                        return $th->getMessage();
+                    }
+                }
+            }
+        } elseif ($jumlahBaru < $jumlahLama) {
+            $kelebihanAC = $this->dataAc->destroyKelebihanAC($AC->id_jumlah, $jumlahLama, $jumlahBaru);
+            foreach ($kelebihanAC as $kelebihan) {
+                $kelebihan->delete();
+            }
+        }
 
         $data['updated_by'] = auth()->user()->id;
         try {

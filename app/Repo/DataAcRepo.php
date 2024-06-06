@@ -16,8 +16,8 @@ class DataAcRepo implements DataAcInterface
         return AcDesc::with('history', 'merekAC')->get()->groupBy('ruangan');
     }
 
-    public function countByRuangan($ruangan){
-        return AcDesc::where('ruangan', $ruangan)->count();
+    public function countBIdJumlah($id_jumlah){
+        return AcDesc::where('id_jumlah', $id_jumlah)->count();
     }
 
     public function getDetail($id)
@@ -45,7 +45,7 @@ class DataAcRepo implements DataAcInterface
         return AcDesc::destroy($id);
     }
 
-    public function destroyKelebihanAC($ruangan, $jumlahLama, $jumlahBaru) {
-        return AcDesc::where('ruangan', $ruangan)->orderBy('id', 'desc')->take($jumlahLama - $jumlahBaru)->get();
+    public function destroyKelebihanAC($jumlah_id, $jumlahLama, $jumlahBaru) {
+        return AcDesc::where('id_jumlah', $jumlah_id)->take($jumlahLama - $jumlahBaru)->get();
     }
 }

@@ -132,7 +132,7 @@
                                 <div class="col-md-4 position-relative">
                                     <label for="jumlah" class="form-label">Jumlah AC</label>
                                     <input type="number" class="form-control" id="jumlah" name="jumlah"
-                                        value="{{ old('jumlah', isset($data) ? $data['jumlah'] : '') }}" required>
+                                        value="{{ old('jumlah', isset($data) ? $jumlahAc : '') }}" required>
                                     <div class="valid-tooltip">
                                         Mantappp!!!
                                     </div>
@@ -144,7 +144,7 @@
                                 <div class="col-md-4 position-relative">
                                     <label for="tahun_pembelian" class="form-label">Tahun Pembelian AC</label>
                                     <input type="text" class="form-control" id="tahun_pembelian" name="tahun_pembelian"
-                                        value="{{ old('tahun_pembelian', isset($data) ? $data['tahun_pembelian'] : '') }}" required>
+                                        value="{{ old('tahun_pembelian', isset($data) ? $tahun_pembelian : '') }}" required>
                                     <div class="valid-tooltip">
                                         Mantappp!!!
                                     </div>
