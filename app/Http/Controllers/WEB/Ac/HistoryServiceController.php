@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\WEB\Ac;
 
+use App\Exports\HistoryExport;
 use App\Exports\RiwayatPerbaikanACExport;
 use App\Http\Controllers\Controller;
 use App\Repo\DataAcRepo;
@@ -155,6 +156,7 @@ class HistoryServiceController extends Controller
     }
 
     public function exportHistory() {
-        
+        $data = $this->dataHistory->getAllExport();
+        return Excel::download(new HistoryExport($data), 'Riwayat.xlsx');
     }
 }

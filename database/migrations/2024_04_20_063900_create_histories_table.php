@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('teknisi_id');
             $table->text('kerusakan');
             $table->text('perbaikan');
-            $table->integer('pos_anggaran');
+            $table->string('pos_anggaran');
             $table->date('tgl_perbaikan');
             $table->string('PPA');
             $table->integer('biaya');

@@ -4,11 +4,16 @@ namespace App\Repo;
 
 use App\Interface\HistoryInterface;
 use App\Models\History;
+use Illuminate\Database\Eloquent\Collection;
 
 class HistoryRepo implements HistoryInterface
 {
     public function getAll()
     {
+        return History::with('acDesc', 'teknisiPerbaikan', 'acDesc.merekAC', 'pembuatLaporan')->get();
+    }
+
+    public function getAllExport() : Collection {
         return History::with('acDesc', 'teknisiPerbaikan', 'acDesc.merekAC', 'pembuatLaporan')->get();
     }
 

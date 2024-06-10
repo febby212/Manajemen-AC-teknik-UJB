@@ -54,6 +54,9 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
     //daftar ac
     Route::resource('daftarAC', DataAcController::class);
 
+    //export riwayat
+    Route::get('export=riwayat', [HistoryServiceController::class, 'exportHistory'])->name('export.history');
+
     //history perbaikan ac
     Route::resource('history', HistoryServiceController::class);
 
