@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\WEB\Ac;
 
+use App\Exports\RiwayatPerbaikanACExport;
 use App\Http\Controllers\Controller;
 use App\Repo\DataAcRepo;
 use App\Repo\HistoryRepo;
 use App\Repo\TeknisiRepo;
 use CsHelper;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HistoryServiceController extends Controller
 {
@@ -59,7 +61,7 @@ class HistoryServiceController extends Controller
         $data = $request->validate([
             'ac_desc_id' => ['required', 'string'],
             'PPA' => ['required', 'string', 'min:4'],
-            'pos_anggaran' => ['required', 'numeric'],
+            'pos_anggaran' => ['required', 'string', 'min:3'],
             'biaya' => ['required', 'numeric'],
             'teknisi_id' => ['required'],
             'tgl_perbaikan' => ['required', 'date'],
@@ -152,11 +154,7 @@ class HistoryServiceController extends Controller
         }
     }
 
-    public function detail($id_desc_ac) {
-
-        $ref = $this->data;
-        $data = $this->dataAc->getDetail($id_desc_ac);
-dd($data->toArray());
-        return view($this->data['view_dir'] . 'detail', compact('ref', 'data'));
+    public function exportHistory() {
+        
     }
 }

@@ -8,6 +8,12 @@ use App\Repo\MerekAcRepo;
 use CsHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use BaconQrCode\Common\ErrorCorrectionLevel;
+use BaconQrCode\Encoder\Encoder;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 
 class DataAcController extends Controller
 {
@@ -30,8 +36,9 @@ class DataAcController extends Controller
     {
         $ref = $this->data;
         $data = $this->dataAc->getAll();
+        $appUrl = env('APP_URL');
         // dd($data->toArray());
-        return view($this->data['dir_view'] . 'index', compact('ref', 'data'));
+        return view($this->data['dir_view'] . 'index', compact('ref', 'data', 'appUrl'));
     }
 
     /**
@@ -54,6 +61,7 @@ class DataAcController extends Controller
         $jumlah = $request->input('jumlah');
 
         $jumlah_id = CsHelper::stringRandom(6);
+        // dd($jumlah);
         // $allData = [];
         for ($i = 0; $i < $jumlah; $i++) {
             $data = $request->validate([
@@ -71,6 +79,10 @@ class DataAcController extends Controller
                 'tahun_pembelian' => 'Tahun pembelian AC',
                 'desc_kondisi' => 'Deskripsi',
             ]);
+
+            if ($data['tahun_pembelian'] == null || $data['tahun_pembelian'] == ' ') {
+                $data['tahun_pembelian'] = '-';
+            }
 
             $merek = $this->merekAC->getById($data['merek_id']);
             $data['kode_AC'] = '01' . '/AC' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $data['tahun_pembelian'] . '/' . CsHelper::numbering($i + 1, 3) . '/' . CsHelper::token();
@@ -145,7 +157,7 @@ class DataAcController extends Controller
         $tahun_pembelian = $request->input('tahun_pembelian');
 
         if ($jumlahBaru > $jumlahLama) {
-            for ($i=$jumlahLama; $i < $jumlahBaru ; $i++) { 
+            for ($i = $jumlahLama; $i < $jumlahBaru; $i++) {
                 $dataBaru = [
                     'id' => 'DTAC-' . CsHelper::data_id(),
                     'id_jumlah' => $AC->id_jumlah,

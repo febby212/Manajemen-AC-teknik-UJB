@@ -12,7 +12,7 @@ class CsHelper
     }
 
     static function stringRandom($jumlahString) {
-        $randomString = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, $jumlahString);
+        $randomString = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), 0, $jumlahString);
         return $randomString;
     }
 

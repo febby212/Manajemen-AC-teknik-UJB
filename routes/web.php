@@ -50,7 +50,7 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
     Route::get('tokenize', [TokenizeController::class, 'generateToken'])->name('generateToken');
     Route::resource('token', TokenizeController::class);
     Route::get('teknisi/data', [TokenizeController::class, 'dataTeknisi'])->name('teknisiData');
-
+    
     //daftar ac
     Route::resource('daftarAC', DataAcController::class);
 
@@ -62,6 +62,7 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
 
     //all request data json
     // Route::get('data-teknisi', [TeknisiController::class, 'dataTeknisi'])->name('data.teknisi');
+
 });
 
 Route::get('/user', function () {
@@ -71,11 +72,17 @@ Route::get('/user', function () {
     return view('guest.detail.index', compact('data'));
 })->name('dashboard.teknisi');
 
+//detail data ac
+Route::get('data-ac/{id_jumlah}', [GuestTechController::class, 'dataAcByRoom'])->name('dataAc.guest');
+
+//scan
+Route::get('scan', function () {
+    $ref = ['title' => 'Scan QR'];
+    return view('guest.scan.index', compact('ref'));
+})->name('scan');
+
 //detail riwayat ac (untuk guest atau teknisi)
 Route::get('detail-riwayat/{id}', [DetailRiwayatController::class, 'show'])->name('detail.riwayat');
 Route::get('detail-riwayat-all', [DetailRiwayatController::class, 'index'])->name('detail.riwayat.all');
 
-//scan
-Route::get('scan', function () {
-    return view('guest.scan.index');
-})->name('scan');
+

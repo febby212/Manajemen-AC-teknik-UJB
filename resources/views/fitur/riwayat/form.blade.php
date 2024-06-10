@@ -78,7 +78,7 @@
 
                                 <div class="col-md-3 position-relative">
                                     <label for="pos_anggaran" class="form-label">POS Anggaran</label>
-                                    <input type="number" class="form-control" id="pos_anggaran" name="pos_anggaran"
+                                    <input type="text" class="form-control" id="pos_anggaran" name="pos_anggaran"
                                         placeholder="POS anggaran"
                                         value="{{ old('pos_anggaran', isset($data) ? $data['pos_anggaran'] : '') }}"
                                         required>

@@ -58,9 +58,13 @@
                                                 <td>{{ $item['kondisi'] }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-1">
-                                                        <a href="" class="btn btn-success btn-tooltip" title="Print QR Code">
+                                                        <button type="button" class="btn btn-success btn-tooltip generateQR"
+                                                            data-id="{{ encrypt($item->id) }}"
+                                                            data-target="#qrModal{{ $item->id }}"
+                                                            title="Print QR Code"
+                                                            data-bs-toggle="modal">
                                                             <i class="bi bi-qr-code"></i>
-                                                        </a>
+                                                        </button>
                                                         <button type="button"
                                                             data-bs-target="#showModal{{ $item['id'] }}"
                                                             class="btn btn-primary btn-tooltip" data-bs-toggle="modal"
@@ -85,6 +89,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+
                                             <!-- Modal detail ac -->
                                             <div class="modal fade" id="showModal{{ $item['id'] }}"
                                                 data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -139,40 +144,37 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Modal Print QR-->
-                                            {{-- <div class="modal fade" id="printQR{{ $item['id'] }}"
+                                            {{-- modal qr --}}
+                                            <div class="modal fade" id="qrModal{{ $item->id }}"
                                                 data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                aria-labelledby="qrModalLabel{{ $item->id }}" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">QR Code
-                                                                Ac Ruangan {{ Str::ucfirst($item['ruangan']) }}
+                                                            <h1 class="modal-title fs-5"
+                                                                id="qrModalLabel{{ $item->id }}">
+                                                                QR Code AC Ruangan {{ $item->ruangan }}
                                                             </h1>
                                                             <button type="button" class="btn-close"
                                                                 data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                        <div class="modal-body row">
-                                                            @php
-                                                                $id = Crypt::encrypt($item['id']);
-                                                                $url = env('APP_URL');
-                                                                
-                                                            @endphp
-                                                            {!! QrCode::size(300)
-                                                                ->merge(public_path('assetsUsers/img/logo-ujb.png'), .3, true)
-                                                                ->generate($url . '/detail-riwayat' . '/' . $id) !!}
+                                                        <div class="modal-body">
+                                                            <div class="d-flex justify-content-center">
+                                                                <div id="qrcode{{ $item->id }}"></div>
+                                                                <!-- ID kontainer QR code yang unik -->
+                                                                <p></p>
+                                                            </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <div class="d-flex justify-end">
-                                                                <button type="button" class="btn btn-info me-2">Save
-                                                                    QR</button>
-                                                                <button type="button" class="btn btn-danger"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                            </div>
+                                                            <a id="download{{ $item->id }}" class="btn btn-success"
+                                                                download="qrcode-{{ $item->kode_AC }}.png">Download QR
+                                                                Code</a> <!-- ID link unduhan yang unik -->
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -185,6 +187,8 @@
     </main>
 @endsection
 @push('js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -222,6 +226,37 @@
                         batal: function() {}
                     }
                 });
+            });
+        });
+
+        $(document).ready(function() {
+            $('.generateQR').on('click', function(event) {
+                event.preventDefault();
+                var button = $(this);
+                var text = button.data('id');
+                var appUrl = "{{ $appUrl }}";
+                var targetModal = button.data('target'); // Mendapatkan ID modal target
+                var qrcodeContainer = $(targetModal).find(
+                '[id^="qrcode"]'); // Menemukan kontainer QR code di dalam modal
+                var downloadLink = $(targetModal).find(
+                '[id^="download"]'); // Menemukan link unduhan di dalam modal
+
+                qrcodeContainer.empty(); // Menghapus QR code sebelumnya
+                var qrcode = new QRCode(qrcodeContainer[0], {
+                    text: appUrl + 'detail-riwayat/' + text,
+                    width: 200,
+                    height: 200
+                });
+
+                // Menunggu sedikit untuk QR code dihasilkan
+                setTimeout(function() {
+                    var canvas = qrcodeContainer.find('canvas')[0];
+                    var imgData = canvas.toDataURL("image/png");
+
+                    downloadLink.attr('href', imgData);
+
+                    $(targetModal).modal('show'); // Menampilkan modal
+                }, 500);
             });
         });
     </script>

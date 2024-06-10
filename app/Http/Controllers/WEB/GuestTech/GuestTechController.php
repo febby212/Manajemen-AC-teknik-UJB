@@ -17,62 +17,19 @@ class GuestTechController extends Controller
         $this->dataAc = $dataAc;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $ref = $this->data;
         $data = $this->dataAc->getByGrouping();
-// dd($data);
         return view($this->data['dir_view'] . 'index', compact('ref', 'data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function dataAcByRoom($id_jumlah) {
+        $id_jumlah = decrypt($id_jumlah);
+        $ref = $this->data;
+        $data = $this->dataAc->getByIdJumlah($id_jumlah);
+        $roomName = $this->dataAc->getRoomName($id_jumlah);
+// dd($data->toArray());
+        return view($this->data['dir_view'] . 'detailedByRoom.index', compact('ref', 'data', 'roomName'));
     }
 }

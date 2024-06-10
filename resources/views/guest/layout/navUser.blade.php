@@ -1,7 +1,7 @@
 <!-- Navbar Start -->
-<div class="container-fluid bg-primary sticky-top">
+<div class="container-fluid bg-primary">
     <nav class="navbar navbar-dark navbar-expand-lg py-0">
-        <a href="index.html" class="navbar-brand">
+        <a href="{{ route('home') }}" class="navbar-brand">
             <h1 class="text-white fw-bold d-block">High<span class="text-secondary">Tech</span> </h1>
         </a>
         <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -9,10 +9,10 @@
         </button>
         <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
             <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                <a href="index.html" class="nav-item nav-link active text-secondary">Home</a>
+                <a href="{{ route('home') }}" class="nav-item nav-link {{ $ref['title'] == 'Home SIMAC' ? 'active' : '' }}">Home</a>
                 <a href="#about" class="nav-item nav-link">Tentang</a>
                 <a href="#AC" class="nav-item nav-link">Data Ac</a>
-                <a href="{{ route('scan') }}" class="nav-item nav-link">Scan AC</a>
+                <a href="{{ route('scan') }}" class="nav-item nav-link {{ $ref['title'] == 'Scan QR' ? 'active' : '' }}">Scan AC</a>
             </div>
             @auth
                 <form action="{{ route('logout') }}" method="post">

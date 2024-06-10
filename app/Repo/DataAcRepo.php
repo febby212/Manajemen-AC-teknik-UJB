@@ -13,7 +13,15 @@ class DataAcRepo implements DataAcInterface
     }
 
     public function getByGrouping() {
-        return AcDesc::with('history', 'merekAC')->get()->groupBy('ruangan');
+        return AcDesc::select('ruangan', 'id_jumlah')->distinct()->get();
+    }
+
+    public function getByIdJumlah($id_jumlah) {
+        return AcDesc::with('history', 'history.teknisiPerbaikan', 'merekAC')->where('id_jumlah', $id_jumlah)->get();
+    }
+
+    public function getRoomName($id_jumlah) {
+        return AcDesc::where('id_jumlah', $id_jumlah)->select('ruangan', 'id_jumlah')->distinct()->get();
     }
 
     public function countBIdJumlah($id_jumlah){
