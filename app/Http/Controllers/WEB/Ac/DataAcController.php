@@ -200,6 +200,8 @@ class DataAcController extends Controller
         try {
             $this->dataAc->destroy($id);
             return redirect()->route('daftarAC.index')->with('success', 'Berhasi menghapus data AC');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return back()->with('error', 'Data ini masih digunakan oleh data lain, sehingga tidak bisa dihapus.');
         } catch (\Throwable $th) {
             if (env('APP_DEBUG')) {
                 return $th->getMessage();
