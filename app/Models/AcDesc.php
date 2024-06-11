@@ -20,6 +20,7 @@ class AcDesc extends Model
         'ruangan',
         'kondisi',
         'desc_kondisi',
+        'tahun_pembelian',
         'created_by',
         'updated_by',
     ];

@@ -146,7 +146,7 @@
                                 style="top: -28px; right: 20px;">R. {{ $item->ruangan }}</span>
                             <div class="blog-btn d-flex justify-content-center px-3" style="margin-top:  -75px;">
                                 <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
-                                    <a href="{{ route('dataAc.guest', encrypt($item->id_jumlah)) }}" class="btn text-white">Lihat Detail</a>
+                                    <a href="{{ route('dataAc.guest', encrypt($item->ruangan)) }}" class="btn text-white">Lihat Detail</a>
                                 </div>
                             </div>
                             <div

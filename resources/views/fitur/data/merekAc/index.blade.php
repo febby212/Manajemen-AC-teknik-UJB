@@ -60,8 +60,8 @@
                                                     </a>
                                                     <form action="{{ route('merekAc.destroy', $merek['id']) }}"
                                                         method="POST">
-                                                        @csrf
                                                         @method('DELETE')
+                                                        @csrf
                                                         <button type="button" id="deleteRow"
                                                             data-message="{{ $merek->merek . " dengan seri " . $merek->seri }}"
                                                             class="btn bg-danger btn-tooltip show-alert-delete-box"

@@ -65,7 +65,7 @@ class TeknisiController extends Controller
         $data['no_telp'] = $this->processPhoneNumber($data['no_telp']);
         $data['id'] = 'TKI-' . CsHelper::data_id();
         $data['created_by'] = auth()->user()->id;
-        
+
         $dataUser = [
             'name' => $data['name'],
             'username' => Str::of($data['name'])->before(' '),
@@ -138,7 +138,7 @@ class TeknisiController extends Controller
         $data['no_telp'] = $this->processPhoneNumber($data['no_telp']);
 
         $data['updated_by'] = auth()->user()->id;
-        dd($data);
+        // dd($data);
 
         $dataUser = [
             'name' => $data['name'],
@@ -167,9 +167,11 @@ class TeknisiController extends Controller
             $this->teknisi->destroy($id);
             $this->token->destroyByTeknisi($id);
             return back()->with('success', 'Data berhasil di hapus');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return back()->with('error', 'Data ini masih digunakan oleh data lain, sehingga tidak bisa dihapus.');
         } catch (Throwable $e) {
             if (env('APP_DEBUG')) {
-                return $e->getMessage();
+                return back()->with('error', 'Terjadi kesalahan di ' . $e->getMessage());
             }
             return back()->with('error', "Oops..!! Terjadi keesalahan saat menghapus data");
         }

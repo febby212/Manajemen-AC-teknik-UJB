@@ -24,12 +24,12 @@ class GuestTechController extends Controller
         return view($this->data['dir_view'] . 'index', compact('ref', 'data'));
     }
 
-    public function dataAcByRoom($id_jumlah) {
-        $id_jumlah = decrypt($id_jumlah);
+    public function dataAcByRoom($ruangan) {
+        $ruangan = decrypt($ruangan);
         $ref = $this->data;
-        $data = $this->dataAc->getByIdJumlah($id_jumlah);
-        $roomName = $this->dataAc->getRoomName($id_jumlah);
-// dd($data->toArray());
+        $data = $this->dataAc->getByRuangan($ruangan);
+        $roomName = $this->dataAc->getRoomName($ruangan);
+// dd($ruangan);
         return view($this->data['dir_view'] . 'detailedByRoom.index', compact('ref', 'data', 'roomName'));
     }
 }

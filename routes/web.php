@@ -76,7 +76,7 @@ Route::get('/user', function () {
 })->name('dashboard.teknisi');
 
 //detail data ac
-Route::get('data-ac/{id_jumlah}', [GuestTechController::class, 'dataAcByRoom'])->name('dataAc.guest');
+Route::get('data-ac/{ruangan}', [GuestTechController::class, 'dataAcByRoom'])->name('dataAc.guest');
 
 //scan
 Route::get('scan', function () {

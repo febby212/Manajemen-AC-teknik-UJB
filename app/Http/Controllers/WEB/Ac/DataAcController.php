@@ -60,16 +60,13 @@ class DataAcController extends Controller
     {
         $jumlah = $request->input('jumlah');
 
-        $jumlah_id = CsHelper::stringRandom(6);
-        // dd($jumlah);
-        // $allData = [];
         for ($i = 0; $i < $jumlah; $i++) {
             $data = $request->validate([
                 'merek_id' => ['required', 'min:3', 'string'],
                 'kelengkapan' => ['required', 'min:3', 'string'],
                 'ruangan' => ['required', 'min:3', 'string'],
                 'kondisi' => ['required', 'min:3', 'string'],
-                'tahun_pembelian' => ['required'],
+                'tahun_pembelian' => ['required', 'min:3', 'numeric'],
                 'desc_kondisi' => ['required', 'min:3', 'string'],
             ], [], [
                 'merek_id' => 'Merek AC',
@@ -80,15 +77,10 @@ class DataAcController extends Controller
                 'desc_kondisi' => 'Deskripsi',
             ]);
 
-            if ($data['tahun_pembelian'] == null || $data['tahun_pembelian'] == ' ') {
-                $data['tahun_pembelian'] = '-';
-            }
-
             $merek = $this->merekAC->getById($data['merek_id']);
-            $data['kode_AC'] = '01' . '/AC' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $data['tahun_pembelian'] . '/' . CsHelper::numbering($i + 1, 3) . '/' . CsHelper::token();
+            $data['kode_AC'] = '01' . '/AC' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $data['tahun_pembelian'] . '/' . CsHelper::token();
             $data['id'] = 'DTAC-' . CsHelper::data_id();
             $data['created_by'] = auth()->user()->id;
-            $data['id_jumlah'] = $jumlah_id;
 
             // $allData[] = $data;
             try {
@@ -120,7 +112,7 @@ class DataAcController extends Controller
         $ref['url'] = route('daftarAC.update', $id);
         $merek = $this->merekAC->getAll();
         $data = $this->dataAc->getById($id);
-        $jumlahAc = $this->dataAc->countBIdJumlah($data->id_jumlah);
+        $jumlahAc = $this->dataAc->countByRuangan($data->ruangan);
 
         $kode = $data->kode_AC;
         $parts = explode('/', $kode);
@@ -142,33 +134,34 @@ class DataAcController extends Controller
             'ruangan' => ['required', 'min:3', 'string'],
             'kondisi' => ['required', 'min:3', 'string'],
             'desc_kondisi' => ['required', 'min:3', 'string'],
+            'tahun_pembelian' => ['required', 'min:3', 'numeric'],
         ], [], [
             'merek_id' => 'Merek AC',
             'kelengkapan' => 'Kelengkapan AC',
             'ruangan' => 'Ruangan',
             'kondisi' => 'Kondisi AC',
             'desc_kondisi' => 'Deskripsi',
+            'tahun_pembelian' => 'Tahun Pembelian',
         ]);
 
         $jumlahBaru = $request->input('jumlah');
 
         $AC = $this->dataAc->getById($id);
-        $jumlahLama = $this->dataAc->countBIdJumlah($AC->id_jumlah);
+        $jumlahLama = $this->dataAc->countByRuangan($AC->ruangan);
         $tahun_pembelian = $request->input('tahun_pembelian');
+        $merek = $this->merekAC->getById($data['merek_id']);
 
         if ($jumlahBaru > $jumlahLama) {
             for ($i = $jumlahLama; $i < $jumlahBaru; $i++) {
                 $dataBaru = [
                     'id' => 'DTAC-' . CsHelper::data_id(),
-                    'id_jumlah' => $AC->id_jumlah,
                     'merek_id' => $data['merek_id'],
                     'kelengkapan' => $data['kelengkapan'],
                     'ruangan' => $data['ruangan'],
                     'kondisi' => $data['kondisi'],
                     'desc_kondisi' => $data['desc_kondisi'],
                 ];
-                $merek = $this->merekAC->getById($data['merek_id']);
-                $dataBaru['kode_AC'] = '01' . '/AC' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $tahun_pembelian . '/' . CsHelper::numbering($i + 1, 3) . '/' . CsHelper::token();
+                $dataBaru['kode_AC'] = '01' . '/AC' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $tahun_pembelian . '/' . CsHelper::token();
                 $dataBaru['created_by'] = auth()->user()->id;
                 try {
                     $this->dataAc->store($dataBaru);
@@ -185,6 +178,8 @@ class DataAcController extends Controller
             }
         }
 
+
+        $data['kode_AC'] = '01' . '/AC' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $tahun_pembelian . '/' . CsHelper::token();
         $data['updated_by'] = auth()->user()->id;
         try {
             $this->dataAc->edit($id, $data);

@@ -13,19 +13,19 @@ class DataAcRepo implements DataAcInterface
     }
 
     public function getByGrouping() {
-        return AcDesc::select('ruangan', 'id_jumlah')->distinct()->get();
+        return AcDesc::select('ruangan')->distinct()->get();
     }
 
-    public function getByIdJumlah($id_jumlah) {
-        return AcDesc::with('history', 'history.teknisiPerbaikan', 'merekAC')->where('id_jumlah', $id_jumlah)->get();
+    public function getByRuangan($ruangan) {
+        return AcDesc::with('history', 'history.teknisiPerbaikan', 'merekAC')->where('ruangan', $ruangan)->get();
     }
 
-    public function getRoomName($id_jumlah) {
-        return AcDesc::where('id_jumlah', $id_jumlah)->select('ruangan', 'id_jumlah')->distinct()->get();
+    public function getRoomName($ruangan) {
+        return AcDesc::where('ruangan', $ruangan)->select('ruangan')->distinct()->get();
     }
 
-    public function countBIdJumlah($id_jumlah){
-        return AcDesc::where('id_jumlah', $id_jumlah)->count();
+    public function countByRuangan($ruangan){
+        return AcDesc::where('ruangan', $ruangan)->count();
     }
 
     public function getDetail($id)
@@ -46,6 +46,10 @@ class DataAcRepo implements DataAcInterface
     public function edit($id, $data)
     {
         return AcDesc::whereId($id)->update($data);
+    }
+
+    public function editByRuangan($ruangan, $data) {
+        return AcDesc::where('ruangan', $ruangan)->update($data);
     }
 
     public function destroy($id)

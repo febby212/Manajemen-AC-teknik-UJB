@@ -108,6 +108,14 @@ class TokenizeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $this->token->destroy($id);
+            return back()->with('success', 'Berhasil menghapus token');
+        } catch (\Throwable $th) {
+            if (env('APP_DEBUG') == true) {
+                return back()->with('error', 'Terdapat kesalahan di ' . $th->getMessage());
+                }
+            return back()->with('error', 'Terdapat kesalahan saat menghapus data');
+        }
     }
 }

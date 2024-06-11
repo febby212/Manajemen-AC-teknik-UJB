@@ -53,7 +53,7 @@
                                             <td>{{ $token['used'] == 1 ? 'Sudah digunakan' : 'Belum digunakan' }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-between gap-1">
-                                                    <form action="{{ route('teknisi.destroy', $token['id']) }}"
+                                                    <form action="{{ route('token.destroy', $token['id']) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')

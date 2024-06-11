@@ -58,10 +58,10 @@
                                                 <td>{{ $item['kondisi'] }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-1">
-                                                        <button type="button" class="btn btn-success btn-tooltip generateQR"
+                                                        <button type="button"
+                                                            class="btn btn-success btn-tooltip generateQR"
                                                             data-id="{{ encrypt($item->id) }}"
-                                                            data-target="#qrModal{{ $item->id }}"
-                                                            title="Print QR Code"
+                                                            data-target="#qrModal{{ $item->id }}" title="Print QR Code"
                                                             data-bs-toggle="modal">
                                                             <i class="bi bi-qr-code"></i>
                                                         </button>
@@ -80,7 +80,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" id="deleteRow"
-                                                                data-message="{{ $item->kode_AC }}"
+                                                                data-id="{{ $item->id }}"
                                                                 class="btn bg-danger btn-tooltip show-alert-delete-box"
                                                                 data-toggle="tooltip" title="Delete"><i
                                                                     class="bi bi-trash"></i>
@@ -193,8 +193,39 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2();
+
+            //generate qr
+            $('.generateQR').on('click', function(event) {
+                event.preventDefault();
+                var button = $(this);
+                var text = button.data('id');
+                var appUrl = "{{ $appUrl }}";
+                var targetModal = button.data('target'); // Mendapatkan ID modal target
+                var qrcodeContainer = $(targetModal).find(
+                    '[id^="qrcode"]'); // Menemukan kontainer QR code di dalam modal
+                var downloadLink = $(targetModal).find(
+                    '[id^="download"]'); // Menemukan link unduhan di dalam modal
+
+                qrcodeContainer.empty(); // Menghapus QR code sebelumnya
+                var qrcode = new QRCode(qrcodeContainer[0], {
+                    text: appUrl + 'detail-riwayat/' + text,
+                    width: 200,
+                    height: 200
+                });
+
+                // Menunggu sedikit untuk QR code dihasilkan
+                setTimeout(function() {
+                    var canvas = qrcodeContainer.find('canvas')[0];
+                    var imgData = canvas.toDataURL("image/png");
+
+                    downloadLink.attr('href', imgData);
+
+                    $(targetModal).modal('show'); // Menampilkan modal
+                }, 500);
+            });
         });
 
+        //TODO:car kesalahan ketika menghapus data, error: daftarAC:717  Uncaught TypeError: $.confirm is not a function
         $(function() {
             $(document).on('click', '#deleteRow', function(event) {
                 var form = $(this).closest("form");
@@ -203,8 +234,8 @@
                 event.preventDefault();
                 $.confirm({
                     icon: 'fa fa-warning',
-                    title: 'Yakin Hapus Data AC?',
-                    content: 'Kode data AC ' + $(this).data('message') +
+                    title: 'Yakin Hapus Data Merek Ac?',
+                    content: 'Merek Ac ' + $(this).data('message') +
                         ' akan di hapus secara permanen',
                     type: 'orange',
                     typeAnimated: true,
@@ -226,37 +257,6 @@
                         batal: function() {}
                     }
                 });
-            });
-        });
-
-        $(document).ready(function() {
-            $('.generateQR').on('click', function(event) {
-                event.preventDefault();
-                var button = $(this);
-                var text = button.data('id');
-                var appUrl = "{{ $appUrl }}";
-                var targetModal = button.data('target'); // Mendapatkan ID modal target
-                var qrcodeContainer = $(targetModal).find(
-                '[id^="qrcode"]'); // Menemukan kontainer QR code di dalam modal
-                var downloadLink = $(targetModal).find(
-                '[id^="download"]'); // Menemukan link unduhan di dalam modal
-
-                qrcodeContainer.empty(); // Menghapus QR code sebelumnya
-                var qrcode = new QRCode(qrcodeContainer[0], {
-                    text: appUrl + 'detail-riwayat/' + text,
-                    width: 200,
-                    height: 200
-                });
-
-                // Menunggu sedikit untuk QR code dihasilkan
-                setTimeout(function() {
-                    var canvas = qrcodeContainer.find('canvas')[0];
-                    var imgData = canvas.toDataURL("image/png");
-
-                    downloadLink.attr('href', imgData);
-
-                    $(targetModal).modal('show'); // Menampilkan modal
-                }, 500);
             });
         });
     </script>

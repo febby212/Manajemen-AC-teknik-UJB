@@ -28,8 +28,8 @@ class CsHelper
 
     static function token()
     {
-        $randomString = substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'), 0, 6);
-        return $randomString;
+        $randomString = substr(str_shuffle(md5(microtime())), 0, 6);
+        return strtoupper($randomString);
     }
 
     static function numbering($the_number, $lenght)

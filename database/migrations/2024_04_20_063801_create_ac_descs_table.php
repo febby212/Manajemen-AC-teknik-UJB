@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('ac_descs', function (Blueprint $table) {
             $table->string('id')->primary()->unique();
-            $table->string('id_jumlah');
             $table->string('kode_AC');
             $table->string('merek_id');
             $table->string('kelengkapan');
             $table->string('ruangan');
             $table->string('kondisi');
             $table->text('desc_kondisi');
+            $table->string('tahun_pembelian');
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();

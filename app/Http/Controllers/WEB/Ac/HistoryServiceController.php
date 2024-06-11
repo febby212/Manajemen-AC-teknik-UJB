@@ -118,7 +118,7 @@ class HistoryServiceController extends Controller
         $data = $request->validate([
             'ac_desc_id' => ['required', 'string'],
             'PPA' => ['required', 'string', 'min:4'],
-            'pos_anggaran' => ['required', 'numeric'],
+            'pos_anggaran' => ['required', 'string'],
             'biaya' => ['required', 'numeric'],
             'teknisi_id' => ['required'],
             'tgl_perbaikan' => ['required', 'date'],

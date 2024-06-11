@@ -13,7 +13,7 @@ class MerekAcController extends Controller
     private MerekAcRepo $merekAc;
     private $data = array();
 
-    public function __construct(MerekAcRepo $merekAc, )
+    public function __construct(MerekAcRepo $merekAc,)
     {
         $this->data['title'] = "Data Merek AC";
         $this->data['dir_view'] = "fitur.data.merekAc.";
@@ -57,7 +57,7 @@ class MerekAcController extends Controller
         $data['seri'] = Str::upper($data['seri']);
         $data['id'] = CsHelper::data_id();
         $data['created_by'] = auth()->user()->id;
-        
+
         try {
             $this->merekAc->store($data);
             return redirect()->route('merekAc.index')->with('success', 'Berhasi menambah data merek AC');
@@ -122,6 +122,8 @@ class MerekAcController extends Controller
         try {
             $this->merekAc->destroy($id);
             return redirect()->route('merekAc.index')->with('success', 'Berhasi menghapus data merek AC');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return back()->with('error', 'Data ini masih digunakan oleh data lain, sehingga tidak bisa dihapus.');
         } catch (\Throwable $th) {
             if (env('APP_DEBUG')) {
                 return $th->getMessage();

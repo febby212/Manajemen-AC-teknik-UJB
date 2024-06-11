@@ -82,7 +82,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" id="deleteRow"
-                                                                data-message="{{ \Carbon\Carbon::parse($history['tgl_perbaikan'])->formatLocalized('%e %B %Y') }}"
+                                                                data-message="{{ $history->id }}"
                                                                 class="btn bg-danger btn-tooltip show-alert-delete-box"
                                                                 data-toggle="tooltip" title="Delete"><i
                                                                     class="bi bi-trash"></i>
