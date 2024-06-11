@@ -160,6 +160,7 @@ class DataAcController extends Controller
                     'ruangan' => $data['ruangan'],
                     'kondisi' => $data['kondisi'],
                     'desc_kondisi' => $data['desc_kondisi'],
+                    'tahun_pembelian' => $data['tahun_pembelian'],
                 ];
                 $dataBaru['kode_AC'] = '01' . '/AC' . '/' . $merek['merek'] . '-' . $merek['seri'] . '/' . Str::upper($data['ruangan']) . '/' . $tahun_pembelian . '/' . CsHelper::token();
                 $dataBaru['created_by'] = auth()->user()->id;

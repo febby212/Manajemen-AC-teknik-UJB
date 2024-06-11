@@ -147,6 +147,8 @@ class HistoryServiceController extends Controller
         try {
             $this->teknisi->destroy($id);
             return redirect()->route('history.index')->with('success', 'Berhasi menghapus data riwayat perbaikan ac');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return back()->with('error', 'Data ini masih digunakan oleh data lain, sehingga tidak bisa dihapus.');
         } catch (\Throwable $e) {
             if (env('APP_DEBUG')) {
                 return $e->getMessage();
@@ -155,6 +157,7 @@ class HistoryServiceController extends Controller
         }
     }
 
+    //export data ac
     public function exportHistory() {
         $data = $this->dataHistory->getAllExport();
         return Excel::download(new HistoryExport($data), 'Riwayat.xlsx');

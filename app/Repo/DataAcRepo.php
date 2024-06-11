@@ -57,7 +57,7 @@ class DataAcRepo implements DataAcInterface
         return AcDesc::destroy($id);
     }
 
-    public function destroyKelebihanAC($jumlah_id, $jumlahLama, $jumlahBaru) {
-        return AcDesc::where('id_jumlah', $jumlah_id)->take($jumlahLama - $jumlahBaru)->get();
+    public function destroyKelebihanAC($ruangan, $jumlahLama, $jumlahBaru) {
+        return AcDesc::where('ruangan', $ruangan)->take($jumlahLama - $jumlahBaru)->get();
     }
 }
