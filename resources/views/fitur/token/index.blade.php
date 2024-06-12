@@ -29,106 +29,54 @@
                                     <i class="bi bi-plus-square"></i> Tambah Data
                                 </button> --}}
                             </div>
-                            <table class="table datatable table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">Nama Perusahaan</th>
-                                        <th scope="col">Kode Akses</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $index = 1;
-                                    @endphp
-                                    @foreach ($data as $token)
+                            <div class="table-responsive">
+                                <table class="table datatable table-striped">
+                                    <thead>
                                         <tr>
-                                            <th scope="row">{{ $index++ }}</th>
-                                            <td>{{ $token['teknisi']['name'] }}</td>
-                                            <td>{{ $token['teknisi']['nama_perusahaan'] }}</td>
-                                            <td>{{ implode(' ', str_split($token['token'])) }}</td>
-                                            <td>{{ $token['used'] == 1 ? 'Sudah digunakan' : 'Belum digunakan' }}</td>
-                                            <td>
-                                                <div class="d-flex justify-content-between gap-1">
-                                                    <form action="{{ route('token.destroy', $token['id']) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" id="deleteRow"
-                                                            data-message="{{ $token->teknisi->name }}"
-                                                            class="btn bg-danger btn-tooltip show-alert-delete-box"
-                                                            data-toggle="tooltip" title="Delete"><i
-                                                                class="bi bi-trash"></i></button>
-                                                    </form>
-                                                </div>
-                                            </td>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">Nama Perusahaan</th>
+                                            <th scope="col">Kode Akses</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Action</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
-                            {{-- <div class="modal fade" id="genToken" data-bs-backdrop="static" data-bs-keyboard="false"
-                                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Buat Kode Akses Teknisi
-                                            </h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body row text-center">
-                                            <div class="col-lg-12">
-                                                <div class="info-box card p-2">
-                                                    <label class="form-label">Teknisi</label>
-                                                    <div class="input-group d-flex justify-content-center">
-                                                        <select id="teknisi" name="teknisi"
-                                                            class="form-control bg-white select2" required>
-                                                            <option value="" disabled selected>Pilih Teknisi</option>
-                                                        </select>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $index = 1;
+                                        @endphp
+                                        @foreach ($data as $token)
+                                            <tr>
+                                                <th scope="row">{{ $index++ }}</th>
+                                                <td class="align-middle">{{ $token['teknisi']['name'] }}</td>
+                                                <td class="align-middle">{{ $token['teknisi']['nama_perusahaan'] }}</td>
+                                                <td class="align-middle">{{ implode(' ', str_split($token['token'])) }}</td>
+                                                <td class="align-middle">
+                                                    @if ($token['used'] == 1)
+                                                        <span class="badge bg-success">Sudah Digunakan</span>
+                                                    @else
+                                                        <span class="badge bg-danger">Belum Digunakan</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex justify-content-between gap-1">
+                                                        <form action="{{ route('token.destroy', $token['id']) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" id="deleteRow"
+                                                                data-message="{{ $token->teknisi->name }}"
+                                                                class="btn bg-danger btn-tooltip show-alert-delete-box"
+                                                                data-toggle="tooltip" title="Delete"><i
+                                                                    class="bi bi-trash"></i></button>
+                                                        </form>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary modalToken">Buat Kode
-                                                Akses</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-
-                            <div class="modal fade" id="resToken" data-bs-backdrop="static" data-bs-keyboard="false"
-                                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Kode Akses Teknisi
-                                            </h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body row text-center">
-                                            <div class="col-lg-12">
-                                                <div class="info-box card p-2">
-                                                    <h5><b>Kode Akses</b></h5>
-                                                    <p id="result" style="letter-spacing: 4px;">
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger"
-                                                data-bs-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> --}}
 
                         </div>
                     </div>
@@ -177,60 +125,5 @@
                 });
             });
         });
-
-        // $(document).ready(function() {
-        //     $('.addToken').on('click', function() {
-        //         $('#genToken').modal('show');
-        //     });
-
-        //     $('#genToken').on('shown.bs.modal', function() {
-        //         $.ajax({
-        //             url: "{{ route('teknisiData') }}",
-        //             type: 'GET',
-        //             dataType: 'json',
-        //             success: function(response) {
-        //                 var select = $('#teknisi');
-        //                 select.empty();
-        //                 select.append($('<option>', {
-        //                     value: '',
-        //                     text: 'Pilih Teknisi',
-        //                     disabled: true,
-        //                     selected: true
-        //                 }));
-        //                 $.each(response, function(index, teknisi) {
-        //                     select.append($('<option>', {
-        //                         value: teknisi.id,
-        //                         text: teknisi.name
-        //                     }));
-        //                 });
-        //             },
-        //             error: function(xhr, status, error) {
-        //                 console.error(error);
-        //                 alert("Terjadi kesalahan: " + error);
-        //             }
-        //         });
-        //     });
-        // });
-
-        // $(document).ready(function() {
-        //     $('.modalToken').click(function() {
-        //         var id = $(this).data('id');
-        //         console.log(id);
-        //         $('#resToken').modal('show');
-        //         $.ajax({
-        //             url: '{{ route('generateToken') }}',
-        //             type: 'GET',
-        //             data: {
-        //                 id: id
-        //             },
-        //             success: function(res) {
-        //                 $('#result').text(res.data.token);
-        //             },
-        //             error: function(xhr, status, error) {
-        //                 console.error(xhr.responseText);
-        //             }
-        //         });
-        //     });
-        // });
     </script>
 @endpush

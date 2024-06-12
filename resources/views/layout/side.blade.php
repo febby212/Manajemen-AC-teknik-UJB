@@ -81,7 +81,7 @@
         </li>
 
         <li class="nav-item">
-            {{-- <a class="nav-link {{ $ref['title'] == 'Data AC' || $ref['title'] == 'Riwayat Servis' ? '' : 'collapsed' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> --}}
+            <a class="nav-link {{ $ref['title'] == 'Data Merek AC' || $ref['title'] == 'Penyetuju' ? '' : 'collapsed' }}" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
             <a class="nav-link {{ $ref['title'] == 'Data Merek AC' ? '' : 'collapsed' }}" data-bs-target="#Data-nav"
                 data-bs-toggle="collapse" href="#">
                 <i class="bi bi-database"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -93,6 +93,12 @@
                     <a href="{{ route('merekAc.index') }}"
                         class="{{ $ref['title'] == 'Data Merek AC' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Merek AC</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('penyetuju.index') }}"
+                        class="{{ $ref['title'] == 'Penyetuju' ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Penyetuju</span>
                     </a>
                 </li>
                 {{-- <li>

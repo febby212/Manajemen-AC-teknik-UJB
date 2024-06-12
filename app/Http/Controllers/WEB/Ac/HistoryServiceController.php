@@ -3,29 +3,32 @@
 namespace App\Http\Controllers\WEB\Ac;
 
 use App\Exports\HistoryExport;
-use App\Exports\RiwayatPerbaikanACExport;
 use App\Http\Controllers\Controller;
 use App\Repo\DataAcRepo;
 use App\Repo\HistoryRepo;
+use App\Repo\PenyetujuRepo;
 use App\Repo\TeknisiRepo;
 use CsHelper;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Str;
 
 class HistoryServiceController extends Controller
 {
     private DataAcRepo $dataAc;
     private HistoryRepo $dataHistory;
     private TeknisiRepo $teknisi;
+    private PenyetujuRepo $penyetuju;
     private $data = array();
 
-    public function __construct(DataAcRepo $dataAc, HistoryRepo $dataHistory, TeknisiRepo $teknisi)
+    public function __construct(DataAcRepo $dataAc, HistoryRepo $dataHistory, TeknisiRepo $teknisi, PenyetujuRepo $penyetuju)
     {
         $this->data['title'] = "Riwayat Perbaikan AC";
         $this->data['view_dir'] = "fitur.riwayat.";
         $this->dataAc = $dataAc;
         $this->dataHistory = $dataHistory;
         $this->teknisi = $teknisi;
+        $this->penyetuju = $penyetuju;
     }
 
     /**
@@ -69,6 +72,11 @@ class HistoryServiceController extends Controller
             'kerusakan' => ['required', 'string', 'min:4'],
             'perbaikan' => ['required', 'string', 'min:4'],
         ]);
+        $menyetujui = $this->penyetuju->getByJabatan('wadek');
+        $mengetahui = $this->penyetuju->getByJabatan('dekanat');
+
+        $data['menyetujui'] = Str::ucfirst($menyetujui->nama) . ' - ' . Str::ucfirst($menyetujui->jabatan);
+        $data['mengetahui'] = Str::ucfirst($mengetahui->nama) . ' - ' . Str::ucfirst($mengetahui->jabatan);
         $data['id'] = 'HTY-' . CsHelper::data_id();
         $data['created_by'] = auth()->user()->id;
 
@@ -118,7 +126,7 @@ class HistoryServiceController extends Controller
         $data = $request->validate([
             'ac_desc_id' => ['required', 'string'],
             'PPA' => ['required', 'string', 'min:4'],
-            'pos_anggaran' => ['required', 'string'],
+            'pos_anggaran' => ['required', 'string', 'min:3'],
             'biaya' => ['required', 'numeric'],
             'teknisi_id' => ['required'],
             'tgl_perbaikan' => ['required', 'date'],

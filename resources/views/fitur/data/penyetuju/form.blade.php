@@ -10,9 +10,9 @@
                     <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('teknisi.index') }}">{{ $ref['title'] }}</a></li>
                     @if (isset($data))
-                    <li class="breadcrumb-item active">Ubah Data</li>
+                        <li class="breadcrumb-item active">Ubah Data</li>
                     @else
-                    <li class="breadcrumb-item active">Tambah Data</li>
+                        <li class="breadcrumb-item active">Tambah Data</li>
                     @endif
                 </ol>
             </nav>
@@ -26,9 +26,9 @@
                         <div class="card-body p-3">
                             <div class="mb-5">
                                 @if (isset($data))
-                                <h5 class="card-title">Form Ubah Data Merek AC</h5>
+                                    <h5 class="card-title">Form Ubah Data Penyetuju</h5>
                                 @else
-                                <h5 class="card-title">Form Tambah Data Merek AC</h5>
+                                    <h5 class="card-title">Form Tambah Data Penyetuju</h5>
                                 @endif
                             </div>
 
@@ -40,29 +40,32 @@
                                     @method('PUT')
                                 @endif
                                 <div class="col-md-6 position-relative">
-                                    <label for="merek" class="form-label">Merek AC</label>
-                                    <input type="text" class="form-control" id="merek" name="merek"
-                                        value="{{ old('merek', isset($data) ? $data['merek'] : '') }}" required>
+                                    <label for="nama" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                        value="{{ old('nama', isset($data) ? $data['nama'] : '') }}" required>
                                     <div class="valid-tooltip">
                                         Mantappp!!!
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan merek AC.
+                                        Masukkan nama penyetuju.
                                     </div>
                                 </div>
-                                <div class="col-md-6 position-relative">
-                                    <label for="seri" class="form-label">Seri AC</label>
-                                    <input type="text" class="form-control" id="seri" name="seri"
-                                        value="{{ old('seri', isset($data) ? $data['seri'] : '') }}" required>
-                                    <div class="valid-tooltip">
-                                        Mantappp!!!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        Masukkan seri AC.
+
+                                <div class="col-md-6">
+                                    <label for="jabatan" class="form-label">State</label>
+                                    <select class="form-select" id="jabatan" name="jabatan" required="">
+                                        <option selected="" disabled="" value="">Pilih Jabatan</option>
+                                        <option value="dekanat" {{ isset($data) ? ($data['jabatan'] == 'dekanat' ? 'selected' : '') : '' }}>Dekanat</option>
+                                        <option value="wadek" {{ isset($data) ? ($data['jabatan'] == 'wadek' ? 'selected' : '') : '' }}>Wadek</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid state.
                                     </div>
                                 </div>
+
                                 <div class="col-12 d-flex justify-content-end gap-3">
-                                    <a href="{{ route('merekAc.index') }}" class="btn btn-danger" type="submit">Cancel</a>
+                                    <a href="{{ route('penyetuju.index') }}" class="btn btn-danger"
+                                        type="submit">Cancel</a>
                                     <button class="btn btn-primary" type="submit">Submit</button>
                                 </div>
                             </form><!-- End Custom Styled Validation with Tooltips -->

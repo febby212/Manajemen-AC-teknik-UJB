@@ -52,7 +52,7 @@
                                 </div>
 
                                 <div class="col-md-6 position-relative">
-                                    <label for="no_telp" class="form-label">Nomor Telpon</label>
+                                    <label for="no_telp" class="form-label">Nomor Telepon</label>
                                     <input type="text" class="form-control" id="no_telp"
                                         name="no_telp"
                                         value="{{ old('no_telp', isset($data) ? $data['no_telp'] : '') }}"

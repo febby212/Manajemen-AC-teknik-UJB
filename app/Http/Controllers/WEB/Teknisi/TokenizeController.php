@@ -27,7 +27,7 @@ class TokenizeController extends Controller
     public function index()
     {
         $ref = $this->data;
-        $data = $this->token->getAll();
+        $data = $this->token->getAllWithTrash();
         // dd($data->toArray());
         
         return view($this->data['dir_view'] . "index", compact('ref', 'data'));

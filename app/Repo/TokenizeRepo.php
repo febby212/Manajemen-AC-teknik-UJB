@@ -12,6 +12,10 @@ class TokenizeRepo implements TokenizeInterface
         return TokenizeModel::with('teknisi')->get();
     }
 
+    public function getAllWithTrash() {
+        return TokenizeModel::with('teknisi')->withTrashed()->get();
+    }
+
     public function getById($id)
     {
         return TokenizeModel::where('id', $id)->firstOrFail();

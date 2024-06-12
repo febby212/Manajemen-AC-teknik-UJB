@@ -2,15 +2,13 @@
 
 namespace App\Interface;
 
-interface TokenizeInterface
+interface PenyetujuInterface
 {
     public function getAll();
-    public function getAllWithTrash();
+    public function countData();
+    public function getByJabatan($jabatan);
     public function getById($id);
     public function store($data);
     public function edit($id, $data);
     public function destroy($id);
-    public function destroyByTeknisi($id);
-    public function getToken($token);
-    public function generateToken($data);
 }

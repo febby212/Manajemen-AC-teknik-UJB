@@ -125,7 +125,7 @@
                                         Mantappp!!!
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan kondisi ac.
+                                        Masukkan kondisi AC.
                                     </div>
                                 </div>
 
@@ -137,7 +137,7 @@
                                         Mantappp!!!
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan jumlah ac.
+                                        Masukkan jumlah AC.
                                     </div>
                                 </div>
 
@@ -149,7 +149,7 @@
                                         Mantappp!!!
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan jumlah ac.
+                                        Masukkan jumlah AC.
                                     </div>
                                 </div>
 

@@ -144,7 +144,7 @@
                                             Mantappp!!!
                                         </div>
                                         <div class="invalid-tooltip">
-                                            Masukkan kerusakan ac.
+                                            Masukkan kerusakan AC.
                                         </div>
                                     </div>
 
@@ -156,7 +156,7 @@
                                             Mantappp!!!
                                         </div>
                                         <div class="invalid-tooltip">
-                                            Masukkan perbaikan ac.
+                                            Masukkan perbaikan AC.
                                         </div>
                                     </div>
                                 </div>

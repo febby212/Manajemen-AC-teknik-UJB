@@ -6,6 +6,7 @@ use App\Http\Controllers\WEB\Ac\HistoryServiceController;
 use App\Http\Controllers\WEB\Login\LoginController;
 use App\Http\Controllers\WEB\Dashboard\HomeController;
 use App\Http\Controllers\WEB\Data\MerekAcController;
+use App\Http\Controllers\WEB\Data\PenyetujuController;
 use App\Http\Controllers\WEB\GuestTech\GuestTechController;
 use App\Http\Controllers\WEB\PublicHistory\DetailRiwayatController;
 use App\Http\Controllers\WEB\Teknisi\TeknisiController;
@@ -62,6 +63,7 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
 
     //master data
     Route::resource('merekAc', MerekAcController::class);
+    Route::resource('penyetuju', PenyetujuController::class);
 
     //all request data json
     // Route::get('data-teknisi', [TeknisiController::class, 'dataTeknisi'])->name('data.teknisi');

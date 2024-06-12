@@ -237,8 +237,8 @@
                 event.preventDefault();
                 $.confirm({
                     icon: 'fa fa-warning',
-                    title: 'Yakin Hapus Data Riwayat Perbaikan Ac?',
-                    content: 'Riwayat perbaikan ac pada tanggal ' + $(this).data('message') +
+                    title: 'Yakin Hapus Data Riwayat Perbaikan AC?',
+                    content: 'Riwayat perbaikan AC pada tanggal ' + $(this).data('message') +
                         ' akan di hapus secara permanen',
                     type: 'orange',
                     typeAnimated: true,

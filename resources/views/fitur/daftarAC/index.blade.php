@@ -233,8 +233,8 @@
                 event.preventDefault();
                 $.confirm({
                     icon: 'fa fa-warning',
-                    title: 'Yakin Hapus Data Merek Ac?',
-                    content: 'Merek Ac ' + $(this).data('message') +
+                    title: 'Yakin Hapus Data Merek AC?',
+                    content: 'Merek AC ' + $(this).data('message') +
                         ' akan di hapus secara permanen',
                     type: 'orange',
                     typeAnimated: true,
