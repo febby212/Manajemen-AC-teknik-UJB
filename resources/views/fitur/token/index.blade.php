@@ -59,18 +59,21 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex justify-content-between gap-1">
-                                                        <form action="{{ route('token.destroy', $token['id']) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" id="deleteRow"
-                                                                data-message="{{ $token->teknisi->name }}"
-                                                                class="btn bg-danger btn-tooltip show-alert-delete-box"
-                                                                data-toggle="tooltip" title="Delete"><i
-                                                                    class="bi bi-trash"></i></button>
-                                                        </form>
-                                                    </div>
+                                                    @if (is_null($token->deleted_at))
+                                                        <div class="d-flex justify-content-between gap-1">
+                                                            <form action="{{ route('token.destroy', $token['id']) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" id="deleteRow"
+                                                                    data-message="{{ $token->teknisi->name }}"
+                                                                    class="btn bg-danger btn-tooltip show-alert-delete-box"
+                                                                    data-toggle="tooltip" title="Delete"><i
+                                                                        class="bi bi-trash"></i></button>
+                                                            </form>
+                                                        </div>
+                                                    @else
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

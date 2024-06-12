@@ -58,13 +58,17 @@
                                                 <td>{{ $item['kondisi'] }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-1">
-                                                        <button type="button"
+                                                        {{-- <button type="button"
                                                             class="btn btn-success btn-tooltip generateQR"
                                                             data-id="{{ encrypt($item->id) }}"
                                                             data-target="#qrModal{{ $item->id }}" title="Print QR Code"
                                                             data-bs-toggle="modal">
                                                             <i class="bi bi-qr-code"></i>
-                                                        </button>
+                                                        </button> --}}
+                                                        <a href="{{ route('daftarAC.downloadQR', encrypt($item->id)) }}"
+                                                            class="btn bg-success btn-tooltip text-light" target="_blank" title="Generate QR">
+                                                            <i class="bi bi-qr-code"></i>
+                                                        </a>
                                                         <button type="button"
                                                             data-bs-target="#showModal{{ $item['id'] }}"
                                                             class="btn btn-primary btn-tooltip" data-bs-toggle="modal"

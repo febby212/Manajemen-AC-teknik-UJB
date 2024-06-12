@@ -11,9 +11,12 @@ use Illuminate\Support\Str;
 use BaconQrCode\Common\ErrorCorrectionLevel;
 use BaconQrCode\Encoder\Encoder;
 use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
+use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class DataAcController extends Controller
 {
@@ -209,5 +212,20 @@ class DataAcController extends Controller
             }
             return back()->with('error', "Oops..!! Terjadi keesalahan saat menghapus data AC");
         }
+    }
+
+    public function downloadQR($id) {
+        $id = decrypt($id);
+
+        $data = $this->dataAc->getById($id);
+
+        $renderer = new ImageRenderer(new RendererStyle(400), new SvgImageBackEnd());
+
+        $writer = new Writer($renderer);
+        $qr = env('APP_URL') . 'detail-riwayat/' . encrypt($id);
+        $qrBinary = $writer->writeString($qr);
+        $qrBase64 = base64_encode($qrBinary);
+        $pdf = FacadePdf::loadView($this->data['dir_view'] . 'downloadQR', compact('qrBase64'));
+        return $pdf->stream('QR-Code-AC-' . $data->kode_AC . '.pdf');
     }
 }

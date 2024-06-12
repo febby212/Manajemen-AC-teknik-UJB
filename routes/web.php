@@ -52,6 +52,9 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
     Route::resource('token', TokenizeController::class);
     Route::get('teknisi/data', [TokenizeController::class, 'dataTeknisi'])->name('teknisiData');
     
+    //download qr
+    Route::get('download-qr/{id}', [DataAcController::class, 'downloadQR'])->name('daftarAC.downloadQR');
+
     //daftar ac
     Route::resource('daftarAC', DataAcController::class);
 

@@ -65,7 +65,7 @@
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#history{{ $nomor }}" aria-expanded="false"
                                                         aria-controls="history{{ $nomor }}">
-                                                        <b>Perbaikan tanggal {{ $formattedDate }}</b>
+                                                        <b>Perbaikan hari {{ $formattedDate }}</b>
                                                     </button>
                                                 </h2>
                                                 <div id="history{{ $nomor }}" class="accordion-collapse collapse"
@@ -119,7 +119,6 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
