@@ -56,7 +56,7 @@
                                         @endforeach
                                     </select>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan merek ac.
@@ -85,7 +85,7 @@
                                         </option>
                                     </select>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan kelengkapan ac.
@@ -97,7 +97,7 @@
                                     <input type="text" class="form-control" id="ruangan" name="ruangan"
                                         value="{{ old('ruangan', isset($data) ? $data['ruangan'] : '') }}" required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan ruangan tempat ac.
@@ -122,7 +122,7 @@
                                         </option>
                                     </select>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan kondisi AC.
@@ -134,7 +134,7 @@
                                     <input type="number" class="form-control" id="jumlah" name="jumlah"
                                         value="{{ old('jumlah', isset($data) ? $jumlahAc : '') }}" required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan jumlah AC.
@@ -146,7 +146,7 @@
                                     <input type="text" class="form-control" id="tahun_pembelian" name="tahun_pembelian"
                                         value="{{ old('tahun_pembelian', isset($data) ? $tahun_pembelian : '') }}" required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan jumlah AC.
@@ -157,7 +157,7 @@
                                     <label for="Deskripsi">Deskripsi</label>
                                     <textarea class="form-control" placeholder="Deskripsi" name="desc_kondisi" id="Deskripsi" style="height: 100px;" required>{{ old('desc_kondisi', isset($data) ? $data['desc_kondisi'] : '') }}</textarea>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan deskripsi.

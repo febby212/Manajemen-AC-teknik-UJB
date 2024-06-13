@@ -44,7 +44,7 @@
                                     <input type="text" class="form-control" id="merek" name="merek"
                                         value="{{ old('merek', isset($data) ? $data['merek'] : '') }}" required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan merek AC.
@@ -55,7 +55,7 @@
                                     <input type="text" class="form-control" id="seri" name="seri"
                                         value="{{ old('seri', isset($data) ? $data['seri'] : '') }}" required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan seri AC.

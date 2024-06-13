@@ -8,15 +8,10 @@ use App\Repo\MerekAcRepo;
 use CsHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use BaconQrCode\Common\ErrorCorrectionLevel;
-use BaconQrCode\Encoder\Encoder;
-use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
-use BaconQrCode\Renderer\Image\SvgImageBackEnd;
-use BaconQrCode\Renderer\ImageRenderer;
-use BaconQrCode\Renderer\RendererStyle\RendererStyle;
-use BaconQrCode\Writer;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Barryvdh\DomPDF\Facade as PDF;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class DataAcController extends Controller
 {
@@ -214,18 +209,42 @@ class DataAcController extends Controller
         }
     }
 
-    public function downloadQR($id) {
+    //download qr as pdf
+    public function downloadQR($id)
+    {
         $id = decrypt($id);
 
         $data = $this->dataAc->getById($id);
 
-        $renderer = new ImageRenderer(new RendererStyle(400), new SvgImageBackEnd());
+        $qr = QrCode::format('png')
+            ->size(200)
+            ->merge(public_path('assets/img/ujb.png'), 0.2, true)
+            ->generate(env('APP_URL') . 'detail-riwayat/' . encrypt($id));
 
-        $writer = new Writer($renderer);
-        $qr = env('APP_URL') . 'detail-riwayat/' . encrypt($id);
-        $qrBinary = $writer->writeString($qr);
-        $qrBase64 = base64_encode($qrBinary);
-        $pdf = FacadePdf::loadView($this->data['dir_view'] . 'downloadQR', compact('qrBase64'));
+        $qrBase64 = base64_encode($qr);
+
+        $pdf = FacadePdf::loadView($this->data['dir_view'] . 'downloadQR', compact('qrBase64', 'data'));
+
+        $pdf->setPaper('a5', 'portrait');
+
         return $pdf->stream('QR-Code-AC-' . $data->kode_AC . '.pdf');
+    }
+
+    //download qr image
+    public function downloadQRImg($id)
+    {
+        $id = decrypt($id);
+        $data = $this->dataAc->getById($id);
+        if (!$data) {
+            return back()->with('error', 'Data QR tidak ada');
+        }
+
+        $urlApp = env('APP_URL') . 'detail-riwayat/' . encrypt($data->id);
+        
+        $qrCode = QrCode::format('png')->size(300)
+        ->merge(public_path('assets/img/ujb.png'), 0.2, true)
+        ->generate($urlApp);
+
+        return response($qrCode)->header('Content-Type', 'image/png')->header('Content-Disposition', 'attachment; filename="QR-Code-' . $data->kode_AC . '.png"');
     }
 }

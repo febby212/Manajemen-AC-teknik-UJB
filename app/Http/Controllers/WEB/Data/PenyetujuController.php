@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WEB\Data;
 
 use App\Http\Controllers\Controller;
+use App\Models\Penyetuju;
 use App\Repo\PenyetujuRepo;
 use CsHelper;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class PenyetujuController extends Controller
 
     public function __construct(PenyetujuRepo $penyetuju)
     {
-        $this->data['title'] = 'Penyetuju';
+        $this->data['title'] = 'Otorisasi Pejabat';
         $this->data['dir_view'] = 'fitur.data.penyetuju.';
         $this->penyetuju = $penyetuju;
     }
@@ -52,7 +53,7 @@ class PenyetujuController extends Controller
 
         $data = $request->validate([
             'nama' => ['required', 'string', 'min:3'],
-            'jabatan' => ['required', 'string', 'min:3'],
+            'jabatan' => ['required', 'string', 'min:3', 'unique:' . Penyetuju::class],
         ]);
         $data['id'] = 'PJB-' . CsHelper::data_id();
         $data['created_by'] = auth()->user()->id;
@@ -64,7 +65,7 @@ class PenyetujuController extends Controller
             if (env('APP_DEBUG') == true) {
                 return back()->with('error', 'Terdapat kesalahan di ' . $th->getMessage());
                 }
-            return back()->with('error', 'Terdapat kesalahan saat menyimpan data');
+            return back()->with('error', 'Terdapat kesalahan saat menyimpan data')->withInput();
         }
     }
 
@@ -106,7 +107,7 @@ class PenyetujuController extends Controller
             if (env('APP_DEBUG') == true) {
                 return back()->with('error', 'Terjadi keslaahan di ' . $th->getMessage());
                 }
-            return back()->with('error', 'Terjadi keslaahan saat memperbarui data pejabat penyetuju');
+            return back()->with('error', 'Terjadi keslaahan saat memperbarui data pejabat penyetuju')->withInput();
         }
     }
 

@@ -26,9 +26,9 @@
                         <div class="card-body p-3">
                             <div class="mb-5">
                                 @if (isset($data))
-                                    <h5 class="card-title">Form Ubah Data Penyetuju</h5>
+                                    <h5 class="card-title">Form Ubah Data Otorisasi Pejabat</h5>
                                 @else
-                                    <h5 class="card-title">Form Tambah Data Penyetuju</h5>
+                                    <h5 class="card-title">Form Tambah Data Otorisasi Pejabat</h5>
                                 @endif
                             </div>
 
@@ -47,7 +47,7 @@
                                         Mantappp!!!
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan nama penyetuju.
+                                        Masukkan nama Otorisasi Pejabat.
                                     </div>
                                 </div>
 
@@ -55,11 +55,11 @@
                                     <label for="jabatan" class="form-label">State</label>
                                     <select class="form-select" id="jabatan" name="jabatan" required="">
                                         <option selected="" disabled="" value="">Pilih Jabatan</option>
-                                        <option value="dekanat" {{ isset($data) ? ($data['jabatan'] == 'dekanat' ? 'selected' : '') : '' }}>Dekanat</option>
-                                        <option value="wadek" {{ isset($data) ? ($data['jabatan'] == 'wadek' ? 'selected' : '') : '' }}>Wadek</option>
+                                        <option value="dekan" @selected(old('jabatan', isset($data) && $data['jabatan'] == 'dekan'))>Dekan</option>
+                                        <option value="wadek II" @selected(old('jabatan', isset($data) && $data['jabatan'] == 'wadek II'))>Wadek II</option>
                                     </select>
                                     <div class="invalid-feedback">
-                                        Please select a valid state.
+                                        Pilih jabatan Otorisasi Pejabat.
                                     </div>
                                 </div>
 

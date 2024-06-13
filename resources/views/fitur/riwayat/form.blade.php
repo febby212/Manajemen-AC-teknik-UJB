@@ -56,7 +56,7 @@
                                         @endforeach
                                     </select>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan daftar ac.
@@ -69,7 +69,7 @@
                                         placeholder="Masukkan pejabat pengguna anggaran"
                                         value="{{ old('PPA', isset($data) ? $data['PPA'] : '') }}" required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan pejabat pengguna anggaran.
@@ -83,7 +83,7 @@
                                         value="{{ old('pos_anggaran', isset($data) ? $data['pos_anggaran'] : '') }}"
                                         required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan POS anggaran.
@@ -96,7 +96,7 @@
                                         placeholder="Masukkan biaya perbaikan"
                                         value="{{ old('biaya', isset($data) ? $data['biaya'] : '') }}" required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan POS anggaran.
@@ -115,10 +115,10 @@
                                         @endforeach
                                     </select>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan teknisi ac.
+                                        Masukkan teknisi AC.
                                     </div>
                                 </div>
 
@@ -128,7 +128,7 @@
                                         value="{{ old('tgl_perbaikan', isset($data) ? $data['tgl_perbaikan'] : '') }}"
                                         required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan tanggal perbaikan.
@@ -141,7 +141,7 @@
                                         <textarea type="text" class="form-control" id="kerusakan" name="kerusakan"
                                             placeholder="Contoh: Ac tidak dingin, Unit outdoor mati" required>{{ old('kerusakan', isset($data) ? $data['kerusakan'] : '') }}</textarea>
                                         <div class="valid-tooltip">
-                                            Mantappp!!!
+                                            
                                         </div>
                                         <div class="invalid-tooltip">
                                             Masukkan kerusakan AC.
@@ -153,7 +153,7 @@
                                         <textarea type="text" class="form-control" id="perbaikan" name="perbaikan"
                                             placeholder="Contoh: Cuci AC, Ganti compresor" required>{{ old('perbaikan', isset($data) ? $data['perbaikan'] : '') }}</textarea>
                                         <div class="valid-tooltip">
-                                            Mantappp!!!
+                                            
                                         </div>
                                         <div class="invalid-tooltip">
                                             Masukkan perbaikan AC.

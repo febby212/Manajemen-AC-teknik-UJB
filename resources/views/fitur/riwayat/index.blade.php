@@ -99,7 +99,7 @@
                                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                                     <div class="modal-content" style="overflow-y: auto;">
                                                         <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Riawayat
+                                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Riwayat
                                                                 Perbaikan AC
                                                             </h1>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"

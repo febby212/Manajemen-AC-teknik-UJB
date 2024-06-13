@@ -72,8 +72,8 @@ class HistoryServiceController extends Controller
             'kerusakan' => ['required', 'string', 'min:4'],
             'perbaikan' => ['required', 'string', 'min:4'],
         ]);
-        $menyetujui = $this->penyetuju->getByJabatan('wadek');
-        $mengetahui = $this->penyetuju->getByJabatan('dekanat');
+        $menyetujui = $this->penyetuju->getByJabatan('dekan');
+        $mengetahui = $this->penyetuju->getByJabatan('wadek II');
 
         $data['menyetujui'] = Str::ucfirst($menyetujui->nama) . ' - ' . Str::ucfirst($menyetujui->jabatan);
         $data['mengetahui'] = Str::ucfirst($mengetahui->nama) . ' - ' . Str::ucfirst($mengetahui->jabatan);

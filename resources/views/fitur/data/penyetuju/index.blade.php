@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-3">
-                                <h5 class="card-title">Data Pejabat Penyetuju</h5>
+                                <h5 class="card-title">Data Otorisasi Pejabat</h5>
                                 @if ($count >= 2)
                                 @else
                                     <a href="{{ route('penyetuju.create') }}" type="button" class="btn btn-primary">
@@ -60,16 +60,6 @@
                                                         class="btn bg-info btn-tooltip" title="Edit"><i
                                                             class="bi bi-pencil-square"></i>
                                                     </a>
-                                                    {{-- <form action="{{ route('merekAc.destroy', $item['id']) }}"
-                                                        method="POST">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button type="button" id="deleteRow"
-                                                            data-message="{{ $item->merek . " dengan seri " . $item->seri }}"
-                                                            class="btn bg-danger btn-tooltip show-alert-delete-box"
-                                                            data-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </form> --}}
                                                 </div>
                                             </td>
                                         </tr>

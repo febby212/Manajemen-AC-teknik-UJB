@@ -72,7 +72,6 @@ class LoginController extends Controller
 
         if ($token) {
             $user = $this->user->getByIdTeknisi($token->teknisi_id);
-            // dd($user->toArray());
             Auth::login($user);
             TokenizeModel::where('token', $data['token'])->delete();
             return redirect()->back()->with('success', 'Selamat datang' . $user->name);

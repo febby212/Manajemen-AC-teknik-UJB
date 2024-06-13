@@ -52,8 +52,10 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
     Route::resource('token', TokenizeController::class);
     Route::get('teknisi/data', [TokenizeController::class, 'dataTeknisi'])->name('teknisiData');
     
-    //download qr
+    //download qr as pdf
     Route::get('download-qr/{id}', [DataAcController::class, 'downloadQR'])->name('daftarAC.downloadQR');
+
+    Route::get('download-qr-img/{id}', [DataAcController::class, 'downloadQRImg'])->name('daftarAC.downloadQRImg');
 
     //daftar ac
     Route::resource('daftarAC', DataAcController::class);
@@ -86,7 +88,8 @@ Route::get('data-ac/{ruangan}', [GuestTechController::class, 'dataAcByRoom'])->n
 //scan
 Route::get('scan', function () {
     $ref = ['title' => 'Scan QR'];
-    return view('guest.scan.index', compact('ref'));
+    $appUrl = env('APP_URL');
+    return view('guest.scan.index', compact('ref', 'appUrl'));
 })->name('scan');
 
 //detail riwayat ac (untuk guest atau teknisi)
