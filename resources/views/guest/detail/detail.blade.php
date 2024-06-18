@@ -67,13 +67,13 @@
                     <span
                         class="item-value btn {{ $data->kondisi === 'Baik' ? 'btn-success' : ($data->kondisi === 'Sedang' ? 'btn-warning' : 'btn-danger') }} btn-sm">{{ $data->kondisi }}</span>
                 </li>
+                @auth
                 <li class="list-group-item">
                     <button type="button" class="btn btn-primary btn-sm" style="width: 100%" data-bs-toggle="modal"
                         data-bs-target="#createdata{{ $data->id }}">
                         Tambah Riwayat
                     </button>
                 </li>
-                @auth
                 @endauth
             </ul>
             <div class="card-body">
@@ -93,12 +93,12 @@
                                 <div class="accordion-body">
                                     <div class="px-2 py-2 services-content">
                                         <div class="services-content-icon">
+                                            @auth
+                                            @if ($item->created_by == auth()->user()->id)
                                             <button type="button" class="btn btn-warning btn-sm mb-3" style="width: 100%"
                                                 data-bs-toggle="modal" data-bs-target="#editData{{ $item->id }}">
                                                 <i class="bi bi-pencil-square"></i> Edit</button>
-                                            @auth
-                                                {{-- @if ($item->created_by == auth()->user()->id)
-                                                @endif --}}
+                                                @endif
                                             @endauth
                                             <div class="mb-2">
                                                 <h5 class="mb-1">Kerusakan</h5>
