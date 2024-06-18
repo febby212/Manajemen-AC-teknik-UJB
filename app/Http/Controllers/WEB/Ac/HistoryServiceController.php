@@ -135,7 +135,12 @@ class HistoryServiceController extends Controller
         ]);
 
         $data['updated_by'] = auth()->user()->id;
+        $menyetujui = $this->penyetuju->getByJabatan('dekan');
+        $mengetahui = $this->penyetuju->getByJabatan('wadek II');
 
+        $data['menyetujui'] = Str::ucfirst($menyetujui->nama) . ' - ' . Str::ucfirst($menyetujui->jabatan);
+        $data['mengetahui'] = Str::ucfirst($mengetahui->nama) . ' - ' . Str::ucfirst($mengetahui->jabatan);
+        
         try {
             $this->dataHistory->edit($id, $data);
             return redirect()->route('history.index')->with('success', 'Berhasi mengubah data riwayat perbaikan ac');

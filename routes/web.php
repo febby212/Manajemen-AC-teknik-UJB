@@ -96,4 +96,9 @@ Route::get('scan', function () {
 Route::get('detail-riwayat/{id}', [DetailRiwayatController::class, 'show'])->name('detail.riwayat');
 Route::get('detail-riwayat-all', [DetailRiwayatController::class, 'index'])->name('detail.riwayat.all');
 
+Route::prefix('teknisi')->group(function() {
+    Route::put('update-riwayat/{id}', [DetailRiwayatController::class, 'update'])->name('update.detail.riwayat');
+    Route::post('store-riwayat/{id}', [DetailRiwayatController::class, 'store'])->name('store.detail.riwayat');
+});
+
 

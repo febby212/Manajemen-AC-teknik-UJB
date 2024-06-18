@@ -26,6 +26,10 @@ class HistoryRepo implements HistoryInterface
         return History::with('acDesc', 'teknisiPerbaikan', 'acDesc.merekAC', 'pembuatLaporan')->where('id', $id)->firstOrFail();
     }
 
+    public function getByIdDataAC($id) {
+        return History::where('ac_desc_id', $id)->first();
+    }
+
     public function store($data)
     {
         return History::create($data);

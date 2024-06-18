@@ -158,7 +158,8 @@
                                                                     <div class="col-md-5 label">
                                                                         POS Anggaran</div>
                                                                     {{-- <div class="col-md-7">: Rp. {{ number_format($history['pos_anggaran']) }} --}}
-                                                                    <div class="col-md-7">: {{ $history['pos_anggaran'] }}
+                                                                    <div class="col-md-7">: 
+                                                                        {{ isset($history['pos_anggaran']) ? $history['pos_anggaran'] : '-' }}
                                                                     </div>
                                                                 </div>
 
@@ -174,7 +175,8 @@
                                                                     <div class="col-md-5 label">
                                                                         PPA</div>
                                                                     <div class="col-md-7">:
-                                                                        {{ $history['PPA'] }}</div>
+                                                                        {{ isset($history['PPA']) ? $history['PPA'] : '-' }}
+                                                                    </div>
                                                                 </div>
 
                                                                 <div class="row my-1">
@@ -197,7 +199,7 @@
                                                                     <div class="col-md-5 label">
                                                                         Pembuat Laporan</div>
                                                                     <div class="col-md-7">:
-                                                                        {{ Str::ucfirst($history->pembuatLaporan->name) }}
+                                                                        {{ isset($history->pembuatLaporan->name) ? Str::ucfirst($history->pembuatLaporan->name) : '-' }}
                                                                     </div>
                                                                 </div>
 

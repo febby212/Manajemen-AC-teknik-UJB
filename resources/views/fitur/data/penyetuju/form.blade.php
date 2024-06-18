@@ -52,7 +52,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="jabatan" class="form-label">State</label>
+                                    <label for="jabatan" class="form-label">Jabatan</label>
                                     <select class="form-select" id="jabatan" name="jabatan" required="">
                                         <option selected="" disabled="" value="">Pilih Jabatan</option>
                                         <option value="dekan" @selected(old('jabatan', isset($data) && $data['jabatan'] == 'dekan'))>Dekan</option>

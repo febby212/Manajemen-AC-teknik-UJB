@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Repo\DataAcRepo;
 use App\Repo\HistoryRepo;
 use App\Repo\MerekAcRepo;
+use Carbon\Carbon;
+use CsHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -24,36 +26,14 @@ class DetailRiwayatController extends Controller
         $this->merekAC = $merekAC;
         $this->history = $history;
     }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $ref = $this->data;
         $data = $this->dataAc->getByGrouping();
-        // dd($data->);
-        // dd($data->toArray());
         return view($this->data['dir_view'] . 'index', compact('data', 'ref'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         $id = decrypt($id);
@@ -63,30 +43,50 @@ class DetailRiwayatController extends Controller
         $parts = explode('/', $kodeAC);
         $year = end($parts);
         $year = $parts[count($parts) - 2];
+        // dd($data->toArray());
         return view($this->data['dir_view'] . 'detail', compact('data', 'ref', 'year'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $id = decrypt($id);
+        $data = $request->validate([
+            'kerusakan' => ['required', 'min:3', 'string'],
+            'perbaikan' => ['required', 'min:3', 'string']
+        ]);
+        $data['updated_by'] = auth()->user()->is_teknisi == 1 ? auth()->user()->teknisi_id : auth()->user()->id;
+
+        try {
+            $this->history->edit($id, $data);
+            return back()->with('success', 'Berhasil memperbarui data riwayat perbaikan');
+        } catch (\Throwable $th) {
+            if (env('APP_DEBUG') == true) {
+                return back()->with('error', 'Terdapat kesalahan di ' . $th->getMessage());
+            }
+            return back()->with('error', 'Oopss...!! Terdapat kesalah saat memerbarui data riwayat perbaikan');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function store(Request $request, string $id) {
+        $id = decrypt($id);
+        $data = $request->validate([
+            'kerusakan' => ['required', 'min:3', 'string'],
+            'perbaikan' => ['required', 'min:3', 'string'],
+        ]);
+        $data['ac_desc_id'] = $id;
+        $data['tgl_perbaikan'] = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d');
+        $data['teknisi_id'] = auth()->user()->is_teknisi == 1 ? auth()->user()->teknisi_id : auth()->user()->id;  
+        $data['created_by'] = auth()->user()->id;
+        $data['id'] = 'HTY-' . CsHelper::data_id();
+        try {
+            $this->history->store($data);
+            return back()->with('success', 'Berhasil menambah data riwayat perbaikan');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            if (env('APP_DEBUG')  == true) {
+                return back()->with('error', 'Terdapat kesalahan di ' . $th->getMessage());
+            }
+            return back()->with('error', 'Oopss...!! Terdapat kesalahan saat menambah data riwayat perbaikan');
+        }
     }
 }

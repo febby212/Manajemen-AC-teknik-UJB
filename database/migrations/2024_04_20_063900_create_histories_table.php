@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('teknisi_id');
             $table->text('kerusakan');
             $table->text('perbaikan');
-            $table->string('pos_anggaran');
+            $table->string('pos_anggaran')->nullable();
             $table->date('tgl_perbaikan');
-            $table->string('PPA');
-            $table->integer('biaya');
+            $table->string('PPA')->nullable();
+            $table->integer('biaya')->nullable();
             $table->string('mengetahui')->nullable();
             $table->string('menyetujui')->nullable();
             $table->string('created_by');
