@@ -178,7 +178,7 @@
                                                                     <img src="data:image/png+xml;base64,<?= $qrBase64 ?>" alt="QR Code">
                                                                 </div>
                                                             </div>
-                                                            <div class="d-flex justify-content-between p-2 mt-3">
+                                                            <div class="d-flex justify-content-between p-2 mt-3 gap-3">
                                                                 <a href="{{ route('daftarAC.downloadQR', encrypt($item->id)) }}"
                                                                     class="btn bg-success btn-tooltip text-light"
                                                                     target="_blank" title="Generate QR">

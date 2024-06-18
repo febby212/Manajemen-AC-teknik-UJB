@@ -57,21 +57,19 @@
     <script>
         function onScanSuccess(decodedText, decodedResult) {
             // handle the scanned code as you like, for example:
-            console.log(`Code matched = ${decodedText}`, decodedResult);
-            let = appUrl = '{{ $appUrl }}';
-            // window.location.href = decodedText;
+            let appUrl = '{{ $appUrl }}';
+            window.location.href = decodedText; // Redirect to the scanned URL
         }
 
         let config = {
             fps: 10,
             qrbox: {
-                width: 150,
-                height: 150
+                width: 200, // Larger to capture more details
+                height: 200
             },
             rememberLastUsedCamera: true,
-            // Only support camera scan type.
             supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-            disableFlip: true,
+            // disableFlip: true, // Optionally comment out this line to allow flipping
         };
 
         let html5QrcodeScanner = new Html5QrcodeScanner(
