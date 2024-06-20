@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kerusakans', function (Blueprint $table) {
-            $table->id();
+        Schema::create('case_bases', function (Blueprint $table) {
+            $table->string('id')->primary()->unique();
+            $table->string('kd_gejala');
+            $table->string('kd_penyakit');
+            $table->integer('bobot');
+            $table->string('created_by');
+            $table->string('updated_by');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kerusakans');
+        Schema::dropIfExists('case_bases');
     }
 };
