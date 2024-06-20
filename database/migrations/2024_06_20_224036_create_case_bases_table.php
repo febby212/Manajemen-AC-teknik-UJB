@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('kd_penyakit');
             $table->integer('bobot');
             $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

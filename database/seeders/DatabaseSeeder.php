@@ -59,5 +59,10 @@ class DatabaseSeeder extends Seeder
             'created_by' => 'dev'
         ]);
 
+        $this->call([
+            CaseBaseSeeder::class,
+            GejalaSeeder::class,
+            SolusiSeeder::class
+        ]);
     }
 }

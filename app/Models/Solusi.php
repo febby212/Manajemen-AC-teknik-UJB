@@ -16,7 +16,6 @@ class Solusi extends Model
         'id',
         'kd_penyakit',
         'nama_penyakit',
-        'definisi',
         'solusi',
         'created_by',
         'updated_by',

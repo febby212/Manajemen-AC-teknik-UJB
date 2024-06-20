@@ -15,10 +15,9 @@ return new class extends Migration
             $table->string('id')->primary()->unique();
             $table->string('kd_penyakit');
             $table->string('nama_penyakit');
-            $table->string('definisi');
-            $table->string('solusi');
+            $table->text('solusi');
             $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

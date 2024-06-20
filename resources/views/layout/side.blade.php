@@ -28,6 +28,14 @@
         </li><!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
+            <a class="nav-link {{ $ref['title'] == 'Riwayat Perbaikan AC' ? '' : 'collapsed' }}"
+                href="{{ route('history.index') }}">
+                <i class="bi bi-search"></i>
+                <span>Idenftikasi Kerusakan</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link {{ $ref['title'] == 'Teknisi' || $ref['title'] == 'Kode akses' ? '' : 'collapsed' }}"
                 data-bs-target="#teknisi" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-tools"></i><span>Teknisi</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -49,43 +57,9 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ $ref['title'] == 'Data AC' || $ref['title'] == 'Riwayat Perbaikan AC' ? '' : 'collapsed' }}"
-                data-bs-target="#AC-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-binoculars"></i><span>KNN</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="AC-nav"
-                class="nav-content collapse {{ $ref['title'] == 'Data AC' || $ref['title'] == 'Riwayat Perbaikan AC' ? 'show' : 'collapse' }}"
-                data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="{{ route('daftarAC.index') }}" class="{{ $ref['title'] == 'Data AC' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Identifikasi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('history.index') }}"
-                        class="{{ $ref['title'] == 'Riwayat Perbaikan AC' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Data Gejala</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('history.index') }}"
-                        class="{{ $ref['title'] == 'Riwayat Perbaikan AC' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Data Kerusakan</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('history.index') }}"
-                        class="{{ $ref['title'] == 'Riwayat Perbaikan AC' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Data Training</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="nav-item">
             <a class="nav-link {{ $ref['title'] == 'Data Merek AC' || $ref['title'] == 'Otorisasi Pejabat' ? '' : 'collapsed' }}"
                 data-bs-target="#master" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-tools"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-database"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="master"
                 class="nav-content collapse {{ $ref['title'] == 'Data Merek AC' || $ref['title'] == 'Otorisasi Pejabat' ? 'show' : 'collapse' }}"
@@ -98,6 +72,26 @@
                 <li>
                     <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Otorisasi Pejabat</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Data Gejala</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Data Solusi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Case Base</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Histori Identifikasi</span>
                     </a>
                 </li>
             </ul>
