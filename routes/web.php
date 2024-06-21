@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\API\AllReqController;
+use App\Http\Controllers\WEB\Data\DataCaseBaseController;
+use App\Http\Controllers\WEB\Data\DataGejalaController;
+use App\Http\Controllers\WEB\Data\DataHistoriIdenfitikasiController;
+use App\Http\Controllers\WEB\Data\DataSolusiController;
 use App\Http\Controllers\WEB\Ac\DataAcController;
 use App\Http\Controllers\WEB\Ac\HistoryServiceController;
 use App\Http\Controllers\WEB\Login\LoginController;
@@ -72,6 +76,14 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
 
     //all request data json
     // Route::get('data-teknisi', [TeknisiController::class, 'dataTeknisi'])->name('data.teknisi');
+
+    Route::resource('gejala', DataGejalaController::class);
+
+    Route::resource('solusi', DataSolusiController::class);
+    
+    Route::resource('case-base', DataCaseBaseController::class);
+    
+    Route::resource('histori-identifikasi', DataHistoriIdenfitikasiController::class);
 
 });
 

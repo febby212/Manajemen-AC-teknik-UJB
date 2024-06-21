@@ -9,7 +9,7 @@ class CaseBaseRepo implements CaseBaseInterface
 {
     public function getAll()
     {
-        return CaseBase::with('Ac')->get();
+        return CaseBase::get();
     }
 
     public function getById($id)

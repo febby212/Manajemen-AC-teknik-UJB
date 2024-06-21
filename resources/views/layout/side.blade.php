@@ -28,13 +28,26 @@
         </li><!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ $ref['title'] == 'Riwayat Perbaikan AC' ? '' : 'collapsed' }}"
-                href="{{ route('history.index') }}">
-                <i class="bi bi-search"></i>
-                <span>Idenftikasi Kerusakan</span>
+            <a class="nav-link {{ $ref['title'] == 'Teknisi' || $ref['title'] == 'Kode akses' ? '' : 'collapsed' }}"
+                data-bs-target="#teknisi" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-search"></i><span>Identifikasi Kerusakan</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
+            <ul id="teknisi"
+                class="nav-content collapse {{ $ref['title'] == 'Teknisi' || $ref['title'] == 'Kode akses' ? 'show' : 'collapse' }}"
+                data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('teknisi.index') }}" class="{{ $ref['title'] == 'Teknisi' ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Prediksi Kerusakan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('token.index') }}" class="{{ $ref['title'] == 'Kode akses' ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>Histori Identifikasi</span>
+                    </a>
+                </li>
+            </ul>
         </li>
-
+        
         <li class="nav-item">
             <a class="nav-link {{ $ref['title'] == 'Teknisi' || $ref['title'] == 'Kode akses' ? '' : 'collapsed' }}"
                 data-bs-target="#teknisi" data-bs-toggle="collapse" href="#">
@@ -75,23 +88,18 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                    <a href="{{ route('gejala.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Data Gejala</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                    <a href="{{ route('solusi.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Data Solusi</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                    <a href="{{ route('case-base.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Case Base</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Histori Identifikasi</span>
                     </a>
                 </li>
             </ul>

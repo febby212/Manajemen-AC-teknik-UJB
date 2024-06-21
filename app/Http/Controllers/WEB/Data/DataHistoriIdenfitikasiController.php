@@ -1,19 +1,33 @@
 <?php
 
-namespace App\Http\Controllers\Data;
+namespace App\Http\Controllers\WEB\Data;
 
 use App\Http\Controllers\Controller;
+use App\Repo\HistoriIdentifikasiRepo;
 use Illuminate\Http\Request;
 
 
 class DataHistoriIdenfitikasiController extends Controller
 {
+    private HistoriIdentifikasiRepo $historiIdentifikasi;
+    private $data = array();
+
+    public function __construct(HistoriIdentifikasiRepo $historiIdentifikasi)
+    {
+        $this->data['title'] = 'Otorisasi Pejabat';
+        $this->data['dir_view'] = 'fitur.data.historiIdentifikasi.';
+        $this->historiIdentifikasi = $historiIdentifikasi;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $ref = $this->data;
+        $data = $this->historiIdentifikasi->getAll();
+
+        return view($this->data['dir_view'] . 'index', compact('ref', 'data'));
     }
 
     /**
@@ -61,6 +75,14 @@ class DataHistoriIdenfitikasiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $this->historiIdentifikasi->destroy($id);
+            return back()->with('success', 'Berhasil menghapus data histori prediksi');
+        } catch (\Throwable $th) {
+            if (env('APP_DEBUG') == true) {
+                return back()->with('error', 'Terjadi kesalahan di ' . $th->getMessage());
+            }
+            return back()->with('error', 'Terjadi kesalahan saat menghapus data histori prediksi');
+        }
     }
 }
