@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,5 +53,9 @@ class User extends Authenticatable
 
     public function userTeknisi() {
         return $this->hasOne(Teknisi::class, 'id', 'teknisi_id');
+    }
+
+    public function predict() : HasMany {
+        return $this->hasMany(HasilHistory::class, 'user_id', 'id');
     }
 }

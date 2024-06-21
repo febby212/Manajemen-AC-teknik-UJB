@@ -28,20 +28,20 @@
         </li><!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ $ref['title'] == 'Teknisi' || $ref['title'] == 'Kode akses' ? '' : 'collapsed' }}"
-                data-bs-target="#teknisi" data-bs-toggle="collapse" href="#">
+            <a class="nav-link {{ $ref['title'] == 'Data Histori Prediksi' ? '' : 'collapsed' }}"
+                data-bs-target="#cbr" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-search"></i><span>Identifikasi Kerusakan</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="teknisi"
-                class="nav-content collapse {{ $ref['title'] == 'Teknisi' || $ref['title'] == 'Kode akses' ? 'show' : 'collapse' }}"
+            <ul id="cbr"
+                class="nav-content collapse {{ $ref['title'] == 'Data Histori Prediksi' ? 'show' : 'collapse' }}"
                 data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('teknisi.index') }}" class="{{ $ref['title'] == 'Teknisi' ? 'active' : '' }}">
+                    <a href="{{ route('teknisi.index') }}" class="{{ $ref['title'] == 'Prediksi Kerusakan' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Prediksi Kerusakan</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('token.index') }}" class="{{ $ref['title'] == 'Kode akses' ? 'active' : '' }}">
+                    <a href="{{ route('histori-identifikasi.index') }}" class="{{ $ref['title'] == 'Data Histori Prediksi' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Histori Identifikasi</span>
                     </a>
                 </li>
@@ -70,12 +70,12 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ $ref['title'] == 'Data Merek AC' || $ref['title'] == 'Otorisasi Pejabat' ? '' : 'collapsed' }}"
+            <a class="nav-link {{ $ref['title'] == 'Data Merek AC' || $ref['title'] == 'Otorisasi Pejabat' || $ref['title'] == 'Data Solusi' || $ref['title'] == 'Data Gejala' || $ref['title'] == 'Data Case Base' ? '' : 'collapsed' }}"
                 data-bs-target="#master" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-database"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="master"
-                class="nav-content collapse {{ $ref['title'] == 'Data Merek AC' || $ref['title'] == 'Otorisasi Pejabat' ? 'show' : 'collapse' }}"
+                class="nav-content collapse {{ $ref['title'] == 'Data Merek AC' || $ref['title'] == 'Otorisasi Pejabat' || $ref['title'] == 'Data Solusi' || $ref['title'] == 'Data Gejala' || $ref['title'] == 'Data Case Base' ? 'show' : 'collapse' }}"
                 data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="{{ route('merekAc.index') }}" class="{{ $ref['title'] == 'Data Merek AC' ? 'active' : '' }}">
@@ -88,17 +88,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('gejala.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                    <a href="{{ route('gejala.index') }}" class="{{ $ref['title'] == 'Data Gejala' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Data Gejala</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('solusi.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                    <a href="{{ route('solusi.index') }}" class="{{ $ref['title'] == 'Data Solusi' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Data Solusi</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('case-base.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
+                    <a href="{{ route('case-base.index') }}" class="{{ $ref['title'] == 'Data Case Base' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Case Base</span>
                     </a>
                 </li>

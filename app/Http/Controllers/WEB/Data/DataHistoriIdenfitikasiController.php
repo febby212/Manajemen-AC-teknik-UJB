@@ -14,8 +14,8 @@ class DataHistoriIdenfitikasiController extends Controller
 
     public function __construct(HistoriIdentifikasiRepo $historiIdentifikasi)
     {
-        $this->data['title'] = 'Otorisasi Pejabat';
-        $this->data['dir_view'] = 'fitur.data.historiIdentifikasi.';
+        $this->data['title'] = 'Data Histori Prediksi';
+        $this->data['dir_view'] = 'fitur.data.historiIdentfikasi.';
         $this->historiIdentifikasi = $historiIdentifikasi;
     }
 

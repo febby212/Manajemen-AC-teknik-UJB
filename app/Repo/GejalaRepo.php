@@ -9,7 +9,7 @@ class GejalaRepo implements GejalaInterface
 {
     public function getAll()
     {
-        return Gejala::with('Ac')->get();
+        return Gejala::get();
     }
 
     public function getById($id)

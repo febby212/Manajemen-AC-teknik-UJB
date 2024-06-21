@@ -13,7 +13,7 @@ class DataSolusiController extends Controller
 
     public function __construct(SolusiRepo $solusi)
     {
-        $this->data['title'] = 'Otorisasi Pejabat';
+        $this->data['title'] = 'Data Solusi';
         $this->data['dir_view'] = 'fitur.data.solusi.';
         $this->solusi = $solusi;
     }

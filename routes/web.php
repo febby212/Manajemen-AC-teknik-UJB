@@ -11,6 +11,7 @@ use App\Http\Controllers\WEB\Login\LoginController;
 use App\Http\Controllers\WEB\Dashboard\HomeController;
 use App\Http\Controllers\WEB\Data\MerekAcController;
 use App\Http\Controllers\WEB\Data\PenyetujuController;
+use App\Http\Controllers\WEB\Data\UniversalController;
 use App\Http\Controllers\WEB\GuestTech\GuestTechController;
 use App\Http\Controllers\WEB\PublicHistory\DetailRiwayatController;
 use App\Http\Controllers\WEB\Teknisi\TeknisiController;
@@ -84,6 +85,11 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
     Route::resource('case-base', DataCaseBaseController::class);
     
     Route::resource('histori-identifikasi', DataHistoriIdenfitikasiController::class);
+
+    Route::prefix('add-data')->group( function() {
+        Route::get('data-prediksi', [UniversalController::class, 'formAddDataCBR'])->name('addDataCBR.form');
+        Route::post('store-data', [UniversalController::class, 'storeAddDataCBR'])->name('addDataCBR.store');
+    });
 
 });
 

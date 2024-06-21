@@ -13,7 +13,7 @@ class DataCaseBaseController extends Controller
 
     public function __construct(CaseBaseRepo $caseBase)
     {
-        $this->data['title'] = 'Case Base';
+        $this->data['title'] = 'Data Case Base';
         $this->data['dir_view'] = 'fitur.data.caseBase.';
         $this->caseBase = $caseBase;
     }

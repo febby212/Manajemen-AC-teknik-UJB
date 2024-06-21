@@ -13,7 +13,7 @@ class DataGejalaController extends Controller
 
     public function __construct(GejalaRepo $gejala)
     {
-        $this->data['title'] = 'Gejala';
+        $this->data['title'] = 'Data Gejala';
         $this->data['dir_view'] = 'fitur.data.gejala.';
         $this->gejala = $gejala;
     }

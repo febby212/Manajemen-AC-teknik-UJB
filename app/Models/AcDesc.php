@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class AcDesc extends Model
 {
@@ -31,5 +32,9 @@ class AcDesc extends Model
 
     public function merekAC() {
         return $this->belongsTo(MerekAC::class, 'merek_id', 'id');
+    }
+
+    public function predictedAC() : HasMany {
+        return $this->hasMany(HasilHistory::class, 'dataAc_id', 'id');
     }
 }

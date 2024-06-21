@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class HasilHistory extends Model
 {
@@ -24,4 +25,12 @@ class HasilHistory extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function userPredict() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function dataACRel() : BelongsTo {
+        return $this->belongsTo(AcDesc::class, 'dataAc_id', 'id');
+    }
 }

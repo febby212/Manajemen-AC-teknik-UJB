@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-3">
                                 <h5 class="card-title">Data Case Base</h5>
-                                <a href="{{ route('case-base.create') }}" type="button" class="btn btn-primary">
+                                <a href="{{ route('addDataCBR.form') }}" type="button" class="btn btn-primary">
                                     <i class="bi bi-plus-square"></i> Tambah Data
                                 </a>
                             </div>
@@ -61,7 +61,7 @@
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="button" id="deleteRow"
-                                                            data-message="{{ $item->merek . ' dengan seri ' . $item->seri }}"
+                                                            data-message="{{ 'no ' . $index-1 }}"
                                                             class="btn bg-danger btn-tooltip show-alert-delete-box"
                                                             data-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i>
                                                         </button>
@@ -164,7 +164,7 @@
                 $.confirm({
                     icon: 'fa fa-warning',
                     title: 'Yakin Hapus Data Case base?',
-                    content: 'Case base ' + $(this).data('message') +
+                    content: 'Data Case base ' + $(this).data('message') +
                         ' akan di hapus secara permanen',
                     type: 'orange',
                     typeAnimated: true,
