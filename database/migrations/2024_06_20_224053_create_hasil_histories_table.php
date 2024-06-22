@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('hasil_histories', function (Blueprint $table) {
             $table->string('id')->primary()->unique();
+            $table->string('kode_prediksi');
             $table->string('user_id');
             $table->string('dataAc_id');
             $table->string('kd_penyakit');
             $table->string('kd_gejala');
-            $table->string('solusi_1');
-            $table->string('solusi_2');
+            $table->string('penyakit');
+            $table->string('solusi');
+            $table->string('persentase');
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();

@@ -15,13 +15,15 @@ class HasilHistory extends Model
 
     protected $fillable = [
         'id',
+        'kode_prediksi',
         'user_id',
         'dataAc_id',
         'umur_AC',
         'kd_penyakit',
         'kd_gejala',
-        'solusi_1',
-        'solusi_2',
+        'penyakit',
+        'solusi',
+        'persentase',
         'created_by',
         'updated_by',
     ];

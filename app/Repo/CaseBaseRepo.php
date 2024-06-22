@@ -12,6 +12,10 @@ class CaseBaseRepo implements CaseBaseInterface
         return CaseBase::get();
     }
 
+    public function getByKdPenyakit() {
+        return CaseBase::get()->groupBy('kd_penyakit');
+    }
+
     public function getById($id)
     {
         return CaseBase::where('id', $id)->firstOrFail();

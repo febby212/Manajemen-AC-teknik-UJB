@@ -83,7 +83,6 @@ class UniversalController extends Controller
             return redirect($previousUrl)->with('success', 'Berhasil menambahkan data');
         } catch (\Throwable $th) {
             if (env('APP_DEBUG') == true) {
-                dd($th->getMessage());
                 return back()->with('error', 'Terdapat kesalahan di ' . $th->getMessage());
             }
             return back()->with('error', 'Terdapat kesalahan saat menyimpan data')->withInput();

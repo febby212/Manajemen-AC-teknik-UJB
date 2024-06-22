@@ -17,6 +17,10 @@ class SolusiRepo implements SolusiInterface
         return Solusi::where('id', $id)->firstOrFail();
     }
 
+    public function getByPenyakit($penyakit) {
+        return Solusi::where('kd_penyakit', $penyakit)->first();
+    }
+
     public function store($data)
     {
         return Solusi::create($data);

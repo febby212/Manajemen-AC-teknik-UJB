@@ -13,6 +13,7 @@ use App\Http\Controllers\WEB\Data\MerekAcController;
 use App\Http\Controllers\WEB\Data\PenyetujuController;
 use App\Http\Controllers\WEB\Data\UniversalController;
 use App\Http\Controllers\WEB\GuestTech\GuestTechController;
+use App\Http\Controllers\WEB\Prediksi\PrediksiController;
 use App\Http\Controllers\WEB\PublicHistory\DetailRiwayatController;
 use App\Http\Controllers\WEB\Teknisi\TeknisiController;
 use App\Http\Controllers\WEB\Teknisi\TokenizeController;
@@ -90,6 +91,9 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
         Route::get('data-prediksi', [UniversalController::class, 'formAddDataCBR'])->name('addDataCBR.form');
         Route::post('store-data', [UniversalController::class, 'storeAddDataCBR'])->name('addDataCBR.store');
     });
+
+    Route::get('prediksi-form', [PrediksiController::class, 'index'])->name('prediksi.form');
+    Route::post('prediksi', [PrediksiController::class, 'predict'])->name('prediksi.cbr');
 
 });
 

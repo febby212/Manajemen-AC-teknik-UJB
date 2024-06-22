@@ -36,7 +36,7 @@
                 class="nav-content collapse {{ $ref['title'] == 'Data Histori Prediksi' ? 'show' : 'collapse' }}"
                 data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('teknisi.index') }}" class="{{ $ref['title'] == 'Prediksi Kerusakan' ? 'active' : '' }}">
+                    <a href="{{ route('prediksi.form') }}" class="{{ $ref['title'] == 'Prediksi Kerusakan' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Prediksi Kerusakan</span>
                     </a>
                 </li>
