@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('kd_penyakit');
             $table->string('kd_gejala');
             $table->string('penyakit');
-            $table->string('solusi');
+            $table->text('solusi');
             $table->string('persentase');
             $table->string('created_by');
             $table->string('updated_by')->nullable();

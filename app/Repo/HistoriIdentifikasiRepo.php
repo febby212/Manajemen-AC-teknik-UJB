@@ -17,6 +17,10 @@ class HistoriIdentifikasiRepo implements HistoriIdentifikasiInterface
         return HasilHistory::where('id', $id)->firstOrFail();
     }
 
+    public function getByKodePrediksi($kode_prediksi) {
+        return HasilHistory::with('dataACRel', 'userPredict')->where('kode_prediksi', $kode_prediksi)->get();
+    }
+
     public function store($data)
     {
         return HasilHistory::create($data);

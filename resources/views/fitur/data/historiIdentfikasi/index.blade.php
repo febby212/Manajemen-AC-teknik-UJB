@@ -30,12 +30,12 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Memprediksi</th>
+                                        <th scope="col">User</th>
                                         <th scope="col">Kode AC</th>
                                         <th scope="col">Kode Penyakit</th>
                                         <th scope="col">Kode Gejala</th>
-                                        <th scope="col">Solusi Pertama</th>
-                                        <th scope="col">Solusi Kedua</th>
+                                        <th scope="col">Penyakit</th>
+                                        <th scope="col">Solusi</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -50,14 +50,14 @@
                                             <td>{{ $item['dataACRel']['kode_AC'] }}</td>
                                             <td>{{ $item['kd_penyakit'] }}</td>
                                             <td>{{ $item['kd_gejala'] }}</td>
-                                            <td>{{ $item['solusi_1'] }}</td>
-                                            <td>{{ $item['solusi_2'] }}</td>
+                                            <td>{{ $item['penyakit'] }}</td>
+                                            <td>{{ Str::limit($item['solusi'], 25, '...') }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center gap-1">
                                                     <button type="button" data-bs-target="#showModal{{ $item['id'] }}"
                                                         class="btn btn-primary btn-tooltip" data-bs-toggle="modal"
                                                         title="Show">
-                                                        <i class="bi bi-pencil-square"></i>
+                                                        <i class="bi bi-eye"></i>
                                                     </button>
                                                     <form action="{{ route('case-base.destroy', $item['id']) }}"
                                                         method="POST">

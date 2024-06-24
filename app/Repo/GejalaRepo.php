@@ -17,6 +17,10 @@ class GejalaRepo implements GejalaInterface
         return Gejala::where('id', $id)->firstOrFail();
     }
 
+    public function getByKdGejala($kd_gejala) {
+        return Gejala::where('kd_gejala', $kd_gejala)->first();
+    }
+
     public function store($data)
     {
         return Gejala::create($data);

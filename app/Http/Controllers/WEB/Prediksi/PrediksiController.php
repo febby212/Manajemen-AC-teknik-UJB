@@ -76,7 +76,7 @@ class PrediksiController extends Controller
         $hasilPerhitungan = [];
         foreach ($bobotPerGejala as $kd_penyakit => $bobot) {
             $rasio = ($bobot / $totalBobotPerPenyakit[$kd_penyakit]) * 100; // Mengubah ke persen
-            $hasilPerhitungan[$kd_penyakit] = round($rasio, 3); // Bulatkan ke tiga angka di belakang koma
+            $hasilPerhitungan[$kd_penyakit] = round($rasio, 2); // Bulatkan ke dua angka di belakang koma
         }
 
         // Ambil dua nilai tertinggi
@@ -89,24 +89,38 @@ class PrediksiController extends Controller
             // Ambil solusi berdasarkan hasil tertinggi
             foreach ($hasilTertinggi as $kd_penyakit => $persentase) {
                 $solusi = $this->solusi->getByPenyakit($kd_penyakit);
-                $result[] = [
-                    'id' => 'HHI-' . CsHelper::data_id(),
-                    'kode_prediksi' => $kodePrediksi,
-                    'user_id' => $request->user()->id,
-                    'dataAc_id' => $request->dataAc_id,
-                    'kd_penyakit' => $kd_penyakit,
-                    'kd_gejala' => implode(',', $dataInput),
-                    'solusi' => $solusi->first()->solusi,
-                    'persentase' => number_format($persentase, 3),
-                    'created_by' => $request->user()->name,
-                ];
-                // $hasilData = $this->hasilHistori->store();
-
+                foreach ($solusi as $res) {
+                    $result[] = [
+                        'id' => 'HHI-' . CsHelper::data_id(),
+                        'kode_prediksi' => $kodePrediksi,
+                        'user_id' => $request->user()->id,
+                        'dataAc_id' => $request->dataAc_id,
+                        'kd_penyakit' => $kd_penyakit,
+                        'kd_gejala' => implode(',', $dataInput),
+                        'penyakit' => $res->nama_penyakit,
+                        'solusi' => $res->solusi,
+                        'persentase' => number_format($persentase, 2),
+                        'created_by' => $request->user()->id,
+                    ];
+                }
             }
-            dd($hasilTertinggi);
-            return view($this->data['dir_view'] . 'result', compact('result'));
+
+            foreach ($result as $storeRes) {
+                $resStoredData = $this->hasilHistori->store($storeRes);
+            }
+
+            $dataGejalaInput = [];
+            foreach ($dataInput as $kdGejala) {
+                $gejala = $this->gejala->getByKdGejala($kdGejala);
+                $dataGejalaInput[] = $gejala;
+            }
+
+            $ref = $this->data;
+            $resData = $this->hasilHistori->getByKodePrediksi($kodePrediksi);
+            return view($this->data['dir_view'] . 'result', compact('resData', 'ref', 'dataGejalaInput'));
         } catch (\Throwable $th) {
             if (env('APP_DEBUG') == true) {
+                dd($th->getMessage());
                 return back()->with('error', 'Terdapat kesalahan di ' . $th->getMessage())->withInput();
             }
             return back()->with('error', 'Terdapat kesalahan saat memprediksi kerusakan AC')->withInput();

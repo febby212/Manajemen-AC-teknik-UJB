@@ -18,7 +18,7 @@ class SolusiRepo implements SolusiInterface
     }
 
     public function getByPenyakit($penyakit) {
-        return Solusi::where('kd_penyakit', $penyakit)->first();
+        return Solusi::where('kd_penyakit', $penyakit)->get();
     }
 
     public function store($data)
