@@ -25,9 +25,9 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-3">
                                 <h5 class="card-title">Data Kode Akses Teknisi</h5>
-                                {{-- <button type="button" class="btn btn-primary addToken">
-                                    <i class="bi bi-plus-square"></i> Tambah Data
-                                </button> --}}
+                                <button class="btn btn-primary" data-bs-target="#modalForm" data-bs-toggle="modal">
+                                    <i class="bi bi-plus-square"></i> Buat Kode Akses
+                                </button>
                             </div>
                             <div class="table-responsive">
                                 <table class="table datatable table-striped">
@@ -79,8 +79,87 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div>
 
+                                {{-- buat kode akses --}}
+                                <div class="modal fade" id="modalForm" aria-hidden="true" aria-labelledby="modalFormLabel"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="modalFormLabel">Form Buat Kode
+                                                    Akses</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="row g-3 needs-validation" method="POST"
+                                                    action="{{ $ref['url'] }}" novalidate="">
+                                                    @csrf
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="col-md-8 position-relative">
+                                                            <label for="teknisi_id" class="form-label">Daftar
+                                                                Teknisi</label>
+                                                            <select class="form-select" id="teknisi_id" name="teknisi_id"
+                                                                required>
+                                                                <option selected disabled value="">Pilih Daftar
+                                                                    Teknisi
+                                                                </option>
+                                                                @foreach ($teknisi_ac as $item)
+                                                                    <option value="{{ $item['id'] }}"
+                                                                        {{ old('id') == $item['id'] ? 'selected' : '' }}>
+                                                                        {{ $item['name'] }} -
+                                                                        {{ $item['nama_perusahaan'] }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            <div class="valid-tooltip">
+                                                            </div>
+                                                            <div class="invalid-tooltip">
+                                                                Masukkan Teknisi.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button class="btn btn-primary modalToken" data-bs-toggle="modal">Open
+                                                    second modal</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- res kode akses --}}
+                                <div class="modal fade" id="modalKodeAkses" aria-hidden="true"
+                                    aria-labelledby="modalKodeAksesLabel" data-bs-backdrop="static" data-bs-keyboard="false"
+                                    tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="modalKodeAksesLabel">Kode Akses</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close" onclick="location.reload();"></button>
+                                            </div>
+                                            <div class="modal-body row text-center">
+                                                <div class="col-lg-12">
+                                                    <div class="info-box card p-2">
+                                                        <h5><b>Kode Akses</b></h5>
+                                                        <p id="result" style="letter-spacing: 4px;">
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"
+                                                    data-bs-dismiss="modal" onclick="location.reload();">Selesai</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,8 +172,32 @@
     <script>
         $(document).ready(function() {
             $('.select2').select2();
-        });
 
+            $(selector).click(function(e) {
+                e.preventDefault();
+
+            });
+        });
+        $(document).ready(function() {
+            $('.modalToken').click(function() {
+                var id = $('#teknisi_id').val();
+                console.log(id);
+                $('#modalKodeAkses').modal('show');
+                $.ajax({
+                    url: '{{ route('generateToken') }}',
+                    type: 'GET',
+                    data: {
+                        id: id
+                    },
+                    success: function(res) {
+                        $('#result').text(res.data.token);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
         $(function() {
             $(document).on('click', '#deleteRow', function(event) {
                 var form = $(this).closest("form");

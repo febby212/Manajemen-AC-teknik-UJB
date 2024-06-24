@@ -76,6 +76,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            
                                             <!-- Modal -->
                                             <div class="modal fade" id="showModal{{ $teknisi['id'] }}"
                                                 data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

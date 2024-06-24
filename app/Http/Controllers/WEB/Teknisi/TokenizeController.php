@@ -8,6 +8,8 @@ use App\Repo\TokenizeRepo;
 use CsHelper;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\select;
+
 class TokenizeController extends Controller
 {
     private TokenizeRepo $token;
@@ -19,6 +21,7 @@ class TokenizeController extends Controller
         $this->data['title'] = "Kode akses";
         $this->data['dir_view'] = "fitur.token.";
         $this->token = $token;
+        $this->teknisi = $teknisi;
     }
 
     /**
@@ -27,10 +30,12 @@ class TokenizeController extends Controller
     public function index()
     {
         $ref = $this->data;
+        $ref['url'] = route('generateToken');
         $data = $this->token->getAllWithTrash();
+        $teknisi_ac = $this->teknisi->getAll();
         // dd($data->toArray());
         
-        return view($this->data['dir_view'] . "index", compact('ref', 'data'));
+        return view($this->data['dir_view'] . "index", compact('ref', 'data', 'teknisi_ac'));
     }
 
     public function dataTeknisi(Request $request) {
@@ -59,7 +64,7 @@ class TokenizeController extends Controller
             if (env('APP_DEBUG') == true) {
                 return $th->getMessage();
             }
-            return back()->with('error', "Oops..!! Terjadi keesalahan saat membuat kode akses");
+            return back()->with('error', "Oops..!! Terjadi keesalahan saat membuat kode akses")->withInput();
         }
     }
 
