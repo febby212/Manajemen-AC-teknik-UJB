@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class History extends Model
 {
@@ -37,5 +38,9 @@ class History extends Model
 
     public function pembuatLaporan() {
         return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function historyReported() : HasMany {
+        return $this->hasMany(ReportDamageAC::class, 'history_id', 'id');
     }
 }

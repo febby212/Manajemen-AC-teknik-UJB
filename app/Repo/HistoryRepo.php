@@ -14,7 +14,7 @@ class HistoryRepo implements HistoryInterface
     }
 
     public function getLatesHistory($amount) {
-        return History::orderBy('created_at', 'desc')->take($amount)->get();
+        return History::with('acDesc', 'teknisiPerbaikan', 'acDesc.merekAC', 'pembuatLaporan')->orderBy('created_at', 'desc')->take($amount)->get();
     }
 
     public function countHistory() {

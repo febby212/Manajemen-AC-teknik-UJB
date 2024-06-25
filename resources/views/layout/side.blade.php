@@ -42,7 +42,7 @@
                 </li>
                 <li>
                     <a href="{{ route('histori-identifikasi.index') }}" class="{{ $ref['title'] == 'Data Histori Prediksi' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Histori Identifikasi</span>
+                        <i class="bi bi-circle"></i><span>Riwayat Identifikasi</span>
                     </a>
                 </li>
             </ul>

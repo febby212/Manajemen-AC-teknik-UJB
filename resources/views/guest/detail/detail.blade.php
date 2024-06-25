@@ -42,8 +42,16 @@
             <img src="https://cdn.pixabay.com/photo/2018/09/15/16/36/air-conditioning-3679756_1280.png" class="card-img-top"
                 alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{ $data->kode_AC }}</h5>
-                <p class="card-text">{{ $data->desc_kondisi }}</p>
+                <div class="row">
+                    <div class="col-8">
+                        <h5 class="card-title">{{ $data->kode_AC }}</h5>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                            data-bs-target="#reportDamage">Report Kerusakan</button>
+                    </div>
+                </div>
+                <p class="card-text my-2">{{ $data->desc_kondisi }}</p>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -68,12 +76,12 @@
                         class="item-value btn {{ $data->kondisi === 'Baik' ? 'btn-success' : ($data->kondisi === 'Sedang' ? 'btn-warning' : 'btn-danger') }} btn-sm">{{ $data->kondisi }}</span>
                 </li>
                 @auth
-                <li class="list-group-item">
-                    <button type="button" class="btn btn-primary btn-sm" style="width: 100%" data-bs-toggle="modal"
-                        data-bs-target="#createdata{{ $data->id }}">
-                        Tambah Riwayat
-                    </button>
-                </li>
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-primary btn-sm" style="width: 100%" data-bs-toggle="modal"
+                            data-bs-target="#createdata{{ $data->id }}">
+                            Tambah Riwayat
+                        </button>
+                    </li>
                 @endauth
             </ul>
             <div class="card-body">
@@ -94,10 +102,11 @@
                                     <div class="px-2 py-2 services-content">
                                         <div class="services-content-icon">
                                             @auth
-                                            @if ($item->created_by == auth()->user()->id)
-                                            <button type="button" class="btn btn-warning btn-sm mb-3" style="width: 100%"
-                                                data-bs-toggle="modal" data-bs-target="#editData{{ $item->id }}">
-                                                <i class="bi bi-pencil-square"></i> Edit</button>
+                                                @if ($item->created_by == auth()->user()->id)
+                                                    <button type="button" class="btn btn-warning btn-sm mb-3"
+                                                        style="width: 100%" data-bs-toggle="modal"
+                                                        data-bs-target="#editData{{ $item->id }}">
+                                                        <i class="bi bi-pencil-square"></i> Edit</button>
                                                 @endif
                                             @endauth
                                             <div class="mb-2">
@@ -211,7 +220,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3 needs-validation" action="{{ route('store.detail.riwayat', ['id' => encrypt($data->id)]) }}" method="POST" novalidate>
+                    <form class="row g-3 needs-validation"
+                        action="{{ route('store.detail.riwayat', ['id' => encrypt($data->id)]) }}" method="POST"
+                        novalidate>
                         @csrf
                         <div class="col-md-12">
                             <label for="kerusakan" class="form-label">Kerusakan</label>
@@ -232,6 +243,44 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- modal report kerusakan --}}
+    <div class="modal fade" id="reportDamage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="reportDamageLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="reportDamageLabel">Laporkan Kerusakan AC ini</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3 needs-validation"
+                        action="{{ route('report.store', encrypt($data->id)) }}" method="POST"
+                        novalidate>
+                        @csrf
+                        <div class="col-md-12">
+                            <label for="created_by" class="form-label">Nomor Identitas/Nama Pelapor (Opsional)</label>
+                            <input type="text" name="created_by" class="form-control" id="created_by" required>
+                            <div class="invalid-feedback">
+                                Masukkan nomor identitas.
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="kerusakan" class="form-label">Deskripsi Kerusakan</label>
+                            <textarea type="text" name="kerusakan" class="form-control" id="kerusakan" required></textarea>
+                            <div class="invalid-feedback">
+                                Masukkan Kerusakan AC
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Kirim</button>
+                </form>
                 </div>
             </div>
         </div>

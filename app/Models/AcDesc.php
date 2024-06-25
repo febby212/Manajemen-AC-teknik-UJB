@@ -37,4 +37,8 @@ class AcDesc extends Model
     public function predictedAC() : HasMany {
         return $this->hasMany(HasilHistory::class, 'dataAc_id', 'id');
     }
+
+    public function dataACReported() : HasMany {
+        return $this->hasMany(ReportDamageAC::class, 'ac_desc_id', 'id');
+    }
 }

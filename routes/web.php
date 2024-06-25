@@ -15,6 +15,7 @@ use App\Http\Controllers\WEB\Data\UniversalController;
 use App\Http\Controllers\WEB\GuestTech\GuestTechController;
 use App\Http\Controllers\WEB\Prediksi\PrediksiController;
 use App\Http\Controllers\WEB\PublicHistory\DetailRiwayatController;
+use App\Http\Controllers\WEB\ReportedAC\ReportedACController;
 use App\Http\Controllers\WEB\Teknisi\TeknisiController;
 use App\Http\Controllers\WEB\Teknisi\TokenizeController;
 use App\Models\AcDesc;
@@ -123,4 +124,8 @@ Route::prefix('teknisi')->group(function() {
     Route::post('store-riwayat/{id}', [DetailRiwayatController::class, 'store'])->name('store.detail.riwayat');
 });
 
+Route::prefix('report')->group(function() {
+    Route::get('/', [ReportedACController::class, 'index'])->name('report.index');
+    Route::post('create/{dataAC_id}', [ReportedACController::class, 'store'])->name('report.store');
+});
 

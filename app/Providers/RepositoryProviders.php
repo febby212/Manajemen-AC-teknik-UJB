@@ -9,6 +9,7 @@ use App\Interface\HistoriIdentifikasiInterface;
 use App\Interface\HistoryInterface;
 use App\Interface\MerekAcInterface;
 use App\Interface\PenyetujuInterface;
+use App\Interface\ReportACInterface;
 use App\Interface\SolusiInterface;
 use App\Interface\TeknisiInterface;
 use App\Interface\TokenizeInterface;
@@ -20,6 +21,7 @@ use App\Repo\HistoriIdentifikasiRepo;
 use App\Repo\HistoryRepo;
 use App\Repo\MerekAcRepo;
 use App\Repo\PenyetujuRepo;
+use App\Repo\ReportACRepo;
 use App\Repo\SolusiRepo;
 use App\Repo\TeknisiRepo;
 use App\Repo\TokenizeRepo;
@@ -44,6 +46,7 @@ class RepositoryProviders extends ServiceProvider
         $this->app->bind(GejalaInterface::class, GejalaRepo::class);
         $this->app->bind(HistoriIdentifikasiInterface::class, HistoriIdentifikasiRepo::class);
         $this->app->bind(SolusiInterface::class, SolusiRepo::class);
+        $this->app->bind(ReportACInterface::class, ReportACRepo::class);
     }
 
     /**
