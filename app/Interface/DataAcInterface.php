@@ -5,6 +5,7 @@ namespace App\Interface;
 interface DataAcInterface
 {
     public function getAll();
+    public function countDataAC();
     public function getByRuangan($ruangan);
     public function getRoomName($ruangan);
     public function countByRuangan($ruangan);

@@ -25,7 +25,7 @@
                             </div>
 
                             <!-- Custom Styled Validation with Tooltips -->
-                            <form method="POST" action="{{ $ref['url'] }}" novalidate="">
+                            <form method="POST" action="{{ $ref['url'] }}">
                                 @csrf
                                 <div class="position-relative mb-3">
                                     <label for="dataAc_id" class="form-label">Data AC</label>
@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="p-2">
-                                    <h5 class="card-title">Form Prediksi Kerusakan</h5>
+                                    <h5 class="card-title">Pilih Gejala Kerusakan Pada AC</h5>
                                 </div>
 
                                 <div class="position-relative">
@@ -57,9 +57,9 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox"
                                                         id="{{ $item['kd_gejala'] }}" name="kd_gejala[]" value="{{ $item['kd_gejala'] }}"
-                                                        {{ old($item['kd_gejala']) ? 'checked' : '' }}>
+                                                        {{ in_array($item['kd_gejala'], old('kd_gejala', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="{{ $item['kd_gejala'] }}">
-                                                        {{ $item['kd_gejala'] }} - {{ Str::ucfirst($item['gejala']) }}
+                                                        {{ Str::ucfirst($item['gejala']) }}
                                                     </label>
                                                 </div>
                                             </li>

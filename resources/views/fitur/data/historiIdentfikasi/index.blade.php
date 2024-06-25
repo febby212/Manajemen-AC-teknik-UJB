@@ -32,9 +32,9 @@
                                         <th scope="col">No</th>
                                         <th scope="col">User</th>
                                         <th scope="col">Kode AC</th>
-                                        <th scope="col">Kode Penyakit</th>
+                                        <th scope="col">Kode Kerusakan</th>
                                         <th scope="col">Kode Gejala</th>
-                                        <th scope="col">Penyakit</th>
+                                        <th scope="col">Kerusakan</th>
                                         <th scope="col">Solusi</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -80,7 +80,7 @@
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Case Base
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Histori Prediksi
                                                             <b> No. {{ Str::ucfirst($index - 1) }}</b>
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -88,45 +88,45 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row g-3">
-                                                            <div class="col-md-6 position-relative">
-                                                                <label for="validationTooltip01" class="form-label">Memprediksi</label>
+                                                            <div class="col-md-5 position-relative">
+                                                                <label for="userPredict" class="form-label">User</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="validationTooltip01" name="kd_gejala"
+                                                                    id="userPredict" name="userPredict"
                                                                     value="{{ $item['userPredict']['name'] }}" disabled>
                                                             </div>
-                                                            <div class="col-md-6 position-relative">
-                                                                <label for="validationTooltip02" class="form-label">Kode AC</label>
+                                                            <div class="col-md-7 position-relative">
+                                                                <label for="dataACRel" class="form-label">Kode AC</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="validationTooltip02" name="kd_penyakit"
+                                                                    id="dataACRel" name="dataACRel"
                                                                     value="{{ $item['dataACRel']['kode_AC'] }}" disabled>
                                                             </div>
-                                                            <div class="col-md-6 position-relative">
-                                                                <label for="validationTooltip03"
-                                                                    class="form-label">Kode Penyakit</label>
+                                                            <div class="col-md-12 position-relative">
+                                                                <label for="kd_gejala"
+                                                                class="form-label">Kode Gejala</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="validationTooltip03" name="bobot"
+                                                                id="kd_gejala" name="kd_gejala"
+                                                                value="{{ $item['kd_gejala'] }}" disabled>
+                                                            </div>
+                                                            <div class="col-md-6 position-relative">
+                                                                <label for="kd_penyakit"
+                                                                    class="form-label">Kode Kerusakan</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="kd_penyakit" name="kd_penyakit"
                                                                     value="{{ $item['kd_penyakit'] }}" disabled>
                                                             </div>
                                                             <div class="col-md-6 position-relative">
-                                                                <label for="validationTooltip03"
-                                                                    class="form-label">Kode Gejala</label>
+                                                                <label for="penyakit"
+                                                                    class="form-label">Kerusakan</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="validationTooltip03" name="bobot"
-                                                                    value="{{ $item['kd_gejala'] }}" disabled>
+                                                                    id="penyakit" name="penyakit"
+                                                                    value="{{ $item['penyakit'] }}" disabled>
                                                             </div>
-                                                            <div class="col-md-6 position-relative">
-                                                                <label for="validationTooltip03"
-                                                                    class="form-label">Kode Penyakit</label>
-                                                                    <textarea lass="form-control"
-                                                                    id="validationTooltip03"
-                                                                    disabled cols="15" rows="5">{{ $item['solusi_1'] }}</textarea>
-                                                            </div>
-                                                            <div class="col-md-6 position-relative">
-                                                                <label for="validationTooltip03"
-                                                                    class="form-label">Kode Penyakit</label>
-                                                                    <textarea lass="form-control"
-                                                                    id="validationTooltip03"
-                                                                    disabled cols="15" rows="5">{{ $item['solusi_2'] }}</textarea>
+                                                            <div class="col-md-12 position-relative">
+                                                                <label for="solusi"
+                                                                    class="form-label">Solusi</label>
+                                                                    <textarea class="form-control"
+                                                                    id="solusi"
+                                                                    disabled cols="20" rows="10">{{ $item['solusi'] }}</textarea>
                                                             </div>
                                                         </div>
                                                     </div>

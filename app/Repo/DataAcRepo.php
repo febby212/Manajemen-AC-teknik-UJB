@@ -12,6 +12,10 @@ class DataAcRepo implements DataAcInterface
         return AcDesc::with('history', 'merekAC')->get();
     }
 
+    public function countDataAC() {
+        return AcDesc::count();
+    }
+
     public function getByGrouping() {
         return AcDesc::select('ruangan')->distinct()->get();
     }

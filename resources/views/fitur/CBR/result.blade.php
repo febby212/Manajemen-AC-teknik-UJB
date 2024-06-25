@@ -43,22 +43,23 @@
                                 </p>
                                 <ul>
                                     @foreach ($dataGejalaInput as $item)
-                                        <li>{{ $item->kd_gejala }} - {{ $item->gejala }}</li>
+                                        <li>{{ $item->gejala }}</li>
                                     @endforeach
                                 </ul>
 
                                 <p style="color: #000">
-                                    Sistem kami telah memprediksi dua kemungkinan
-                                    kerusakan utama pada AC, yaitu: <b>{{ $resData[0]->penyakit }}</b> dengan persentase
-                                    <b>{{ $resData[0]->persentase }}%</b> dan <b>{{ $resData[1]->penyakit }}</b> dengan
-                                    persentase <b>{{ $resData[1]->persentase }}</b>. Untuk setiap kerusakan, kami telah
-                                    menyediakan solusi yang dapat Anda ikuti untuk memperbaiki atau mengatasi masalah
-                                    tersebut. <br>
-                                    Berikut solusi dari kami untuk kerusakan AC hasil prediksi.
+                                    Sistem kami memprediksi dua kemungkinan kerusakan utama pada AC,
+                                    yaitu: <b>{{ $resData[0]->penyakit }}</b> dengan
+                                    persentase <b>{{ $resData[0]->persentase }}%</b> dan
+                                    <b>{{ $resData[1]->penyakit }}</b> dengan
+                                    persentase <b>{{ $resData[1]->persentase }}%</b>. Untuk setiap
+                                    kerusakan, kami telah memberikan solusi yang dapat Anda ikuti untuk memperbaiki atau
+                                    mengatasi masalah tersebut. <p style="color: #000">Berikut solusi dari kami berdasarkan hasil prediksi
+                                    kerusakan AC:</p>
                                 </p>
-                                <ul>
-                                    <li><b>{{ $resData[0]->penyakit }}</b>: {{ $resData[0]->solusi }}</li>
-                                    <li><b>{{ $resData[1]->penyakit }}</b>: {{ $resData[1]->solusi }}</li>
+                                <ul class="row">
+                                    <li class="col-6"><b>{{ $resData[0]->penyakit }}</b>: {{ $resData[0]->solusi }}</li>
+                                    <li class="col-6"><b>{{ $resData[1]->penyakit }}</b>: {{ $resData[1]->solusi }}</li>
                                 </ul>
                             </div>
                         </div>

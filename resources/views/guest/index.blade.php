@@ -76,10 +76,12 @@
                 </div>
                 <div class="col-lg-7 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".5s">
                     <h5 class="text-primary">About Us</h5>
-                    <h1 class="mb-4">About HighTech Agency And It's Innovative IT Solutions</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                    <p class="mb-4">Pellentesque aliquam dolor eget urna ultricies tincidunt.</p>
-                    <a href="" class="btn btn-secondary rounded-pill px-5 py-3 text-white">More Details</a>
+                    <h1 class="mb-4">Tentang Aplikasi SIMAC (Sistem Manajemen AC)</h1>
+                    <p class="mb-4">Aplikasi SIMAC (Sistem Manajemen AC) dirancang untuk mempermudah pengelolaan dan
+                        pemeliharaan AC di Fakultas Teknik Universitas Janabadra. Aplikasi ini memungkinkan pengguna untuk
+                        memantau kondisi AC secara real-time. Dilengkapi dengan fitur QR Code, aplikasi ini memudahkan
+                        pengguna dalam memindai dan mengakses informasi detail tentang setiap unit AC, termasuk riwayat
+                        perbaikan, identifikasi kerusakan, dan solusi perbaikan yang sesuai.</p>
                 </div>
             </div>
         </div>
@@ -105,12 +107,13 @@
                                 style="top: -28px; right: 20px;">R. {{ $item->ruangan }}</span>
                             <div class="blog-btn d-flex justify-content-center px-3" style="margin-top:  -75px;">
                                 <div class="blog-icon btn btn-secondary px-3 rounded-pill my-auto">
-                                    <a href="{{ route('dataAc.guest', encrypt($item->ruangan)) }}" class="btn text-white">Lihat Detail</a>
+                                    <a href="{{ route('dataAc.guest', encrypt($item->ruangan)) }}"
+                                        class="btn text-white">Lihat Detail</a>
                                 </div>
                             </div>
-                            <div
-                                class="blog-coment px-4 py-2 border bg-primary rounded-bottom mt-3">
-                                <a href="" class="text-white"><small>Tekan tombol diatas untuk melihat detail AC pada ruangan {{ $item->ruangan }}.</small></a>
+                            <div class="blog-coment px-4 py-2 border bg-primary rounded-bottom mt-3">
+                                <a href="" class="text-white"><small>Tekan tombol diatas untuk melihat detail AC
+                                        pada ruangan {{ $item->ruangan }}.</small></a>
                             </div>
                         </div>
                     </div>

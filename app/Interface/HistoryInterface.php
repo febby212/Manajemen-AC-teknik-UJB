@@ -5,6 +5,8 @@ namespace App\Interface;
 interface HistoryInterface
 {
     public function getAll();
+    public function getLatesHistory($amount);
+    public function countHistory();
     public function getAllExport();
     public function getDetail($id);
     public function getById($id);

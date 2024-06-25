@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 Route::middleware(['auth', 'checkUserRole'])->group(function () {
-    Route::resource('dashboard', HomeController::class);
+    Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard.index');
     Route::resource('teknisi', TeknisiController::class);
 
     //generate token

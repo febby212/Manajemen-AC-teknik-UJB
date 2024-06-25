@@ -12,6 +12,10 @@ class TeknisiRepo implements TeknisiInterface
         return Teknisi::with('token', 'teknisiUser','historyPerbaikan')->get();
     }
 
+    public function countTeknisi() {
+        return Teknisi::count();
+    }
+
     public function getById($id)
     {
         return Teknisi::where('id', $id)->firstOrFail();

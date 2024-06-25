@@ -44,7 +44,7 @@
                                     <input type="text" class="form-control" id="nama" name="nama"
                                         value="{{ old('nama', isset($data) ? $data['nama'] : '') }}" required>
                                     <div class="valid-tooltip">
-                                        Mantappp!!!
+                                        
                                     </div>
                                     <div class="invalid-tooltip">
                                         Masukkan nama Otorisasi Pejabat.

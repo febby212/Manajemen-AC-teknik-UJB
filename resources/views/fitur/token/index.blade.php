@@ -52,10 +52,10 @@
                                                 <td class="align-middle">{{ $token['teknisi']['nama_perusahaan'] }}</td>
                                                 <td class="align-middle">{{ implode(' ', str_split($token['token'])) }}</td>
                                                 <td class="align-middle">
-                                                    @if ($token['used'] == 1)
-                                                        <span class="badge bg-success">Sudah Digunakan</span>
-                                                    @else
+                                                    @if (is_null($token['deleted_at']))
                                                         <span class="badge bg-danger">Belum Digunakan</span>
+                                                    @else
+                                                        <span class="badge bg-success">Sudah Digunakan</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -152,8 +152,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary"
-                                                    data-bs-dismiss="modal" onclick="location.reload();">Selesai</button>
+                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                                    onclick="location.reload();">Selesai</button>
                                             </div>
                                         </div>
                                     </div>

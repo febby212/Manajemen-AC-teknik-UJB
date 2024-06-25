@@ -32,8 +32,8 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Kode Penyakit</th>
-                                        <th scope="col">Nama Penyakit</th>
+                                        <th scope="col">Kode Kerusakan</th>
+                                        <th scope="col">Jenis Kerusakan</th>
                                         <th scope="col">Solusi</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -96,21 +96,20 @@
                                                             <div class="row g-3">
                                                                 <div class="col-md-12 position-relative">
                                                                     <label for="validationTooltip01" class="form-label">Kode
-                                                                        Gejala</label>
+                                                                        Kerusakan</label>
                                                                     <input type="text" class="form-control"
                                                                         id="validationTooltip01" name="kd_penyakit"
                                                                         value="{{ $item['kd_penyakit'] }}" required="">
                                                                     <div class="valid-tooltip">
 
                                                                     </div>
-                                                                    <div class="invalid-tooltip">
-                                                                        Masukkan kode penyakit.
-                                                                    </div>
+                                                                    <Kerusak class="invalid-tooltip">
+                                                                        Masukkan kode Kerusakan.
+                                                                    </Kerusakan>
                                                                 </div>
 
                                                                 <div class="col-md-12 position-relative">
-                                                                    <label for="validationTooltip03" class="form-label">Kode
-                                                                        Gejala</label>
+                                                                    <label for="validationTooltip03" class="form-label">Jenis Kerusakan</label>
                                                                     <input type="text" class="form-control"
                                                                         id="validationTooltip03" name="nama_penyakit"
                                                                         value="{{ $item['nama_penyakit'] }}" required="">
@@ -118,13 +117,13 @@
 
                                                                     </div>
                                                                     <div class="invalid-tooltip">
-                                                                        Masukkan nama penyakit.
+                                                                        Masukkan jenis kerusakan.
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-md-12 position-relative">
                                                                     <label for="validationTooltip02"
-                                                                        class="form-label">Gejala</label>
+                                                                        class="form-label">Solusi</label>
                                                                     <textarea class="form-control" id="validationTooltip02" name="solusi" required="" cols="15" rows="5">{{ $item['solusi'] }}</textarea>
                                                                     <div class="valid-tooltip">
 
@@ -154,7 +153,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail
-                                                            Gejala
+                                                            Kerusakan & Solusi
                                                             <b> No. {{ Str::ucfirst($index - 1) }}</b>
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -164,15 +163,14 @@
                                                         <div class="row g-3">
                                                             <div class="col-md-12 position-relative">
                                                                 <label for="validationTooltip01" class="form-label">Kode
-                                                                    Gejala</label>
+                                                                    Kerusakan</label>
                                                                 <input type="text" class="form-control"
                                                                     id="validationTooltip01" name="kd_gejala"
                                                                     value="{{ $item['kd_penyakit'] }}" disabled>
                                                             </div>
 
                                                             <div class="col-md-12 position-relative">
-                                                                <label for="validationTooltip03" class="form-label">Kode
-                                                                    Gejala</label>
+                                                                <label for="validationTooltip03" class="form-label">Jenis Kerusakan</label>
                                                                 <input type="text" class="form-control"
                                                                     id="validationTooltip03" name=""
                                                                     value="{{ $item['nama_penyakit'] }}" disabled>
@@ -217,7 +215,7 @@
                 event.preventDefault();
                 $.confirm({
                     icon: 'fa fa-warning',
-                    title: 'Yakin Hapus Data Case base?',
+                    title: 'Yakin Hapus Data Solusi?',
                     content: 'Data Solusi ' + $(this).data('message') +
                         ' akan di hapus secara permanen',
                     type: 'orange',

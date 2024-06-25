@@ -193,7 +193,7 @@
                 event.preventDefault();
                 $.confirm({
                     icon: 'fa fa-warning',
-                    title: 'Yakin Hapus Data Case base?',
+                    title: 'Yakin Hapus Data Gejala?',
                     content: 'Data Gejala ' + $(this).data('message') +
                         ' akan di hapus secara permanen',
                     type: 'orange',

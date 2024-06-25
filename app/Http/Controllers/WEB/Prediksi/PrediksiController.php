@@ -44,6 +44,9 @@ class PrediksiController extends Controller
     public function predict(Request $request)
     {
         $dataInput = $request->input('kd_gejala');
+        if (is_null($dataInput)) {
+            return back()->with('error', 'Gejala tidak boleh kosong')->withInput();
+        }
         $dataAC = $request->input('dataAc_id');
         $data = $this->caseBase->getByKdPenyakit();
 
@@ -76,7 +79,7 @@ class PrediksiController extends Controller
         $hasilPerhitungan = [];
         foreach ($bobotPerGejala as $kd_penyakit => $bobot) {
             $rasio = ($bobot / $totalBobotPerPenyakit[$kd_penyakit]) * 100; // Mengubah ke persen
-            $hasilPerhitungan[$kd_penyakit] = round($rasio, 2); // Bulatkan ke dua angka di belakang koma
+            $hasilPerhitungan[$kd_penyakit] = round($rasio, 1); // Bulatkan ke satu angka di belakang koma
         }
 
         // Ambil dua nilai tertinggi
@@ -117,7 +120,7 @@ class PrediksiController extends Controller
 
             $ref = $this->data;
             $resData = $this->hasilHistori->getByKodePrediksi($kodePrediksi);
-            return view($this->data['dir_view'] . 'result', compact('resData', 'ref', 'dataGejalaInput'));
+            return view($this->data['dir_view'] . 'result', compact('resData', 'ref', 'dataGejalaInput'))->with('success', 'Berhasil menghitung prediksi kerusakan');
         } catch (\Throwable $th) {
             if (env('APP_DEBUG') == true) {
                 dd($th->getMessage());
