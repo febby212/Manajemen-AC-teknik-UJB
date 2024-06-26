@@ -124,8 +124,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <button class="btn btn-primary modalToken" data-bs-toggle="modal">Open
-                                                    second modal</button>
+                                                <button class="btn btn-primary modalToken" data-bs-toggle="modal">Buat Kode Akses</button>
                                             </div>
                                         </div>
                                     </div>

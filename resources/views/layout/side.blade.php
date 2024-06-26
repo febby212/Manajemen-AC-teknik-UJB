@@ -11,6 +11,14 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
+            <a class="nav-link {{ $ref['title'] == 'Laporan Kerusakan AC' ? '' : 'collapsed' }}"
+                href="{{ route('laporan.index') }}">
+                <i class="bi bi-exclamation-triangle"></i>
+                <span>Laporan Kerusakan AC</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link {{ $ref['title'] == 'Riwayat Perbaikan AC' ? '' : 'collapsed' }}"
                 href="{{ route('history.index') }}">
                 <i class="bi bi-clock-history"></i>

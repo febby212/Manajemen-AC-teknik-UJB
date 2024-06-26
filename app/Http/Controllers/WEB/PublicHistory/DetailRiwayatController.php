@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repo\DataAcRepo;
 use App\Repo\HistoryRepo;
 use App\Repo\MerekAcRepo;
+use App\Repo\ReportACRepo;
 use Carbon\Carbon;
 use CsHelper;
 use Illuminate\Http\Request;
@@ -16,15 +17,17 @@ class DetailRiwayatController extends Controller
     private MerekAcRepo $merekAC;
     private DataAcRepo $dataAc;
     private HistoryRepo $history;
+    private ReportACRepo $report;
     private $data = array();
 
-    public function __construct(DataAcRepo $dataAc, MerekAcRepo $merekAC, HistoryRepo $history)
+    public function __construct(DataAcRepo $dataAc, MerekAcRepo $merekAC, HistoryRepo $history, ReportACRepo $report)
     {
         $this->data['title'] = "Detail Riwayat Ac";
         $this->data['dir_view'] = "guest.detail.";
         $this->dataAc = $dataAc;
         $this->merekAC = $merekAC;
         $this->history = $history;
+        $this->report = $report;
     }
 
     public function index()
@@ -67,7 +70,8 @@ class DetailRiwayatController extends Controller
         }
     }
 
-    public function store(Request $request, string $id) {
+    public function store(Request $request, string $id) 
+    {
         $id = decrypt($id);
         $data = $request->validate([
             'kerusakan' => ['required', 'min:3', 'string'],
@@ -78,8 +82,11 @@ class DetailRiwayatController extends Controller
         $data['teknisi_id'] = auth()->user()->is_teknisi == 1 ? auth()->user()->teknisi_id : auth()->user()->id;  
         $data['created_by'] = auth()->user()->id;
         $data['id'] = 'HTY-' . CsHelper::data_id();
+
+        
         try {
             $this->history->store($data);
+            $this->report->editByIdDescAC($id, ['history_id' => $data['id']]);
             return back()->with('success', 'Berhasil menambah data riwayat perbaikan');
         } catch (\Throwable $th) {
             dd($th->getMessage());

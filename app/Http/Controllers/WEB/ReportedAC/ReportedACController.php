@@ -95,4 +95,12 @@ class ReportedACController extends Controller
     {
         //
     }
+
+    public function indexAdmin() {
+        $ref = $this->data;
+        $ref['title'] = 'Laporan Kerusakan AC';
+        $data = $this->report->getAll();
+        dd($data->toArray());
+        return view('fitur.report.index', compact('ref', 'data'));
+    }
 }

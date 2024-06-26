@@ -96,6 +96,14 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
     Route::get('prediksi-form', [PrediksiController::class, 'index'])->name('prediksi.form');
     Route::post('prediksi', [PrediksiController::class, 'predict'])->name('prediksi.cbr');
 
+    //report index
+    Route::get('laporan-kerusakan', [ReportedACController::class, 'indexAdmin'])->name('laporan.index');
+
+});
+
+Route::prefix('teknisi')->middleware('auth')->group(function() {
+    Route::put('update-riwayat/{id}', [DetailRiwayatController::class, 'update'])->name('update.detail.riwayat');
+    Route::post('store-riwayat/{id}', [DetailRiwayatController::class, 'store'])->name('store.detail.riwayat');
 });
 
 Route::get('/user', function () {
@@ -119,10 +127,6 @@ Route::get('scan', function () {
 Route::get('detail-riwayat/{id}', [DetailRiwayatController::class, 'show'])->name('detail.riwayat');
 Route::get('detail-riwayat-all', [DetailRiwayatController::class, 'index'])->name('detail.riwayat.all');
 
-Route::prefix('teknisi')->group(function() {
-    Route::put('update-riwayat/{id}', [DetailRiwayatController::class, 'update'])->name('update.detail.riwayat');
-    Route::post('store-riwayat/{id}', [DetailRiwayatController::class, 'store'])->name('store.detail.riwayat');
-});
 
 Route::prefix('report')->group(function() {
     Route::get('/', [ReportedACController::class, 'index'])->name('report.index');

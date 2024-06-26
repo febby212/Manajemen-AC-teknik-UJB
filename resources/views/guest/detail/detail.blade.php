@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-4 d-flex justify-content-center">
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                            data-bs-target="#reportDamage">Report Kerusakan</button>
+                            data-bs-target="#reportDamage">Laporkan Kerusakan</button>
                     </div>
                 </div>
                 <p class="card-text my-2">{{ $data->desc_kondisi }}</p>

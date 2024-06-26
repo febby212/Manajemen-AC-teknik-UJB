@@ -17,6 +17,10 @@ class ReportACRepo implements ReportACInterface
         return ReportDamageAC::where('id', $id)->firstOrFail();
     }
 
+    public function getByIdDescAC($ac_desc_id) {
+        return ReportDamageAC::where('ac_desc_id', $ac_desc_id)->get();
+    }
+
     public function store($data)
     {
         return ReportDamageAC::create($data);
@@ -25,6 +29,10 @@ class ReportACRepo implements ReportACInterface
     public function edit($id, $data)
     {
         return ReportDamageAC::whereId($id)->update($data);
+    }
+
+    public function editByIdDescAC($ac_desc_id, $data) {
+        return ReportDamageAC::where('ac_desc_id', $ac_desc_id)->update($data);
     }
 
     public function destroy($id)
