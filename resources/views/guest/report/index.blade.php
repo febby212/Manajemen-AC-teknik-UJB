@@ -33,6 +33,7 @@
             font-weight: bold;
         }
     </style>
+    <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 @endpush
 
 @section('kontenUser')
@@ -54,6 +55,7 @@
                                 <th scope="col">Tanggal Laporan</th>
                                 <th scope="col">No Identitas</th>
                                 <th scope="col">Kerusakan</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -64,6 +66,13 @@
                                     <td>{{ \Carbon\Carbon::parse($item['tgl_report'])->formatLocalized('%e %B %Y') }}</td>
                                     <td>{{ $item['created_by'] }}</td>
                                     <td>{{ Str::limit($item['kerusakan'], 10, '...') }}</td>
+                                    <td>
+                                        @if (is_null($item['history_id']))
+                                            <span class="badge bg-danger">Belum Diperbaiki</span>
+                                        @else
+                                            <span class="badge bg-success">Sudah Diperbaiki</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-center gap-1  py-3">
                                             <button type="button" data-bs-target="#showModal{{ $item['id'] }}"
@@ -76,9 +85,8 @@
                                 </tr>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="showModal{{ $item['id'] }}"
-                                    data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true">
+                                <div class="modal fade" id="showModal{{ $item['id'] }}" data-bs-keyboard="true"
+                                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -91,21 +99,32 @@
                                             <div class="modal-body row">
                                                 <div class="col-md-12 mb-3">
                                                     <label for="created_by" class="form-label">Kode AC
-                                                        </label>
+                                                    </label>
                                                     <input type="text" name="created_by" class="form-control"
-                                                        id="created_by" value="{{ $item['reportedData']['kode_AC'] }}" disabled>
+                                                        id="created_by" value="{{ $item['reportedData']['kode_AC'] }}"
+                                                        disabled>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
                                                     <label for="created_by" class="form-label">Tanggal Laporan Masuk
-                                                        </label>
+                                                    </label>
                                                     <input type="text" name="created_by" class="form-control"
-                                                        id="created_by" value="{{ \Carbon\Carbon::parse($item['tgl_report'])->formatLocalized('%e %B %Y') }}" disabled>
+                                                        id="created_by"
+                                                        value="{{ \Carbon\Carbon::parse($item['tgl_report'])->formatLocalized('%e %B %Y') }}"
+                                                        disabled>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
                                                     <label for="created_by" class="form-label">Nomor Identitas/Nama Pelapor
-                                                        </label>
+                                                    </label>
                                                     <input type="text" name="created_by" class="form-control"
                                                         id="created_by" value="{{ $item['created_by'] }}" disabled>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="created_by" class="form-label">Status Perbaikan
+                                                    </label>
+                                                    <input type="text" name="created_by" class="form-control"
+                                                        id="created_by"
+                                                        value="{{ is_null($item['history_id']) ? 'Belum diperbaiki.' : 'Sudah diperbaiki.' }}"
+                                                        disabled>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
                                                     <label for="kerusakan" class="form-label">Deskripsi Kerusakan</label>
@@ -129,4 +148,12 @@
     </div>
 @endsection
 @push('js')
+    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi Simple DataTables
+            var table = document.querySelector('.datatable');
+            var dataTable = new simpleDatatables.DataTable(table);
+        });
+    </script>
 @endpush

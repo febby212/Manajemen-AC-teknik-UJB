@@ -99,7 +99,7 @@
                                                         <div class="col-md-8 position-relative">
                                                             <label for="teknisi_id" class="form-label">Daftar
                                                                 Teknisi</label>
-                                                            <select class="form-select" id="teknisi_id" name="teknisi_id"
+                                                            <select class="form-select select2" id="teknisi_id" name="teknisi_id"
                                                                 required>
                                                                 <option selected disabled value="">Pilih Daftar
                                                                     Teknisi
@@ -170,13 +170,13 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
-
-            $(selector).click(function(e) {
-                e.preventDefault();
-
+            $('#modalForm').on('shown.bs.modal', function () {
+                $('.select2').select2({
+                    dropdownParent: $('#modalForm')
+                });
             });
         });
+        
         $(document).ready(function() {
             $('.modalToken').click(function() {
                 var id = $('#teknisi_id').val();

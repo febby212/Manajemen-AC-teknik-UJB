@@ -12,7 +12,7 @@
                 <a href="{{ route('home') }}" class="nav-item nav-link {{ $ref['title'] == 'Home SIMAC' ? 'active' : '' }}">Home</a>
                 <a href="{{ route('home') }}#about" class="nav-item nav-link">Tentang</a>
                 <a href="{{ route('home') }}#AC" class="nav-item nav-link">Data AC</a>
-                <a href="{{ route('home') }}#AC" class="nav-item nav-link">Laporan Kerusakan</a>
+                <a href="{{ route('report.indexAll') }}" class="nav-item nav-link {{ $ref['title'] == 'Laporan Kerusakan AC' ? 'active' : '' }}">Daftar Kerusakan</a>
                 <a href="{{ route('scan') }}" class="nav-item nav-link {{ $ref['title'] == 'Scan QR' ? 'active' : '' }}">Scan AC</a>
             </div>
             @auth

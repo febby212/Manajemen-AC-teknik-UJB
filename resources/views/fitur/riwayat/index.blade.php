@@ -43,7 +43,8 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Kode Ac</th>
+                                            <th scope="col">Kode AC</th>
+                                            <th scope="col">Kode Perbaikan</th>
                                             <th scope="col">Teknisi</th>
                                             <th scope="col">POS Anggaran</th>
                                             <th scope="col">Tanggal Perbaikan</th>
@@ -59,6 +60,7 @@
                                             <tr>
                                                 <th scope="row">{{ $index++ }}</th>
                                                 <td>{{ $history->acDesc->kode_AC }}</td>
+                                                <td>{{ $history->kode_perbaikan }}</td>
                                                 <td>{{ $history->teknisiPerbaikan->nama_perusahaan }}</td>
                                                 {{-- <td>Rp. {{ number_format($history['pos_anggaran'], 0, ',', '.') }}</td> --}}
                                                 <td>{{ $history['pos_anggaran'] }}</td>

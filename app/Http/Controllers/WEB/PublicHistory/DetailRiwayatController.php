@@ -81,6 +81,7 @@ class DetailRiwayatController extends Controller
         $data['tgl_perbaikan'] = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d');
         $data['teknisi_id'] = auth()->user()->is_teknisi == 1 ? auth()->user()->teknisi_id : auth()->user()->id;  
         $data['created_by'] = auth()->user()->id;
+        $data['kode_perbaikan'] = CsHelper::stringRandom(6);
         $data['id'] = 'HTY-' . CsHelper::data_id();
 
         

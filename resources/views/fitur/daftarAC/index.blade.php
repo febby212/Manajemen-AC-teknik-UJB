@@ -182,13 +182,13 @@
                                                                 <a href="{{ route('daftarAC.downloadQR', encrypt($item->id)) }}"
                                                                     class="btn bg-success btn-tooltip text-light"
                                                                     target="_blank" title="Generate QR">
-                                                                    Unduh QR bentuk PDF
+                                                                    Unduh QR format PDF
                                                                 </a>
                                                                 <a href="{{ route('daftarAC.downloadQRImg', encrypt($item->id)) }}"
                                                                     class="btn bg-primary btn-tooltip text-light downloadQRBtn"
                                                                     data-id="{{ $item->id }}"
-                                                                    title="Unduh QR bentuk Image">Unduk QR
-                                                                    bentuk Image</a>
+                                                                    title="Unduh QR bentuk Image">Unduh QR
+                                                                    format PNG</a>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">

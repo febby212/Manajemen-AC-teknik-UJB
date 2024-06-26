@@ -75,8 +75,13 @@ class HistoryServiceController extends Controller
         $menyetujui = $this->penyetuju->getByJabatan('dekan');
         $mengetahui = $this->penyetuju->getByJabatan('wadek II');
 
+        if (!$menyetujui || !$mengetahui) {
+            return redirect()->route('history.index')->with('error', 'Pejabat menyetujui dan mengetahui dapat ditambahkan di menu otoritas pejabat')->withInput($request->input);
+        }
+
         $data['menyetujui'] = Str::ucfirst($menyetujui->nama) . ' - ' . Str::ucfirst($menyetujui->jabatan);
         $data['mengetahui'] = Str::ucfirst($mengetahui->nama) . ' - ' . Str::ucfirst($mengetahui->jabatan);
+        $data['kode_perbaikan'] = CsHelper::stringRandom(6);
         $data['id'] = 'HTY-' . CsHelper::data_id();
         $data['created_by'] = auth()->user()->id;
 
@@ -158,7 +163,7 @@ class HistoryServiceController extends Controller
     public function destroy(string $id)
     {
         try {
-            $this->teknisi->destroy($id);
+            $this->dataHistory->destroy($id);
             return redirect()->route('history.index')->with('success', 'Berhasi menghapus data riwayat perbaikan ac');
         } catch (\Illuminate\Database\QueryException $ex) {
             return back()->with('error', 'Data ini masih digunakan oleh data lain, sehingga tidak bisa dihapus.');

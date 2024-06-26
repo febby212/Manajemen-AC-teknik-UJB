@@ -23,11 +23,11 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center py-3">
-                                <h5 class="card-title">Data Case Base</h5>
-                                <a href="{{ route('addDataCBR.form') }}" type="button" class="btn btn-primary">
+                            <div class="d-flex justify-content-between align-items-center py-3 mt-2">
+                                <h5 class="card-title">Data Laporan Kerusakan AC</h5>
+                                {{-- <a href="{{ route('addDataCBR.form') }}" type="button" class="btn btn-primary">
                                     <i class="bi bi-plus-square"></i> Tambah Data
-                                </a>
+                                </a> --}}
                             </div>
                             <table class="table datatable table-striped">
                                 <thead>
@@ -42,100 +42,147 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $item)
+                                    @foreach ($data as $index => $item)
                                         <tr>
                                             <th scope="row">{{ $index + 1 }}</th>
-                                            <td>{{ $item['reportedData']['kode_ac'] }}</td>
+                                            <td>{{ $item['reportedData']['kode_AC'] }}</td>
                                             <td>{{ $item['kerusakan'] }}</td>
                                             <td>{{ $item['tgl_report'] }}</td>
                                             <td>{{ $item['created_by'] }}</td>
                                             <td>
                                                 @if (is_null($item['history_id']))
-                                                    <span class="badge bg-success">Sudah Diperbaiki</span>
-                                                @else
                                                     <span class="badge bg-danger">Belum Diperbaiki</span>
+                                                @else
+                                                    <span class="badge bg-success">Sudah Diperbaiki</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                <div class="d-flex justify-content-center gap-1">
-                                                    <button type="button" data-bs-target="#showModal{{ $item['id'] }}"
-                                                        class="btn btn-primary btn-tooltip" data-bs-toggle="modal"
-                                                        title="Show">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </button>
-                                                    <form action="{{ route('case-base.destroy', $item['id']) }}"
-                                                        method="POST">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button type="button" id="deleteRow"
-                                                            data-message="{{ 'no ' . $index - 1 }}"
-                                                            class="btn bg-danger btn-tooltip show-alert-delete-box"
-                                                            data-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i>
+                                                @if (is_null($item['history_id']))
+                                                    <div class="d-flex justify-content-center gap-1">
+                                                        <button type="button"
+                                                            data-bs-target="#showModal{{ $item['id'] }}"
+                                                            class="btn btn-primary btn-tooltip" data-bs-toggle="modal"
+                                                            title="Show">
+                                                            <i class="bi bi-pencil-square"></i>
                                                         </button>
-                                                    </form>
+                                                    </div>
+                                                @else
+                                                @endif
+                                                <div class="d-flex justify-content-center gap-1">
+                                                    <button type="button" data-bs-target="#detailModal{{ $item['id'] }}"
+                                                        class="btn btn-info btn-tooltip" data-bs-toggle="modal"
+                                                        title="Show">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
 
-                                        <!-- Modal edit -->
-                                        <div class="modal fade" id="showModal{{ $item['id'] }}" data-bs-backdrop="static"
-                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                            aria-hidden="true">
+                                        {{-- modal detail --}}
+                                        <div class="modal fade" id="detailModal{{ $item['id'] }}" data-bs-keyboard="true"
+                                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Case Base
-                                                            <b> No. {{ Str::ucfirst($index - 1) }}</b>
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Teknisi
+                                                            <b>{{ Str::ucfirst($item['name']) }}</b>
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body row">
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="created_by" class="form-label">Kode AC
+                                                            </label>
+                                                            <input type="text" name="created_by" class="form-control"
+                                                                id="created_by"
+                                                                value="{{ $item['reportedData']['kode_AC'] }}" disabled>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="created_by" class="form-label">Tanggal Laporan Masuk
+                                                            </label>
+                                                            <input type="text" name="created_by" class="form-control"
+                                                                id="created_by"
+                                                                value="{{ \Carbon\Carbon::parse($item['tgl_report'])->formatLocalized('%e %B %Y') }}"
+                                                                disabled>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="created_by" class="form-label">Nomor Identitas/Nama
+                                                                Pelapor
+                                                            </label>
+                                                            <input type="text" name="created_by" class="form-control"
+                                                                id="created_by" value="{{ $item['created_by'] }}" disabled>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="kerusakan" class="form-label">Deskripsi
+                                                                Kerusakan</label>
+                                                            <textarea type="text" name="kerusakan" class="form-control" id="kerusakan" disabled>{{ Str::ucfirst($item->kerusakan) }}</textarea>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="created_by" class="form-label">Status Perbaikan
+                                                            </label>
+                                                            <input type="text" name="created_by" class="form-control"
+                                                                id="created_by"
+                                                                value="{{ is_null($item['history_id']) ? 'Belum diperbaiki.' : 'Sudah diperbaiki.' }}"
+                                                                disabled>
+                                                        </div>
+                                                        @if (is_null($item['history_id']))
+                                                        @else
+                                                            <div class="col-md-12 mb-3">
+                                                                <label for="created_by" class="form-label">Kode Perbaikan
+                                                                </label>
+                                                                <input type="text" name="created_by"
+                                                                    class="form-control" id="created_by"
+                                                                    value="{{ $item['reportHistory']['kode_perbaikan'] }}" disabled>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal edit -->
+                                        <div class="modal fade" id="showModal{{ $item['id'] }}"
+                                            data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Bukti Report
+                                                            Sudah Ditindak
+                                                            <b> No. {{ Str::ucfirst($index + 1) }}</b>
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form class="needs-validation was-validated"
-                                                            action="{{ route('case-base.update', $item['id']) }}"
+                                                            action="{{ route('laporan.update', encrypt($item['ac_desc_id'])) }}"
                                                             method="POST" novalidate="">
                                                             @csrf
                                                             @method('PUT')
-                                                            <div class="row g-3">
-                                                                <div class="col-md-12 position-relative">
-                                                                    <label for="validationTooltip01" class="form-label">Kode
-                                                                        Gejala</label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="validationTooltip01" name="kd_gejala"
-                                                                        value="{{ $item['kd_gejala'] }}" required="">
-                                                                    <div class="valid-tooltip">
-
-                                                                    </div>
-                                                                    <div class="invalid-tooltip">
-                                                                        Masukkan Kode Gejala.
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-12 position-relative">
-                                                                    <label for="validationTooltip02" class="form-label">Kode
-                                                                        Penyakit</label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="validationTooltip02" name="kd_penyakit"
-                                                                        value="{{ $item['kd_penyakit'] }}" required="">
-                                                                    <div class="valid-tooltip">
-
-                                                                    </div>
-                                                                    <div class="invalid-tooltip">
-                                                                        Masukkan Kode Penyakit.
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-12 position-relative">
-                                                                    <label for="validationTooltip03"
-                                                                        class="form-label">Bobot</label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="validationTooltip03" name="bobot"
-                                                                        value="{{ $item['bobot'] }}" required="">
-                                                                    <div class="valid-tooltip">
-
-                                                                    </div>
-                                                                    <div class="invalid-tooltip">
-                                                                        Masukkan Bobot.
-                                                                    </div>
-                                                                </div>
+                                                            <label for="history_id" class="form-label">Daftar
+                                                                Kode Perbaikan</label>
+                                                            <select class="form-select select2" id="history_id"
+                                                                name="history_id" required>
+                                                                <option selected disabled value="">Pilih Kode
+                                                                    Perbaikan
+                                                                </option>
+                                                                @foreach ($dataHistory as $item)
+                                                                    <option value="{{ $item['id'] }}"
+                                                                        {{ old('id') == $item['id'] ? 'selected' : '' }}>
+                                                                        {{ $item['kode_perbaikan'] }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            <div class="valid-tooltip">
+                                                            </div>
+                                                            <div class="invalid-tooltip">
+                                                                Masukkan Kode Perbaikan.
                                                             </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -161,4 +208,13 @@
 @endsection
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('body').on('shown.bs.modal', '.modal', function() {
+                $(this).find('.select2').select2({
+                    dropdownParent: $(this)
+                });
+            });
+        });
+    </script>
 @endpush

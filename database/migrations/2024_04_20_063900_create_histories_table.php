@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('id')->primary()->unique();
             $table->string('ac_desc_id');
             $table->string('teknisi_id');
+            $table->string('kode_perbaikan');
             $table->text('kerusakan');
             $table->text('perbaikan');
             $table->string('pos_anggaran')->nullable();

@@ -75,6 +75,9 @@
                     <span
                         class="item-value btn {{ $data->kondisi === 'Baik' ? 'btn-success' : ($data->kondisi === 'Sedang' ? 'btn-warning' : 'btn-danger') }} btn-sm">{{ $data->kondisi }}</span>
                 </li>
+                <li class="list-group-item">
+                    <a href="{{ route('report.index', encrypt($data->id)) }}" class="btn btn-info btn-sm" style="width: 100%">Cek Daftar Kerusakan</a>
+                </li>
                 @auth
                     <li class="list-group-item">
                         <button type="button" class="btn btn-primary btn-sm" style="width: 100%" data-bs-toggle="modal"

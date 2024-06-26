@@ -96,8 +96,9 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
     Route::get('prediksi-form', [PrediksiController::class, 'index'])->name('prediksi.form');
     Route::post('prediksi', [PrediksiController::class, 'predict'])->name('prediksi.cbr');
 
-    //report index
+    //report kerusakan
     Route::get('laporan-kerusakan', [ReportedACController::class, 'indexAdmin'])->name('laporan.index');
+    Route::put('update-laporan/{descAC_id}', [ReportedACController::class,'updateStatusReport'])->name('laporan.update');
 
 });
 
@@ -129,7 +130,8 @@ Route::get('detail-riwayat-all', [DetailRiwayatController::class, 'index'])->nam
 
 
 Route::prefix('report')->group(function() {
-    Route::get('/', [ReportedACController::class, 'index'])->name('report.index');
+    Route::get('/', [ReportedACController::class, 'indexAll'])->name('report.indexAll');
+    Route::get('report/{id_Desc_AC}', [ReportedACController::class, 'index'])->name('report.index');
     Route::post('create/{dataAC_id}', [ReportedACController::class, 'store'])->name('report.store');
 });
 

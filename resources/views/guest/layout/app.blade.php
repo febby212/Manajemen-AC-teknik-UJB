@@ -35,7 +35,6 @@
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('assetsUsers/lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assetsUsers/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('assetsUsers/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -122,7 +121,6 @@
     <script src="{{ asset('assetsUsers/lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('assetsUsers/lib/waypoints/waypoints.min.js') }}"></script>
     <script src="{{ asset('assetsUsers/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
 
     <!-- Template Javascript -->
     <script src="{{ asset('assetsUsers/js/main.js') }}"></script>

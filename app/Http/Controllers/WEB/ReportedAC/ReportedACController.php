@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WEB\ReportedAC;
 
 use App\Http\Controllers\Controller;
+use App\Repo\HistoryRepo;
 use App\Repo\ReportACRepo;
 use Carbon\Carbon;
 use CsHelper;
@@ -11,36 +12,34 @@ use Illuminate\Http\Request;
 class ReportedACController extends Controller
 {
     private ReportACRepo $report;
+    private HistoryRepo $history;
     private $data = array();
 
-    public function __construct(ReportACRepo $report)
+    public function __construct(ReportACRepo $report, HistoryRepo $history)
     {
         $this->data['title'] = "Laporan Kerusakan AC";
         $this->data['dir_view'] = "guest.report.";
         $this->report = $report;
+        $this->history = $history;
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($dataAC_id)
     {
+        $dataAC_id = decrypt($dataAC_id);
         $ref = $this->data;
-        $data = $this->report->getAll();
+        $data = $this->report->getByIdDescAC($dataAC_id);
         return view($this->data['dir_view'] . 'index', compact('ref', 'data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function indexAll() {
+        $ref = $this->data;
+        $data = $this->report->getAll();
+        return view($this->data['dir_view'] . 'all', compact('ref', 'data'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request, $dataAC_id)
     {
         $dataAC_id = decrypt($dataAC_id);
@@ -54,53 +53,41 @@ class ReportedACController extends Controller
 
         try {
             $this->report->store($data);
-            return redirect()->route('report.index')->with('success', 'Laporan sudah anda sudah dibuat, terimakasih atas laporannya');
+            return redirect()->route('report.index', encrypt($dataAC_id))->with('success', 'Laporan sudah anda sudah dibuat, terimakasih atas laporannya');
         } catch (\Throwable $th) {
             if (env('APP_DEBUG')) {
                 return $th->getMessage();
             }
             return back()->with('error', "Oops..!! Terjadi keesalahan saat melaporakan kerusakan")->withInput();
         }
-
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function indexAdmin()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        // $data = 
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    public function indexAdmin() {
         $ref = $this->data;
         $ref['title'] = 'Laporan Kerusakan AC';
         $data = $this->report->getAll();
-        dd($data->toArray());
-        return view('fitur.report.index', compact('ref', 'data'));
+        $dataHistory = $this->history->getAll();
+        // dd($data->toArray());
+        return view('fitur.report.index', compact('ref', 'data', 'dataHistory'));
+    }
+
+    public function updateStatusReport(Request $request, $descAC_id)
+    {
+        $descAC_id = decrypt($descAC_id);
+
+        $data = $request->validate([
+            'history_id' => ['required', 'string', 'min:3']
+        ]);
+
+        try {
+            $this->report->editByIdDescAC($descAC_id, $data);
+            return back()->with('success', 'Berhasil memperbarui data laporan');
+        } catch (\Throwable $th) {
+            if (env('APP_DEBUG')) {
+                return $th->getMessage();
+            }
+            return back()->with('error', "Oops..!! Terjadi keesalahan saat update data")->withInput();
+        }
     }
 }
