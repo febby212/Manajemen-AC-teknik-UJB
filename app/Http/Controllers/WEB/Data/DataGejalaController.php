@@ -67,7 +67,7 @@ class DataGejalaController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
-            'kd_gejala' => ['required', 'string', 'min:3'],
+            // 'kd_gejala' => ['required', 'string', 'min:3'],
             'gejala' => ['required', 'string', 'min:3'],
         ]);
         $data['updated_by'] = auth()->user()->id;

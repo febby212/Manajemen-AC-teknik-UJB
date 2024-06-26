@@ -67,7 +67,7 @@ class DataSolusiController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
-            'kd_penyakit' => ['required', 'string', 'min:3'],
+            // 'kd_penyakit' => ['required', 'string', 'min:3'],
             'nama-penyakit' => ['required', 'string', 'min:3'],
             'solusi' => ['required', 'string', 'min:3'],
         ]);

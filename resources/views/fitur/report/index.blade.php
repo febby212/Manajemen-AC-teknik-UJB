@@ -57,23 +57,26 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if (is_null($item['history_id']))
+                                                <div class="d-flex justify-content-center gap-1">
+                                                    @if (is_null($item['history_id']))
+                                                        <div class="d-flex justify-content-center gap-1">
+                                                            <button type="button"
+                                                                data-bs-target="#showModal{{ $item['id'] }}"
+                                                                class="btn btn-primary btn-tooltip" data-bs-toggle="modal"
+                                                                title="Show">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                            </button>
+                                                        </div>
+                                                    @else
+                                                    @endif
                                                     <div class="d-flex justify-content-center gap-1">
                                                         <button type="button"
-                                                            data-bs-target="#showModal{{ $item['id'] }}"
-                                                            class="btn btn-primary btn-tooltip" data-bs-toggle="modal"
+                                                            data-bs-target="#detailModal{{ $item['id'] }}"
+                                                            class="btn btn-info btn-tooltip" data-bs-toggle="modal"
                                                             title="Show">
-                                                            <i class="bi bi-pencil-square"></i>
+                                                            <i class="bi bi-eye"></i>
                                                         </button>
                                                     </div>
-                                                @else
-                                                @endif
-                                                <div class="d-flex justify-content-center gap-1">
-                                                    <button type="button" data-bs-target="#detailModal{{ $item['id'] }}"
-                                                        class="btn btn-info btn-tooltip" data-bs-toggle="modal"
-                                                        title="Show">
-                                                        <i class="bi bi-eye"></i>
-                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -133,7 +136,8 @@
                                                                 </label>
                                                                 <input type="text" name="created_by"
                                                                     class="form-control" id="created_by"
-                                                                    value="{{ $item['reportHistory']['kode_perbaikan'] }}" disabled>
+                                                                    value="{{ $item['reportHistory']['kode_perbaikan'] }}"
+                                                                    disabled>
                                                             </div>
                                                         @endif
                                                     </div>

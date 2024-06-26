@@ -58,16 +58,6 @@
                                                         title="Edit">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </button>
-                                                    <form action="{{ route('gejala.destroy', $item['id']) }}"
-                                                        method="POST">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button type="button" id="deleteRow"
-                                                            data-message="{{ 'no ' . $index - 1 }}"
-                                                            class="btn bg-danger btn-tooltip show-alert-delete-box"
-                                                            data-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -80,7 +70,7 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Gejala
-                                                            <b> No. {{ Str::ucfirst($index - 1) }}</b>
+                                                            <b> {{ $item['kd_gejala'] }}</b>
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
@@ -92,19 +82,6 @@
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="row g-3">
-                                                                <div class="col-md-12 position-relative">
-                                                                    <label for="validationTooltip01" class="form-label">Kode
-                                                                        Gejala</label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="validationTooltip01" name="kd_gejala"
-                                                                        value="{{ $item['kd_gejala'] }}" required="">
-                                                                    <div class="valid-tooltip">
-
-                                                                    </div>
-                                                                    <div class="invalid-tooltip">
-                                                                        Masukkan Kode Gejala.
-                                                                    </div>
-                                                                </div>
 
                                                                 <div class="col-md-12 position-relative">
                                                                     <label for="validationTooltip02"
@@ -139,7 +116,7 @@
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail
                                                             Gejala
-                                                            <b> No. {{ Str::ucfirst($index - 1) }}</b>
+                                                            <b> {{ $item['kd_gejala'] }}</b>
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
@@ -185,38 +162,5 @@
             $('.select2').select2();
         });
 
-        $(function() {
-            $(document).on('click', '#deleteRow', function(event) {
-                var form = $(this).closest("form");
-                var name = $(this).data("name");
-                console.log($('.categories_table tr.active'));
-                event.preventDefault();
-                $.confirm({
-                    icon: 'fa fa-warning',
-                    title: 'Yakin Hapus Data Gejala?',
-                    content: 'Data Gejala ' + $(this).data('message') +
-                        ' akan di hapus secara permanen',
-                    type: 'orange',
-                    typeAnimated: true,
-                    animationSpeed: 500,
-                    closeAnimation: 'zoom',
-                    closeIcon: true,
-                    closeIconClass: 'fa fa-close',
-                    draggable: true,
-                    backgroundDismiss: false,
-                    backgroundDismissAnimation: 'glow',
-                    buttons: {
-                        delete: {
-                            text: 'Hapus',
-                            btnClass: 'btn-red',
-                            action: function() {
-                                form.submit();
-                            }
-                        },
-                        batal: function() {}
-                    }
-                });
-            });
-        });
     </script>
 @endpush
