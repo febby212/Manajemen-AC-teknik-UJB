@@ -90,7 +90,7 @@
                                 <div class="activity">
 
                                     <div class="activity-item d-flex">
-                                        <div class="activite-label">{{ \Carbon\Carbon::parse($latesHistory[0]['tgl_perbaikan'])->formatLocalized('%e %B %Y') }}</div>
+                                        {{-- <div class="activite-label">{{ \Carbon\Carbon::parse($latesHistory[0]['tgl_perbaikan'])->formatLocalized('%e %B %Y') }}</div> --}}
                                         <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                                         <div class="activity-content">
                                             Quia quae rerum beatae
