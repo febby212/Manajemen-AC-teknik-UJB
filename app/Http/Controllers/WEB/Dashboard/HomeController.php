@@ -35,18 +35,26 @@ class HomeController extends Controller
     {
         $ref = $this->data;
         $countHistory = $this->history->countHistory();
-        $latesHistory = $this->history->getLatesHistory(5);
+        $latesHistory = $this->history->getLatesHistory(10);
         $countTeknisi = $this->teknisi->countTeknisi();
         $countDataAC = $this->dataAC->countDataAC();
         $contReport = $this->report->countReport();
-        $latesReport = $this->report->latesReport(10);
+
+        $latesReport = $this->report->latesReport(9)->map(function($report) {
+            return [
+                'kerusakan' => $report->kerusakan,
+                'created_at' => Carbon::parse($report->created_at)->diffForHumans(),
+                'pelapor' => $report->created_by
+            ];
+        });
+
         $biayaPerbaikan = $this->history->getBiayaPerbaikan()->map(function($item) {
             return [
                 'biaya' => $item->biaya,
                 'created_at' => Carbon::parse($item->created_at)->isoFormat('D MMMM YYYY')
             ];
         });
-// dd($biayaPerbaika->toArray());
+// dd($latesReport);
         return view($this->data['dir_view'] . 'dashboard', compact('ref', 'countHistory', 'latesHistory', 'countTeknisi', 'countDataAC', 'contReport', 'latesReport', 'biayaPerbaikan'));
     }
 

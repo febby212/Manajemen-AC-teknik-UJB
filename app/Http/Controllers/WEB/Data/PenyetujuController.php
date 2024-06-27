@@ -15,7 +15,7 @@ class PenyetujuController extends Controller
 
     public function __construct(PenyetujuRepo $penyetuju)
     {
-        $this->data['title'] = 'Otorisasi Pejabat';
+        $this->data['title'] = 'Otoritas Pejabat';
         $this->data['dir_view'] = 'fitur.data.penyetuju.';
         $this->penyetuju = $penyetuju;
     }

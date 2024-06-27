@@ -92,7 +92,7 @@
                 </li>
                 <li>
                     <a href="{{ route('penyetuju.index') }}" class="{{ $ref['title'] == 'Otorisasi Pejabat' ? 'active' : '' }}">
-                        <i class="bi bi-circle"></i><span>Otorisasi Pejabat</span>
+                        <i class="bi bi-circle"></i><span>Otoritas Pejabat</span>
                     </a>
                 </li>
                 <li>

@@ -26,9 +26,9 @@
                         <div class="card-body p-3">
                             <div class="mb-5">
                                 @if (isset($data))
-                                    <h5 class="card-title">Form Ubah Data Otorisasi Pejabat</h5>
+                                    <h5 class="card-title">Form Ubah Data Otoritas Pejabat</h5>
                                 @else
-                                    <h5 class="card-title">Form Tambah Data Otorisasi Pejabat</h5>
+                                    <h5 class="card-title">Form Tambah Data Otoritas Pejabat</h5>
                                 @endif
                             </div>
 
@@ -47,7 +47,7 @@
                                         
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan nama Otorisasi Pejabat.
+                                        Masukkan nama Otoritas Pejabat.
                                     </div>
                                 </div>
 

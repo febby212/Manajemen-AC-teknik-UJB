@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center py-3">
-                                <h5 class="card-title">Data Otorisasi Pejabat</h5>
+                                <h5 class="card-title">Data Otoritas Pejabat</h5>
                                 @if ($count >= 2)
                                 @else
                                     <a href="{{ route('penyetuju.create') }}" type="button" class="btn btn-primary">

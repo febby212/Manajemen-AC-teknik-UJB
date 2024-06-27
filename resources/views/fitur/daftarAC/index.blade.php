@@ -227,7 +227,7 @@
                 event.preventDefault();
                 $.confirm({
                     icon: 'fa fa-warning',
-                    title: 'Yakin Hapus Data Merek AC?',
+                    title: 'Yakin Hapus Data Daftar AC?',
                     content: 'Merek AC ' + $(this).data('message') +
                         ' akan di hapus secara permanen',
                     type: 'orange',
