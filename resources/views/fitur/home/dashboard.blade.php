@@ -30,7 +30,7 @@
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-cart"></i>
+                                            <i class="bi bi-fan"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>{{ $countDataAC }} Unit</h6>
@@ -52,7 +52,7 @@
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-currency-dollar"></i>
+                                            <i class="bi bi-people-fill"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>{{ $countTeknisi }} Teknisi</h6>
@@ -76,7 +76,7 @@
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-people"></i>
+                                            <i class="bi bi-exclamation-diamond"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>{{ $contReport }} Laporan</h6>
@@ -92,7 +92,7 @@
                         <div class="col-xxl-12 col-md-6">
                             {{-- <div class="col-xxl-4 col-xl-12"> --}}
 
-                            <div class="card info-card customers-card">
+                            <div class="card info-card history-card">
 
                                 <div class="card-body pt-4">
                                     <h5 class="card-title">Riwayat Perbaikan <span>| Jumlah</span></h5>
@@ -100,7 +100,7 @@
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-people"></i>
+                                            <i class="bi bi-hourglass-split"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>{{ $countHistory }} Perbaikan</h6>
@@ -202,30 +202,22 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">No</th>
-                                                    <th scope="col">Tanggal Pelaporan</th>
-                                                    <th scope="col">Kerusakan</th>
-                                                    <th scope="col">Pelapor</th>
-                                                    <th scope="col">Status</th>
                                                     <th scope="col">Kode Perbaikan</th>
+                                                    <th scope="col">Teknisi</th>
+                                                    <th scope="col">Tanggal Perbaikan</th>
+                                                    <th scope="col">Kerusakan</th>
+                                                    <th scope="col">Perbaikan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($latesReport as $index => $item)
+                                                @forelse ($latesHistory as $index => $item)
                                                     <tr>
                                                         <th>{{ $index + 1 }}</th>
-                                                        <td>{{ \Carbon\Carbon::parse($item['tgl_report'])->isoFormat('D MMMM YYYY') }}
-                                                        </td>
-                                                        <td>{{ Str::limit($item['kerusakan']) }}</td>
-                                                        <td>{{ Str::ucfirst($item['created_by']) }}</td>
-                                                        <td>
-                                                            @if (is_null($item['history_id']))
-                                                                <span class="badge bg-danger">Belum Diperbaiki</span>
-                                                            @else
-                                                                <span class="badge bg-success">Sudah Diperbaiki</span>
-                                                            @endif
-                                                        </td>
-                                                        <td>{{ is_null($item['history_id']) ? '-' : $item['reportHistory']['kode_perbaikan'] }}
-                                                        </td>
+                                                        <td>{{ \Carbon\Carbon::parse($item['tgl_perbaikan'])->isoFormat('D MMMM YYYY') }}</td>
+                                                        <td>{{ $item['kode_perbaikan'] }}</td>
+                                                        <td>{{ Str::Ucfirst($item['teknisiPerbaikan']['name']) }} - {{ Str::Ucfirst($item['teknisiPerbaikan']['nama_perusahaan']) }}</td>
+                                                        <td>{{ Str::limit(Str::ucfirst($item['kerusakan']), 20, '...') }}</td>
+                                                        <td>{{ Str::limit(Str::ucfirst($item['prebaikan']), 20, '...') }}</td>
                                                     </tr>
                                                 @empty
                                                 @endforelse
@@ -243,22 +235,8 @@
 
                     <!-- Recent Activity -->
                     <div class="card">
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
-
                         <div class="card-body pt-4">
                             <h5 class="card-title">Recent Activity <span>| Today</span></h5>
-
                             <div class="activity">
 
                                 <div class="activity-item d-flex">
@@ -318,21 +296,7 @@
 
                     <!-- News & Updates Traffic -->
                     <div class="card">
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body pb-0">
+                        <div class="card-body pt-3">
                             <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
 
                             <div class="news">

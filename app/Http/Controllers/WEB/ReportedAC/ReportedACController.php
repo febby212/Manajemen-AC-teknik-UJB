@@ -45,7 +45,7 @@ class ReportedACController extends Controller
         $dataAC_id = decrypt($dataAC_id);
         $data = $request->validate([
             'kerusakan' => ['required', 'min:3'],
-            'created_by' => ['required', 'string', 'min:3']
+            'created_by' => ['']
         ]);
         $data['id'] = 'RPT-' . CsHelper::data_id();
         $data['tgl_report'] = Carbon::now();

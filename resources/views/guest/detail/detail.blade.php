@@ -267,7 +267,7 @@
                         @csrf
                         <div class="col-md-12">
                             <label for="created_by" class="form-label">Nomor Identitas/Nama Pelapor (Opsional)</label>
-                            <input type="text" name="created_by" class="form-control" id="created_by" required>
+                            <input type="text" name="created_by" class="form-control" id="created_by">
                             <div class="invalid-feedback">
                                 Masukkan nomor identitas.
                             </div>

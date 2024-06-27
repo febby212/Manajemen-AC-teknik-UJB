@@ -30,6 +30,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
+                                        <th scope="col">Kode Prediksi</th>
                                         <th scope="col">User</th>
                                         <th scope="col">Kode AC</th>
                                         <th scope="col">Kode Kerusakan</th>
@@ -47,6 +48,7 @@
                                         <tr>
                                             <th scope="row">{{ $index++ }}</th>
                                             <td>{{ $item['userPredict']['name'] }}</td>
+                                            <td>{{ $item['kode_prediksi'] }}</td>
                                             <td>{{ $item['dataACRel']['kode_AC'] }}</td>
                                             <td>{{ $item['kd_penyakit'] }}</td>
                                             <td>{{ $item['kd_gejala'] }}</td>
@@ -64,7 +66,7 @@
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="button" id="deleteRow"
-                                                            data-message="{{ 'no ' . $index - 1 }}"
+                                                            data-message="{{ $item['kode_prediksi'] }}"
                                                             class="btn bg-danger btn-tooltip show-alert-delete-box"
                                                             data-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i>
                                                         </button>
@@ -80,7 +82,7 @@
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Histori Prediksi
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Riwayat Prediksi
                                                             <b> No. {{ Str::ucfirst($index - 1) }}</b>
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -162,8 +164,8 @@
                 event.preventDefault();
                 $.confirm({
                     icon: 'fa fa-warning',
-                    title: 'Yakin Hapus Data Case base?',
-                    content: 'Data Riwayat ' + $(this).data('message') +
+                    title: 'Yakin Hapus Data Riwayat Prediksi?',
+                    content: 'Data riwayat prediksi dengan kode' + $(this).data('message') +
                         ' akan di hapus secara permanen',
                     type: 'orange',
                     typeAnimated: true,
