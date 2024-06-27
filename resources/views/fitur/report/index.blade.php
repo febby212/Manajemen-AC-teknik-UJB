@@ -47,7 +47,7 @@
                                             <th scope="row">{{ $index + 1 }}</th>
                                             <td>{{ $item['reportedData']['kode_AC'] }}</td>
                                             <td>{{ $item['kerusakan'] }}</td>
-                                            <td>{{ $item['tgl_report'] }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item['tgl_report'])->isoFormat('D MMMM YYYY') }}</td>
                                             <td>{{ $item['created_by'] }}</td>
                                             <td>
                                                 @if (is_null($item['history_id']))

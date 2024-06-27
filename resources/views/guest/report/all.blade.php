@@ -29,7 +29,7 @@
                                 @foreach ($data as $index => $item)
                                     <tr>
                                         <th scope="row">{{ $index + 1 }}</th>
-                                        <td>{{ \Carbon\Carbon::parse($item['tgl_report'])->formatLocalized('%e %B %Y') }}
+                                        <td>{{ \Carbon\Carbon::parse($item['tgl_report'])->isoFormat('D MMMM YYYY') }}
                                         </td>
                                         <td>{{ $item['created_by'] }}</td>
                                         <td>{{ Str::limit($item['kerusakan'], 10, '...') }}</td>

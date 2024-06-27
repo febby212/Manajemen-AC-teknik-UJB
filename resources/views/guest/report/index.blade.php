@@ -63,7 +63,7 @@
                             @foreach ($data as $index => $item)
                                 <tr>
                                     <th scope="row">{{ $index + 1 }}</th>
-                                    <td>{{ \Carbon\Carbon::parse($item['tgl_report'])->formatLocalized('%e %B %Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item['tgl_report'])->isoFormat('D MMMM YYYY') }}</td>
                                     <td>{{ $item['created_by'] }}</td>
                                     <td>{{ Str::limit($item['kerusakan'], 10, '...') }}</td>
                                     <td>
@@ -109,7 +109,7 @@
                                                     </label>
                                                     <input type="text" name="created_by" class="form-control"
                                                         id="created_by"
-                                                        value="{{ \Carbon\Carbon::parse($item['tgl_report'])->formatLocalized('%e %B %Y') }}"
+                                                        value="{{ \Carbon\Carbon::parse($item['tgl_report'])->isoFormat('D MMMM YYYY') }}"
                                                         disabled>
                                                 </div>
                                                 <div class="col-md-12 mb-3">

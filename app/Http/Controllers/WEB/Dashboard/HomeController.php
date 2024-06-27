@@ -7,6 +7,7 @@ use App\Repo\DataAcRepo;
 use App\Repo\HistoryRepo;
 use App\Repo\ReportACRepo;
 use App\Repo\TeknisiRepo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -38,9 +39,15 @@ class HomeController extends Controller
         $countTeknisi = $this->teknisi->countTeknisi();
         $countDataAC = $this->dataAC->countDataAC();
         $contReport = $this->report->countReport();
-        $latesReport = $this->report->latesReport(5);
-// dd($latesHistory->toArray());
-        return view($this->data['dir_view'] . 'dashboard', compact('ref', 'countHistory', 'latesHistory', 'countTeknisi', 'countDataAC'));
+        $latesReport = $this->report->latesReport(10);
+        $biayaPerbaikan = $this->history->getBiayaPerbaikan()->map(function($item) {
+            return [
+                'biaya' => $item->biaya,
+                'created_at' => Carbon::parse($item->created_at)->isoFormat('D MMMM YYYY')
+            ];
+        });
+// dd($biayaPerbaika->toArray());
+        return view($this->data['dir_view'] . 'dashboard', compact('ref', 'countHistory', 'latesHistory', 'countTeknisi', 'countDataAC', 'contReport', 'latesReport', 'biayaPerbaikan'));
     }
 
     /**

@@ -64,7 +64,7 @@
                                                 <td>{{ $history->teknisiPerbaikan->nama_perusahaan }}</td>
                                                 {{-- <td>Rp. {{ number_format($history['pos_anggaran'], 0, ',', '.') }}</td> --}}
                                                 <td>{{ $history['pos_anggaran'] }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($history['tgl_perbaikan'])->formatLocalized('%e %B %Y') }}
+                                                <td>{{ \Carbon\Carbon::parse($history['tgl_perbaikan'])->isoFormat('D MMMM YYYY') }}
                                                 </td>
                                                 <td>{{ $history['PPA'] }}</td>
                                                 <td>

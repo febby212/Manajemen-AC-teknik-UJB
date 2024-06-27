@@ -20,6 +20,13 @@ return new class extends Migration
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
+
+            $table->foreign('ac_desc_id')
+            ->references('id')
+            ->on('ac_descs');
+            $table->foreign('history_id')
+            ->references('id')
+            ->on('histories');
         });
     }
 

@@ -13,6 +13,10 @@ class HistoryRepo implements HistoryInterface
         return History::with('acDesc', 'teknisiPerbaikan', 'acDesc.merekAC', 'pembuatLaporan')->get();
     }
 
+    public function getBiayaPerbaikan() {
+        return History::select('biaya', 'created_at')->get();
+    }
+
     public function getLatesHistory($amount) {
         return History::with('acDesc', 'teknisiPerbaikan', 'acDesc.merekAC', 'pembuatLaporan')->orderBy('created_at', 'desc')->take($amount)->get();
     }
