@@ -12,6 +12,14 @@ class ReportACRepo implements ReportACInterface
         return ReportDamageAC::with('reportedData', 'reportHistory')->get();
     }
 
+    public function countReport() {
+        return ReportDamageAC::count();
+    }
+
+    public function latesReport($jumlah_data) {
+        return ReportDamageAC::with('reportedData', 'reportHistory')->orderBy('created_at', 'desc')->take($jumlah_data)->get();
+    }
+    
     public function getById($id)
     {
         return ReportDamageAC::where('id', $id)->firstOrFail();

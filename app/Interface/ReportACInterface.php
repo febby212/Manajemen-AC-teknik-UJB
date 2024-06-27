@@ -5,6 +5,8 @@ namespace App\Interface;
 interface ReportACInterface
 {
     public function getAll();
+    public function countReport();
+    public function latesReport($jumlah_data);
     public function getById($id);
     public function getByIdDescAC($ac_desc_id);
     public function store($data);

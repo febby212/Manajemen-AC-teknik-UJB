@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WEB\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Repo\DataAcRepo;
 use App\Repo\HistoryRepo;
+use App\Repo\ReportACRepo;
 use App\Repo\TeknisiRepo;
 use Illuminate\Http\Request;
 
@@ -14,14 +15,16 @@ class HomeController extends Controller
     private HistoryRepo $history;
     private TeknisiRepo $teknisi;
     private DataAcRepo $dataAC;
+    private ReportACRepo $report;
 
-    public function __construct(HistoryRepo $history, TeknisiRepo $teknisi, DataAcRepo $dataAC)
+    public function __construct(HistoryRepo $history, TeknisiRepo $teknisi, DataAcRepo $dataAC, ReportACRepo $report)
     {
         $this->data['title'] = "Dashboard";
         $this->data['dir_view'] = "fitur.home.";
         $this->history = $history;
         $this->teknisi = $teknisi;
         $this->dataAC = $dataAC;
+        $this->report = $report;
     }
 
     /**
@@ -34,6 +37,8 @@ class HomeController extends Controller
         $latesHistory = $this->history->getLatesHistory(5);
         $countTeknisi = $this->teknisi->countTeknisi();
         $countDataAC = $this->dataAC->countDataAC();
+        $contReport = $this->report->countReport();
+        $latesReport = $this->report->latesReport(5);
 // dd($latesHistory->toArray());
         return view($this->data['dir_view'] . 'dashboard', compact('ref', 'countHistory', 'latesHistory', 'countTeknisi', 'countDataAC'));
     }

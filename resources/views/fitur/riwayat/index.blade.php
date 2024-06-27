@@ -133,6 +133,13 @@
                                                                 </div>
 
                                                                 <div class="row my-1">
+                                                                    <div class="col-md-5  label ">
+                                                                        Kode Perbaikan</div>
+                                                                    <div class="col-md-7">: {{ is_null($history->kode_perbaikan) ? '-' : $history->kode_perbaikan }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row my-1">
                                                                     <div class="col-md-5 label">
                                                                         Ruangan</div>
                                                                     <div class="col-md-7">:
