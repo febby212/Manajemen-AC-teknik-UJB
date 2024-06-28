@@ -223,7 +223,7 @@
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body pt-4">
-                            <h5 class="card-title">Laporan Kerusakan AC Terbaru</h5>
+                            <h5 class="card-title">Riwayat Perbaikan Terbaru</h5>
                             <div class="table-responsive">
                                 <table class="table table-borderless datatable">
                                     <thead>
@@ -240,13 +240,15 @@
                                         @forelse ($latesHistory as $index => $item)
                                             <tr>
                                                 <th>{{ $index + 1 }}</th>
-                                                <td>{{ \Carbon\Carbon::parse($item['tgl_perbaikan'])->isoFormat('D MMMM YYYY') }}
-                                                </td>
                                                 <td>{{ $item['kode_perbaikan'] }}</td>
-                                                <td>{{ Str::Ucfirst($item['teknisiPerbaikan']['name']) }} -
+                                                <td>
+                                                    {{ Str::Ucfirst($item['teknisiPerbaikan']['name']) }} -
                                                     {{ Str::Ucfirst($item['teknisiPerbaikan']['nama_perusahaan']) }}</td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::parse($item['tgl_perbaikan'])->isoFormat('D MMMM YYYY') }}
+                                                </td>
                                                 <td>{{ Str::limit(Str::ucfirst($item['kerusakan']), 20, '...') }}</td>
-                                                <td>{{ Str::limit(Str::ucfirst($item['prebaikan']), 20, '...') }}</td>
+                                                <td>{{ Str::limit(Str::ucfirst($item['perbaikan']), 20, '...') }}</td>
                                             </tr>
                                         @empty
                                         @endforelse
