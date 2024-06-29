@@ -64,7 +64,7 @@
                                                 <td>{{ $history->teknisiPerbaikan->nama_perusahaan }}</td>
                                                 {{-- <td>Rp. {{ number_format($history['pos_anggaran'], 0, ',', '.') }}</td> --}}
                                                 <td>{{ $history['pos_anggaran'] }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($history['tgl_perbaikan'])->isoFormat('D MMMM YYYY') }}
+                                                <td>{{ \Carbon\Carbon::parse($history->tgl_perbaikan)->isoFormat('D MMMM YYYY') }}
                                                 </td>
                                                 <td>{{ $history['PPA'] }}</td>
                                                 <td>
@@ -143,7 +143,8 @@
                                                                     <div class="col-md-5 label">
                                                                         Ruangan</div>
                                                                     <div class="col-md-7">:
-                                                                        {{ $history->acDesc->ruangan }}</div>
+                                                                        {{ $history->acDesc->ruangan }}
+                                                                    </div>
                                                                 </div>
 
                                                                 <div class="row my-1">
@@ -151,7 +152,16 @@
                                                                         Merek AC</div>
                                                                     <div class="col-md-7">:
                                                                         {{ $history->acDesc->merekAC->merek }} -
-                                                                        {{ $history->acDesc->merekAC->seri }}</div>
+                                                                        {{ $history->acDesc->merekAC->seri }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row my-1">
+                                                                    <div class="col-md-5 label">
+                                                                        Merek AC</div>
+                                                                    <div class="col-md-7">:
+                                                                        {{ \Carbon\Carbon::parse($history->tgl_perbaikan)->isoFormat('D MMMM YYYY') }}
+                                                                    </div>
                                                                 </div>
 
                                                                 <div class="row my-1">

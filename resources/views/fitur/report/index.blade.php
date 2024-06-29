@@ -47,7 +47,8 @@
                                             <th scope="row">{{ $index + 1 }}</th>
                                             <td>{{ $item['reportedData']['kode_AC'] }}</td>
                                             <td>{{ $item['kerusakan'] }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($item['tgl_report'])->isoFormat('D MMMM YYYY') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item['tgl_report'])->isoFormat('D MMMM YYYY') }}
+                                            </td>
                                             <td>{{ $item['created_by'] }}</td>
                                             <td>
                                                 @if (is_null($item['history_id']))
@@ -58,6 +59,14 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex justify-content-center gap-1">
+                                                    <div class="d-flex justify-content-center gap-1">
+                                                        <button type="button"
+                                                            data-bs-target="#detailModal{{ $item['id'] }}"
+                                                            class="btn btn-info btn-tooltip" data-bs-toggle="modal"
+                                                            title="Show">
+                                                            <i class="bi bi-eye"></i>
+                                                        </button>
+                                                    </div>
                                                     @if (is_null($item['history_id']))
                                                         <div class="d-flex justify-content-center gap-1">
                                                             <button type="button"
@@ -69,14 +78,6 @@
                                                         </div>
                                                     @else
                                                     @endif
-                                                    <div class="d-flex justify-content-center gap-1">
-                                                        <button type="button"
-                                                            data-bs-target="#detailModal{{ $item['id'] }}"
-                                                            class="btn btn-info btn-tooltip" data-bs-toggle="modal"
-                                                            title="Show">
-                                                            <i class="bi bi-eye"></i>
-                                                        </button>
-                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -87,7 +88,7 @@
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Teknisi
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail Laporan Kerusakan
                                                             <b>{{ Str::ucfirst($item['name']) }}</b>
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"

@@ -42,7 +42,7 @@ class GejalaSeeder extends Seeder
             ['kd_gejala' => 'G025', 'gejala' => 'Suara ledakan atau dentuman yang tiba-tiba dari unit AC', 'created_by' => 'dev'],
             ['kd_gejala' => 'G026', 'gejala' => 'Unit outdoor tidak menyala', 'created_by' => 'dev'],
             ['kd_gejala' => 'G027', 'gejala' => 'Kipas unit outdoor mati', 'created_by' => 'dev'],
-            ['kd_gejala' => 'G028', 'gejala' => 'AKipas unit indoor mati', 'created_by' => 'dev'],
+            ['kd_gejala' => 'G028', 'gejala' => 'Kipas unit indoor mati', 'created_by' => 'dev'],
             ['kd_gejala' => 'G029', 'gejala' => 'Daun swing tidak bekerja', 'created_by' => 'dev'],
             ['kd_gejala' => 'G030', 'gejala' => 'Kompresor tidak mati ketika unit indoor mati', 'created_by' => 'dev'],
             ['kd_gejala' => 'G031', 'gejala' => 'Kabel outdoor terbakar', 'created_by' => 'dev'],

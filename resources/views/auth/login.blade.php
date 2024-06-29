@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/logo-322.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/logo-180.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -33,6 +33,40 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+    <style>
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('{{ asset('assets/img/teknisi.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.5;
+            /* Adjust the opacity value as needed */
+            z-index: -1;
+        }
+
+        .section.register {
+            /* background-color: rgba(255, 255, 255, 0.8); */
+            /* Optional: Add a white background with opacity for better readability */
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -45,7 +79,7 @@
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div class="d-flex justify-content-center py-4">
                                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="assets/img/logo.png" alt="" />
+                                    <img src="assets/img/logo-180.png" alt="" />
                                     <span class="d-none d-lg-block">SIMAC-UJB</span>
                                 </a>
                             </div>
@@ -62,7 +96,8 @@
                                         </p>
                                     </div>
 
-                                    <form class="row g-3 needs-validation" action="{{ route('check_login') }}" method="POST" novalidate>
+                                    <form class="row g-3 needs-validation" action="{{ route('check_login') }}"
+                                        method="POST" novalidate>
                                         @csrf
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
@@ -108,7 +143,7 @@
                                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
                                 Designed by
-                                <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                                <a href="https://bootstrapmade.com/">BootstrapMade | Sabila Nafisah</a>
                             </div>
                         </div>
                     </div>
@@ -122,7 +157,8 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js"></script>
@@ -151,7 +187,3 @@
 </body>
 
 </html>
-
-
-
-

@@ -14,37 +14,37 @@
                     <img src="assetsUsers/img/carousel-1.jpg" class="img-fluid" alt="First slide">
                     <div class="carousel-caption">
                         <div class="container carousel-content">
-                            <h6 class="text-secondary h4 animated fadeInUp">Best IT Solutions</h6>
-                            <h1 class="text-white display-1 mb-4 animated fadeInRight">An Innovative IT Solutions Agency
-                            </h1>
-                            <p class="mb-4 text-white fs-5 animated fadeInDown">Lorem ipsum dolor sit amet elit. Sed
-                                efficitur quis purus ut interdum. Pellentesque aliquam dolor eget urna ultricies
-                                tincidunt.</p>
-                            <a href="" class="me-2"><button type="button"
-                                    class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Read
-                                    More</button></a>
-                            <a href="" class="ms-2"><button type="button"
-                                    class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact
-                                    Us</button></a>
+                            <h6 class="text-secondary h4 animated fadeInUp">Selamat Datang di SIMAC</h6>
+                            <h1 class="text-white display-1 mb-4 animated fadeInLeft">Manajemen AC untuk Universitas
+                                Janabadra</h1>
+                            <p class="mb-4 text-white fs-5 animated fadeInDown">SIMAC dirancang untuk mengelola
+                                pemeliharaan AC di Fakultas Teknik Universitas
+                                Janabadra, untuk menciptakan lingkungan belajar yang nyaman dan efisien.
+                            </p>
+                            <a href="#about" class="me-2"><button type="button"
+                                    class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Pelajari
+                                    Lebih Lanjut</button></a>
+                            {{-- <a href="#footer" class="ms-2"><button type="button"
+                                    class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Hubungi
+                                    Kami</button></a> --}}
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="assetsUsers/img/carousel-2.jpg" class="img-fluid" alt="Second slide">
+                    <img src="assetsUsers/img/ujb.jpg" class="img-fluid" alt="Second slide">
                     <div class="carousel-caption">
                         <div class="container carousel-content">
-                            <h6 class="text-secondary h4 animated fadeInUp">Best IT Solutions</h6>
-                            <h1 class="text-white display-1 mb-4 animated fadeInLeft">Quality Digital Services You
-                                Really Need!</h1>
-                            <p class="mb-4 text-white fs-5 animated fadeInDown">Lorem ipsum dolor sit amet elit. Sed
-                                efficitur quis purus ut interdum. Pellentesque aliquam dolor eget urna ultricies
-                                tincidunt.</p>
-                            <a href="" class="me-2"><button type="button"
-                                    class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Read
-                                    More</button></a>
-                            <a href="" class="ms-2"><button type="button"
-                                    class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Contact
-                                    Us</button></a>
+                            <h6 class="text-secondary h4 animated fadeInUp">SIMAC - Sistem Manajemen AC</h6>
+                            <h1 class="text-white display-1 mb-4 animated fadeInRight">Solusi Manajemen AC yang Efisien dan
+                                Optimal</h1>
+                            <p class="mb-4 text-white fs-5 animated fadeInDown">Menyederhanakan pemeliharaan AC dengan
+                                pelacakan real-time dan fitur manajemen yang komprehensif.</p>
+                            <a href="#about" class="me-2"><button type="button"
+                                    class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Pelajari
+                                    Lebih Lanjut</button></a>
+                            {{-- <a href="#footer" class="ms-2"><button type="button"
+                                    class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Hubungi
+                                    Kami</button></a> --}}
                         </div>
                     </div>
                 </div>
@@ -67,21 +67,35 @@
             <div class="row g-5">
                 <div class="col-lg-5 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".3s">
                     <div class="h-100 position-relative">
-                        <img src="assetsUsers/img/about-1.jpg" class="img-fluid w-75 rounded" alt=""
+                        <img src="assetsUsers/img/simac-logo.png" class="img-fluid w-75 rounded" alt=""
                             style="margin-bottom: 25%;">
                         <div class="position-absolute w-75" style="top: 25%; left: 25%;">
-                            <img src="assetsUsers/img/about-2.jpg" class="img-fluid w-100 rounded" alt="">
+                            {{-- <img src="assetsUsers/img/simac-logo.png" class="img-fluid w-100 rounded" alt=""> --}}
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-6 col-sm-12 wow fadeIn" data-wow-delay=".5s">
                     <h5 class="text-primary">About Us</h5>
-                    <h1 class="mb-4">Tentang Aplikasi SIMAC (Sistem Manajemen AC)</h1>
-                    <p class="mb-4">Aplikasi SIMAC (Sistem Manajemen AC) dirancang untuk mempermudah pengelolaan dan
+                    <h1 class="mb-4">SIMAC-UJB (Sistem Manajemen AC Universitas Janabadra)</h1>
+                    {{-- <p class="mb-4">Aplikasi SIMAC dirancang untuk mempermudah pengelolaan dan
                         pemeliharaan AC di Fakultas Teknik Universitas Janabadra. Aplikasi ini memungkinkan pengguna untuk
                         memantau kondisi AC secara real-time. Dilengkapi dengan fitur QR Code, aplikasi ini memudahkan
                         pengguna dalam memindai dan mengakses informasi detail tentang setiap unit AC, termasuk riwayat
-                        perbaikan, identifikasi kerusakan, dan solusi perbaikan yang sesuai.</p>
+                        perbaikan, identifikasi kerusakan, dan solusi perbaikan yang sesuai.</p> --}}
+                    <p class="mb-4">Aplikasi SIMAC dirancang khusus untuk mempermudah pengelolaan dan pemeliharaan AC di
+                        Fakultas Teknik Universitas Janabadra. Dengan antarmuka yang ramah pengguna dan fitur-fitur canggih,
+                        SIMAC memungkinkan pengguna untuk memantau kondisi AC secara real-time. Notifikasi otomatis memberi
+                        tahu teknisi tentang kebutuhan perawatan rutin atau masalah mendesak, sehingga tindakan preventif
+                        dapat diambil dengan cepat. Hal ini meningkatkan efisiensi perawatan dan memperpanjang umur
+                        pemakaian perangkat AC.
+
+                    <p>Salah satu fitur unggulan SIMAC adalah kemampuan pemindaian QR Code yang memudahkan akses informasi
+                        detail tentang setiap unit AC. Dengan hanya memindai QR Code, pengguna dapat melihat riwayat
+                        perbaikan, identifikasi kerusakan, dan solusi perbaikan yang sesuai. Fitur ini memastikan bahwa
+                        semua informasi yang relevan selalu tersedia dan terorganisir dengan baik, mendukung proses
+                        pengelolaan AC yang lebih efisien dan efektif.
+                    </p>
+                    </p>
                 </div>
             </div>
         </div>
@@ -99,10 +113,10 @@
             </div>
 
             <div class="row g-5 justify-content-center">
-                @foreach ($data as $item)
+                @forelse ($data as $item)
                     <div class="col-lg-6 col-xl-4 wow fadeIn" data-wow-delay=".3s">
                         <div class="blog-item position-relative bg-light rounded">
-                            <img src="assetsUsers/img/blog-1.jpg" class="img-fluid w-100 rounded-top" alt="">
+                            <img src="assetsUsers/img/ac-room.jpg" class="img-fluid w-100 rounded-top" alt="">
                             <span class="position-absolute px-4 py-3 bg-primary text-white rounded"
                                 style="top: -28px; right: 20px;">R. {{ $item->ruangan }}</span>
                             <div class="blog-btn d-flex justify-content-center px-3" style="margin-top:  -75px;">
@@ -117,7 +131,13 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h4> Data Belum Tersedia </h4>
+                    </div>
+                </div>
+                @endforelse
             </div>
         </div>
     </div>
