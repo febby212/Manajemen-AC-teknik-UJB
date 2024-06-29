@@ -18,6 +18,12 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
+    <!-- Favicons -->
+    <link href="assets/img/logo-180.png" rel="icon">
+    {{-- <link href="{{ asset('assets/img/favicon.png') }}" rel="icon"> --}}
+    <link href="assets/img/logo-180.png" rel="apple-touch-icon">
+    {{-- <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon"> --}}
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

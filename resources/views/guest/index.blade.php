@@ -15,7 +15,7 @@
                     <div class="carousel-caption">
                         <div class="container carousel-content">
                             <h6 class="text-secondary h4 animated fadeInUp">Selamat Datang di SIMAC</h6>
-                            <h1 class="text-white display-1 mb-4 animated fadeInLeft">Manajemen AC untuk Universitas
+                            <h1 class="text-white display-1 mb-4 animated fadeInLeft">Sistem Manajemen AC untuk Universitas
                                 Janabadra</h1>
                             <p class="mb-4 text-white fs-5 animated fadeInDown">SIMAC dirancang untuk mengelola
                                 pemeliharaan AC di Fakultas Teknik Universitas
