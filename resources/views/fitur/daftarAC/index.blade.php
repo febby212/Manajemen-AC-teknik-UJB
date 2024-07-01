@@ -45,12 +45,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $index = 1;
-                                        @endphp
-                                        @foreach ($data as $item)
+                                        @foreach ($data as $index => $item)
                                             <tr>
-                                                <th scope="row">{{ $index++ }}</th>
+                                                <th scope="row">{{ $index+1 }}</th>
                                                 <td>{{ $item['kode_AC'] }}</td>
                                                 <td>{{ $item->merekAC->merek }} - {{ $item->merekAC->seri }}</td>
                                                 <td>{{ $item['kelengkapan'] }}</td>

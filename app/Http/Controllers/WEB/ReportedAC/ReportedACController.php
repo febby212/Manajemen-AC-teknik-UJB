@@ -53,7 +53,7 @@ class ReportedACController extends Controller
 
         try {
             $this->report->store($data);
-            return redirect()->route('report.index', encrypt($dataAC_id))->with('success', 'Laporan sudah anda sudah dibuat, terimakasih atas laporannya');
+            return redirect()->route('report.index', encrypt($dataAC_id))->with('success', 'Laporan sudah Anda sudah dibuat, terima kasih atas laporannya');
         } catch (\Throwable $th) {
             if (env('APP_DEBUG')) {
                 return $th->getMessage();

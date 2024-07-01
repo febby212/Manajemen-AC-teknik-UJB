@@ -145,15 +145,15 @@ class HistoryServiceController extends Controller
 
         $data['menyetujui'] = Str::ucfirst($menyetujui->nama) . ' - ' . Str::ucfirst($menyetujui->jabatan);
         $data['mengetahui'] = Str::ucfirst($mengetahui->nama) . ' - ' . Str::ucfirst($mengetahui->jabatan);
-        
+
         try {
             $this->dataHistory->edit($id, $data);
-            return redirect()->route('history.index')->with('success', 'Berhasi mengubah data riwayat perbaikan ac');
+            return redirect()->route('history.index')->with('success', 'Berhasi mengubah data riwayat perbaikan AC');
         } catch (\Throwable $e) {
             if (env('APP_DEBUG')) {
                 return $e->getMessage();
             }
-            return back()->with('error', "Oops..!! Terjadi keesalahan saat mengubah data riwayat perbaikan ac")->withInput($request->input);
+            return back()->with('error', "Oops..!! Terjadi keesalahan saat mengubah data riwayat perbaikan AC")->withInput($request->input);
         }
     }
 
@@ -176,7 +176,8 @@ class HistoryServiceController extends Controller
     }
 
     //export data ac
-    public function exportHistory() {
+    public function exportHistory()
+    {
         $data = $this->dataHistory->getAllExport();
         return Excel::download(new HistoryExport($data), 'Riwayat.xlsx');
     }

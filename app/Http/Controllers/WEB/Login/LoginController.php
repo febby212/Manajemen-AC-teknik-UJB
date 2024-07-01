@@ -61,7 +61,8 @@ class LoginController extends Controller
         return back()->with('error', config('error', 'Nama pengguna atau password tidak sesuai'));
     }
 
-    public function loginTeknisi(Request $request) {
+    public function loginTeknisi(Request $request)
+    {
         $data = $request->validate([
             'token' => ['required', 'min:6', 'max:6']
         ], [], [
@@ -74,7 +75,7 @@ class LoginController extends Controller
             $user = $this->user->getByIdTeknisi($token->teknisi_id);
             Auth::login($user);
             TokenizeModel::where('token', $data['token'])->delete();
-            return redirect()->back()->with('success', 'Selamat datang' . $user->name);
+            return redirect()->back()->with('success', 'Selamat datang ' . $user->name);
         }
         return back()->with('error', 'Kode akses yang anda masukkan salah');
     }

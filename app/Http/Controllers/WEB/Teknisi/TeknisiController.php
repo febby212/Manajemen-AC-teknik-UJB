@@ -46,7 +46,7 @@ class TeknisiController extends Controller
     {
         $ref = $this->data;
         $ref['url'] = route('teknisi.store');
-
+        
         return view($this->data['dir_view'] . 'form', compact('ref'));
     }
 
@@ -77,7 +77,6 @@ class TeknisiController extends Controller
 
         $dataUser['id'] = 'USR-' . CsHelper::data_id();
         $dataUser['created_by'] = auth()->user()->id;
-
         try {
             $this->teknisi->store($data);
             $this->user->store($dataUser);

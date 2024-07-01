@@ -56,10 +56,10 @@
                                         @endforeach
                                     </select>
                                     <div class="valid-tooltip">
-                                        
+
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan daftar ac.
+                                        Masukkan daftar AC
                                     </div>
                                 </div>
 
@@ -69,10 +69,10 @@
                                         placeholder="Masukkan pejabat pengguna anggaran"
                                         value="{{ old('PPA', isset($data) ? $data['PPA'] : '') }}" required>
                                     <div class="valid-tooltip">
-                                        
+
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan pejabat pengguna anggaran.
+                                        Masukkan Pejabat Pengguna Anggaran
                                     </div>
                                 </div>
 
@@ -83,10 +83,10 @@
                                         value="{{ old('pos_anggaran', isset($data) ? $data['pos_anggaran'] : '') }}"
                                         required>
                                     <div class="valid-tooltip">
-                                        
+
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan POS anggaran.
+                                        Masukkan POS anggaran
                                     </div>
                                 </div>
 
@@ -96,10 +96,10 @@
                                         placeholder="Masukkan biaya perbaikan"
                                         value="{{ old('biaya', isset($data) ? $data['biaya'] : '') }}" required>
                                     <div class="valid-tooltip">
-                                        
+
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan POS anggaran.
+                                        Masukkan POS anggaran
                                     </div>
                                 </div>
 
@@ -115,10 +115,10 @@
                                         @endforeach
                                     </select>
                                     <div class="valid-tooltip">
-                                        
+
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan teknisi AC.
+                                        Masukkan teknisi AC
                                     </div>
                                 </div>
 
@@ -128,10 +128,10 @@
                                         value="{{ old('tgl_perbaikan', isset($data) ? $data['tgl_perbaikan'] : '') }}"
                                         required>
                                     <div class="valid-tooltip">
-                                        
+
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan tanggal perbaikan.
+                                        Masukkan tanggal perbaikan
                                     </div>
                                 </div>
 
@@ -141,10 +141,10 @@
                                         <textarea type="text" class="form-control" id="kerusakan" name="kerusakan"
                                             placeholder="Contoh: Ac tidak dingin, Unit outdoor mati" required>{{ old('kerusakan', isset($data) ? $data['kerusakan'] : '') }}</textarea>
                                         <div class="valid-tooltip">
-                                            
+
                                         </div>
                                         <div class="invalid-tooltip">
-                                            Masukkan kerusakan AC.
+                                            Masukkan kerusakan AC
                                         </div>
                                     </div>
 
@@ -153,10 +153,10 @@
                                         <textarea type="text" class="form-control" id="perbaikan" name="perbaikan"
                                             placeholder="Contoh: Cuci AC, Ganti compresor" required>{{ old('perbaikan', isset($data) ? $data['perbaikan'] : '') }}</textarea>
                                         <div class="valid-tooltip">
-                                            
+
                                         </div>
                                         <div class="invalid-tooltip">
-                                            Masukkan perbaikan AC.
+                                            Masukkan perbaikan AC
                                         </div>
                                     </div>
                                 </div>

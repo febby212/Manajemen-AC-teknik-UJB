@@ -30,10 +30,10 @@
                                 <div class="position-relative mb-3">
                                     <label for="dataAc_id" class="form-label">Data AC</label>
                                     <select class="form-select select2" id="dataAc_id" name="dataAc_id" required>
-                                        <option selected disabled value="">Pilih Daftar Ac</option>
+                                        <option selected disabled value="">Pilih Daftar AC</option>
                                         @foreach ($dataAc as $item)
                                             <option value="{{ $item['id'] }}"
-                                                {{ old('dataAc_id') == $item['id'] ? 'selected' : ''}}>
+                                                {{ old('dataAc_id') == $item['id'] ? 'selected' : '' }}>
                                                 {{ $item['kode_AC'] }} - {{ $item['kondisi'] }}
                                             </option>
                                         @endforeach
@@ -42,7 +42,7 @@
 
                                     </div>
                                     <div class="invalid-tooltip">
-                                        Masukkan daftar ac.
+                                        Masukkan daftar AC
                                     </div>
                                 </div>
 
@@ -56,7 +56,8 @@
                                             <li class="list-group-item mb-2">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox"
-                                                        id="{{ $item['kd_gejala'] }}" name="kd_gejala[]" value="{{ $item['kd_gejala'] }}"
+                                                        id="{{ $item['kd_gejala'] }}" name="kd_gejala[]"
+                                                        value="{{ $item['kd_gejala'] }}"
                                                         {{ in_array($item['kd_gejala'], old('kd_gejala', [])) ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="{{ $item['kd_gejala'] }}">
                                                         {{ Str::ucfirst($item['gejala']) }}

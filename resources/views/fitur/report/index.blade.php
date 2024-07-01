@@ -88,7 +88,8 @@
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail Laporan Kerusakan
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Detail Laporan
+                                                            Kerusakan
                                                             <b>{{ Str::ucfirst($item['name']) }}</b>
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -127,7 +128,7 @@
                                                             </label>
                                                             <input type="text" name="created_by" class="form-control"
                                                                 id="created_by"
-                                                                value="{{ is_null($item['history_id']) ? 'Belum diperbaiki.' : 'Sudah diperbaiki.' }}"
+                                                                value="{{ is_null($item['history_id']) ? 'Belum diperbaiki' : 'Sudah diperbaiki' }}"
                                                                 disabled>
                                                         </div>
                                                         @if (is_null($item['history_id']))

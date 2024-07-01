@@ -70,11 +70,11 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-info">
-                    <h1 class="modal-title fs-5" id="authModalLabel">Otentikasi</h1>
+                    <h1 class="modal-title fs-5" id="authModalLabel">Autentikasi</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Apakah anda <b>teknisi</b> atau <b>admin</b> dari aplikasi ini?
+                    Apakah Anda <b>teknisi</b> atau <b>admin</b> dari aplikasi ini?
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-bs-target="#authModal2" data-bs-toggle="modal">Teknisi</button>
