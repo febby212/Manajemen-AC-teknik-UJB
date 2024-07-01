@@ -37,28 +37,6 @@ class DatabaseSeeder extends Seeder
             'created_by' => 'dev'
         ]);
 
-        User::create([
-            'id' => 'USR-' . CsHelper::data_id(),
-            'name' => 'wadek',
-            'username' => 'wadek',
-            'email' => 'wadek@gma.com',
-            'password' => Hash::make('123'),
-            'is_wadek' => true,
-            'remember_token' => Str::random(10),
-            'created_by' => 'dev'
-        ]);
-
-        User::create([
-            'id' => 'USR-' . CsHelper::data_id(),
-            'name' => 'dekan',
-            'username' => 'dekan',
-            'email' => 'dekan@gma.com',
-            'password' => Hash::make('123'),
-            'is_dekan' => true,
-            'remember_token' => Str::random(10),
-            'created_by' => 'dev'
-        ]);
-
         $this->call([
             CaseBaseSeeder::class,
             GejalaSeeder::class,
