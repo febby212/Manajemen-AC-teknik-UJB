@@ -75,7 +75,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" id="deleteRow"
-                                                                data-id="{{ $item->id }}"
+                                                                data-message="{{ $item['kode_AC'] }}"
                                                                 class="btn bg-danger btn-tooltip show-alert-delete-box"
                                                                 data-toggle="tooltip" title="Delete"><i
                                                                     class="bi bi-trash"></i>
@@ -225,7 +225,7 @@
                 $.confirm({
                     icon: 'fa fa-warning',
                     title: 'Yakin Hapus Data Daftar AC?',
-                    content: 'Merek AC ' + $(this).data('message') +
+                    content: 'Kode AC ' + $(this).data('message') +
                         ' akan di hapus secara permanen',
                     type: 'orange',
                     typeAnimated: true,

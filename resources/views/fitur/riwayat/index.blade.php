@@ -84,7 +84,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" id="deleteRow"
-                                                                data-message="{{ $history->id }}"
+                                                                data-message="{{ $history->kode_perbaikan }}"
                                                                 class="btn bg-danger btn-tooltip show-alert-delete-box"
                                                                 data-toggle="tooltip" title="Delete"><i
                                                                     class="bi bi-trash"></i>

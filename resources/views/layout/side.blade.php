@@ -31,7 +31,7 @@
             <a class="nav-link {{ $ref['title'] == 'Data AC' ? '' : 'collapsed' }}"
                 href="{{ route('daftarAC.index') }}">
                 <i class="bi bi-card-list"></i>
-                <span>Daftar AC</span>
+                <span>Data AC</span>
             </a>
         </li><!-- End F.A.Q Page Nav -->
 
