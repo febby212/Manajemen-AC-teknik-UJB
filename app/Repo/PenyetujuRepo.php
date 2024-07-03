@@ -9,7 +9,7 @@ class PenyetujuRepo implements PenyetujuInterface
 {
     public function getAll()
     {
-        return Penyetuju::get();
+        return Penyetuju::orderBy('created_at', 'desc')->get();
     }
 
     public function countData() {

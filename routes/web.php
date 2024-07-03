@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AllReqController;
+use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\WEB\Data\DataCaseBaseController;
 use App\Http\Controllers\WEB\Data\DataGejalaController;
 use App\Http\Controllers\WEB\Data\DataHistoriIdenfitikasiController;
@@ -100,6 +101,9 @@ Route::middleware(['auth', 'checkUserRole'])->group(function () {
     Route::get('laporan-kerusakan', [ReportedACController::class, 'indexAdmin'])->name('laporan.index');
     Route::put('update-laporan/{descAC_id}', [ReportedACController::class,'updateStatusReport'])->name('laporan.update');
 
+    //profile
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 Route::prefix('teknisi')->middleware('auth')->group(function() {

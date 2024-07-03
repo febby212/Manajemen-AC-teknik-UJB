@@ -9,7 +9,7 @@ class GejalaRepo implements GejalaInterface
 {
     public function getAll()
     {
-        return Gejala::OrderBy('kd_gejala')->get();
+        return Gejala::OrderBy('kd_gejala')->orderBy('created_at', 'desc')->get();
     }
 
     public function getById($id)

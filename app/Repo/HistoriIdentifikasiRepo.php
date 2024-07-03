@@ -9,7 +9,7 @@ class HistoriIdentifikasiRepo implements HistoriIdentifikasiInterface
 {
     public function getAll()
     {
-        return HasilHistory::with('dataACRel', 'userPredict')->get();
+        return HasilHistory::with('dataACRel', 'userPredict')->orderBy('created_at', 'desc')->get();
     }
 
     public function getById($id)

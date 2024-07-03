@@ -9,7 +9,7 @@ class CaseBaseRepo implements CaseBaseInterface
 {
     public function getAll()
     {
-        return CaseBase::get();
+        return CaseBase::orderBy('created_at', 'desc')->get();
     }
 
     public function getByKdPenyakit() {

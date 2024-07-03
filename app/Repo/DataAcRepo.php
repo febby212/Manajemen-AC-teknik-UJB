@@ -9,7 +9,7 @@ class DataAcRepo implements DataAcInterface
 {
     public function getAll()
     {
-        return AcDesc::with('history', 'merekAC')->get();
+        return AcDesc::with('history', 'merekAC')->orderBy('created_at', 'desc')->get();
     }
 
     public function countDataAC() {

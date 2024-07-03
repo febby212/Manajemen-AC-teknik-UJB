@@ -9,7 +9,7 @@ class UserRepo implements UserInterface
 {
     public function getAll()
     {
-        return User::get();
+        return User::orderBy('created_at', 'desc')->get();
     }
 
     public function getById($id)

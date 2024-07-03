@@ -9,7 +9,7 @@ class TeknisiRepo implements TeknisiInterface
 {
     public function getAll()
     {
-        return Teknisi::with('token', 'teknisiUser','historyPerbaikan')->get();
+        return Teknisi::with('token', 'teknisiUser','historyPerbaikan')->orderBy('created_at', 'desc')->get();
     }
 
     public function countTeknisi() {

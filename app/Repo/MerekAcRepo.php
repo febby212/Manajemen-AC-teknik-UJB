@@ -9,7 +9,7 @@ class MerekAcRepo implements MerekAcInterface
 {
     public function getAll()
     {
-        return MerekAC::with('Ac')->get();
+        return MerekAC::with('Ac')->orderBy('created_at', 'desc')->get();
     }
 
     public function getById($id)

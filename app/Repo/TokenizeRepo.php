@@ -9,7 +9,7 @@ class TokenizeRepo implements TokenizeInterface
 {
     public function getAll()
     {
-        return TokenizeModel::with('teknisi')->get();
+        return TokenizeModel::with('teknisi')->orderBy('created_at', 'desc')->get();
     }
 
     public function getAllWithTrash() {

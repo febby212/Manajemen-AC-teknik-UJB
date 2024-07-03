@@ -9,7 +9,7 @@ class ReportACRepo implements ReportACInterface
 {
     public function getAll()
     {
-        return ReportDamageAC::with('reportedData', 'reportHistory')->get();
+        return ReportDamageAC::with('reportedData', 'reportHistory')->orderBy('created_at', 'desc')->get();
     }
 
     public function countReport() {

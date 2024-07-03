@@ -14,6 +14,16 @@
                 </li>
 
                 <li>
+                    <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.index') }}">
+                        <i class="bi bi-gear"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button type="submit" class="dropdown-item d-flex align-items-center" href="#">

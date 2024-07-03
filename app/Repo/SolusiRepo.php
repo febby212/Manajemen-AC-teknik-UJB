@@ -9,7 +9,7 @@ class SolusiRepo implements SolusiInterface
 {
     public function getAll()
     {
-        return Solusi::get();
+        return Solusi::orderBy('created_at', 'desc')->get();
     }
 
     public function getById($id)
